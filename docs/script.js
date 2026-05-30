@@ -143,6 +143,10 @@ function render() {
   renderSkills(data);
   renderRoadmap(data);
 
+  $('skillsLabel').textContent = data.skills.label;
+  $('skillsHeading').textContent = data.skills.heading;
+  $('skillsSub').textContent = data.skills.subheading;
+
   $('contactLabel').textContent = data.contact.label;
   $('contactHeading').textContent = data.contact.heading;
   $('contactText').textContent = data.contact.subtext;
