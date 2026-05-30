@@ -1,8 +1,10 @@
 # LioExp — Portfolio
 
-> build. break. document. — em público.
+<blockquote style="border-left: 3px solid #7c3aed; padding-left: 1em; color: #a78bfa;">
+build. break. document. — em público.
+</blockquote>
 
-Sou o LioExp, tenho 18 anos e construo coisas. Este é o meu site/portfolio— o sítio onde mostro o que estou a fazer, a quebrar e a aprender.
+Sou o LioExp, tenho **18 anos** e construo coisas. Este é o meu site/portfolio — o sítio onde mostro o que estou a fazer, a quebrar e a aprender.
 
 ## 💜 O que encontras aqui
 
