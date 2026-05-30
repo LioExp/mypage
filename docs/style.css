@@ -700,6 +700,16 @@ img {
   font-family: var(--font-mono);
 }
 
+.waiting-name a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.waiting-name a:hover {
+  color: var(--accent);
+}
+
 .waiting-desc {
   font-size: 0.875rem;
   color: var(--text-dim);
