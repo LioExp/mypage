@@ -2,11 +2,11 @@
 
 > build. break. document. — em público.
 
-Sou o LioExp, tenho 17 anos e construo coisas de Luanda, Angola. Este é o meu quarto de guerra digital — o sítio onde mostro o que estou a fazer, a quebrar e a aprender.
+Sou o LioExp, tenho 18 anos e construo coisas. Este é o meu site/portfolio— o sítio onde mostro o que estou a fazer, a quebrar e a aprender.
 
 ## 💜 O que encontras aqui
 
-O meu portfolio ao vivo. Não é um currículo bonito — é o registo do que realmente acontece. Projectos activos à espera do teu feedback, skills que estou a dominar (ou a tentar), e uma forma de me encontrares se quiseres construir algo junto.
+O meu portfolio ao vivo. Projectos activos à espera do teu feedback, skills que estou a dominar (ou a tentar), e uma forma de me encontrares se quiseres construir algo junto.
 
 ## 🚀 O que estou a construir agora
 
