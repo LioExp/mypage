@@ -1,25 +1,26 @@
 # LioExp — Portfolio
 
-> build. break. document.
+> build. break. document. — em público.
 
-Portfolio pessoal do LioExp — builder, programmer e experimentador de Luanda, Angola.
+Sou o LioExp, tenho 17 anos e construo coisas de Luanda, Angola. Este é o meu quarto de guerra digital — o sítio onde mostro o que estou a fazer, a quebrar e a aprender.
 
-## Stack
+## 💜 O que encontras aqui
 
-- HTML + CSS + JS puro (sem frameworks)
-- Fonte: Inter + JetBrains Mono
-- Tema escuro com purple accent
-- Suporte PT/EN integrado
+O meu portfolio ao vivo. Não é um currículo bonito — é o registo do que realmente acontece. Projectos activos à espera do teu feedback, skills que estou a dominar (ou a tentar), e uma forma de me encontrares se quiseres construir algo junto.
 
-## Projectos em destaque
+## 🚀 O que estou a construir agora
 
-| Projecto | Status |
-|----------|--------|
-| **FABER** | Agente de código para terminal em Rust (offline-first) |
-| **MyFi** | Monitor de rede local com CLI própria |
-| **KiandaBot** | Agente de vendas IA para WhatsApp |
+| Projecto | Estado | Vibe |
+|----------|--------|------|
+| **FABER** | a lançar | Agente de código em Rust, offline-first, para quem tem hardware modesto |
+| **MyFi** | v2.0 em dev | Monitor de rede local com CLI própria — porque confiar na rede não é opção |
+| **KiandaBot** | em planeamento | Agente de vendas IA para WhatsApp em Luanda |
 
-## Estrutura
+## 🔧 Stack
+
+HTML + CSS + JS puro. Sem frameworks, sem build steps, sem firulas. Só o que precisas para ver o que interessa.
+
+## 📁 Estrutura
 
 ```
 src/
@@ -29,6 +30,12 @@ src/
 └── script.js      # Lógica + i18n
 ```
 
+## 📬 Fala comigo
+
+- Email: [lioexp0@gmail.com](mailto:lioexp0@gmail.com)
+- GitHub: [@lioexp](https://github.com/lioexp)
+- YouTube: [@lioexp](https://youtube.com/@lioexp)
+
 ## Licença
 
-MIT
+MIT — usa, estuda, parte, melhora.
