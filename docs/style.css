@@ -23,6 +23,8 @@
 
 html {
   scroll-behavior: smooth;
+  background: var(--accent);
+  min-height: 100%;
 }
 
 body {
