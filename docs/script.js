@@ -162,7 +162,7 @@ function renderProjects(data) {
   const projects = [
     { id: 'FABER', key: 'faber', barColor: 'bg-red-600/50', barHover: '#C62828', badgeColor: 'rgba(198,40,40,0.12)', badgeText: '#C62828', badgeBorder: 'rgba(198,40,40,0.25)', dotBg: '#C62828', img: 'assets/faber-preview.png', tags: ['Rust', 'llama.cpp', 'CLI', 'LLM local'], imgBg: 'transparent', github: 'https://github.com/LioExp/Faber', landing: '#' },
     { id: 'MyFi', key: 'myfi', barColor: 'bg-blue-500/50', barHover: '#3b82f6', badgeColor: 'rgba(59,130,246,0.1)', badgeText: '#3b82f6', badgeBorder: 'rgba(59,130,246,0.2)', dotBg: '#3b82f6', img: 'assets/myfi-preview.png', tags: ['Python', 'CLI', 'Networking', 'Linux'], imgBg: '#050505', github: 'https://github.com/LioExp/MyFi', landing: 'https://lioexp.github.io/MyFi/' },
-    { id: 'KiandaBot', key: 'kianda', barColor: 'bg-purple-500/50', barHover: '#7c3aed', badgeColor: 'rgba(124,58,237,0.1)', badgeText: '#7c3aed', badgeBorder: 'rgba(124,58,237,0.2)', dotBg: '#7c3aed', tags: ['Python', 'Evolution API', 'AI', 'WhatsApp'], terminal: true, github: 'https://github.com/LioExp/Kianda-bot', landing: '#' }
+    { id: 'KiandaBot', key: 'kianda', barColor: 'bg-purple-500/50', barHover: '#7c3aed', badgeColor: 'rgba(124,58,237,0.1)', badgeText: '#7c3aed', badgeBorder: 'rgba(124,58,237,0.2)', dotBg: '#7c3aed', tags: ['Python', 'Evolution API', 'AI', 'WhatsApp'], terminal: true, github: 'https://github.com/LioExp/Kianda-bot', landing: 'https://kiandabot.vercel.app/' }
   ];
 
   grid.innerHTML = projects.map(p => renderProject(p, data)).join('');
