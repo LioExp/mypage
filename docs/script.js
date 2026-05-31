@@ -41,7 +41,7 @@ const t = {
         { label: 'GitHub', sub: 'código aberto, repositórios, contribuições', handle: 'github.com/lioexp', href: 'https://github.com/lioexp', testid: 'link-contact-github' },
         { label: 'E-mail', sub: 'canal principal para colaborações', handle: 'lioexp0@gmail.com', href: 'mailto:lioexp0@gmail.com', testid: 'link-contact-email' }
       ],
-      discord: { name: 'Discord', desc: 'comunidade, debugging, builds ao vivo', handle: 'entra no server', href: 'https://discord.com/channels/1487801811770409021/1487802983235326023' },
+      discord: { name: 'Discord', desc: 'comunidade, debugging, builds ao vivo', handle: 'entra no server', href: 'https://discord.gg/wkmuHa3P8q' },
       footer: { tagline: 'build. break. document.', colossians: 'Col 3:23' }
     }
   },
@@ -87,7 +87,7 @@ const t = {
         { label: 'GitHub', sub: 'open source code, repositories, contributions', handle: 'github.com/lioexp', href: 'https://github.com/lioexp', testid: 'link-contact-github' },
         { label: 'Email', sub: 'main channel for collaborations', handle: 'lioexp0@gmail.com', href: 'mailto:lioexp0@gmail.com', testid: 'link-contact-email' }
       ],
-      discord: { name: 'Discord', desc: 'community, debugging, live builds', handle: 'join the server', href: 'https://discord.com/channels/1487801811770409021/1487802983235326023' },
+      discord: { name: 'Discord', desc: 'community, debugging, live builds', handle: 'join the server', href: 'https://discord.gg/wkmuHa3P8q' },
       footer: { tagline: 'build. break. document.', colossians: 'Col 3:23' }
     }
   }
