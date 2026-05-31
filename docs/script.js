@@ -456,7 +456,7 @@ function renderFooter(data) {
   $('footer').innerHTML = `
     <div class="footer-inner">
       <p class="footer-tagline">~ ${data.contact.footer.tagline}</p>
-      <p class="footer-verse">${data.contact.footer.colossians}</p>
+      <p class="footer-verse" title="${lang === 'pt' ? 'Tudo o que fizerem, façam de todo o coração, como para o Senhor, e não para os homens' : 'Whatever you do, work at it with all your heart, as working for the Lord, not for human masters'} — Colossenses 3:23">${data.contact.footer.colossians}</p>
     </div>`;
 }
 
