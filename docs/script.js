@@ -55,7 +55,7 @@ const t = {
       subscribers: 'inscritos',
       socials: [
         { label: 'X / Twitter', sub: 'pensamentos, updates, threads técnicas', handle: '@lioexp', href: 'https://x.com/lioexp', testid: 'link-contact-x' },
-        { label: 'LinkedIn', sub: 'rede profissional, colaborações formais', handle: 'in/lioexp', href: 'https://linkedin.com/in/lioexp', testid: 'link-contact-linkedin' },
+        { label: 'LinkedIn', sub: 'rede profissional, colaborações formais', handle: 'in/lioexp', href: '#', testid: 'link-contact-linkedin' },
         { label: 'GitHub', sub: 'código aberto, repositórios, contribuições', handle: 'github.com/lioexp', href: 'https://github.com/lioexp', testid: 'link-contact-github' },
         { label: 'E-mail', sub: 'canal principal para colaborações', handle: 'lioexp0@gmail.com', href: 'mailto:lioexp0@gmail.com', testid: 'link-contact-email' }
       ],
@@ -116,7 +116,7 @@ const t = {
       subscribers: 'subscribers',
       socials: [
         { label: 'X / Twitter', sub: 'thoughts, updates, technical threads', handle: '@lioexp', href: 'https://x.com/lioexp', testid: 'link-contact-x' },
-        { label: 'LinkedIn', sub: 'professional network, formal collaborations', handle: 'in/lioexp', href: 'https://linkedin.com/in/lioexp', testid: 'link-contact-linkedin' },
+        { label: 'LinkedIn', sub: 'professional network, formal collaborations', handle: 'in/lioexp', href: '#', testid: 'link-contact-linkedin' },
         { label: 'GitHub', sub: 'open source code, repositories, contributions', handle: 'github.com/lioexp', href: 'https://github.com/lioexp', testid: 'link-contact-github' },
         { label: 'Email', sub: 'main channel for collaborations', handle: 'lioexp0@gmail.com', href: 'mailto:lioexp0@gmail.com', testid: 'link-contact-email' }
       ],
