@@ -1,7 +1,7 @@
 const t = {
   pt: {
-    nav: ['inicio', 'sobre', 'projectos', 'skills', 'contacto'],
-    navIds: ['inicio', 'sobre', 'projectos', 'skills', 'contacto'],
+    nav: ['inicio', 'sobre', 'projectos', 'skills', 'setup', 'contacto'],
+    navIds: ['inicio', 'sobre', 'projectos', 'skills', 'setup', 'contacto'],
     hero: { tagline: '~ build. break. document.', age: '17 anos. Luanda, Angola.', roles: 'Builder · Programmer · Experimentador', motto: 'Eu sou o experimento.', cta: 'ver projectos' },
     about: { label: '01. — SOBRE', heading: ['Builder que ', 'constrói', ', quebra e documenta tudo em público.'], cbpTitle: 'CBP Framework', cbpText: 'Trabalho com um framework simples — Create, Break, Protect. Construo uma coisa, tento destruí-la, e documento tudo. O processo é público porque aprender em privado desperdiça metade do valor.', nowTitle: 'Agora', nowText: 'Estou em Luanda. Hardware modesto, internet instável, escola de tarde. É o ambiente onde tudo o que construo tem de funcionar — por enquanto.', whyTitle: 'Porquê', whyText: 'Eu sou o experimento. Programação, segurança, neurociência, psicologia e arte não são áreas separadas — são lentes diferentes sobre o mesmo problema.', statsLabels: ['agora', 'idade', 'stack actual', 'foco 2026', 'a estudar', 'meta 2030'], statsValues: ['Luanda, Angola', '17 anos', 'Python · Linux · Networking', 'MyFi · KiandaBot', 'OWASP · Burp Suite', 'IA Security Eng.'], openTo: 'ABERTO PARA:', openTags: ['colaborações técnicas', 'projectos open source', 'feedback ao código', 'mentorias', 'oportunidades remotas'] },
     projects: {
@@ -22,6 +22,18 @@ const t = {
       ],
       roadmapLabel: 'ROADMAP', roadmapDesc: '// 2026 – 2030',
       roadmapYears: [{ year: '2026', label: 'fundações', items: ['MyFi', 'KiandaBot', 'LioExp', 'FABER'] }, { year: '2027', label: 'Security+', items: ['1° interligação', 'hardware'] }, { year: '2028', label: 'senior remoto', items: ['freelance', 'cliente int.'] }, { year: '2030', label: 'IA Sec Eng', items: ['em pleno'] }]
+    },
+    setup: {
+      label: '04. — SETUP', heading: 'Onde construo.', sub: 'hardware, software — a bancada.',
+      items: [
+        { label: 'SO', value: 'Arch Linux' },
+        { label: 'DE / WM', value: 'terminal recipe' },
+        { label: 'Editor', value: 'Neovim' },
+        { label: 'Shell', value: 'Zsh + Oh My Zsh' },
+        { label: 'RAM', value: '4 GB' },
+        { label: 'Rede', value: 'internet móvel, instável' },
+        { label: 'Localização', value: 'Luanda, Angola' }
+      ]
     },
     contact: {
       label: '04. — CONTACTO', heading: 'Fala comigo.', subtext: 'Prefiro e-mail. Respondo a tudo que vale uma resposta.',
@@ -46,8 +58,8 @@ const t = {
     }
   },
   en: {
-    nav: ['home', 'about', 'projects', 'skills', 'contact'],
-    navIds: ['inicio', 'sobre', 'projectos', 'skills', 'contacto'],
+    nav: ['home', 'about', 'projects', 'skills', 'setup', 'contact'],
+    navIds: ['inicio', 'sobre', 'projectos', 'skills', 'setup', 'contacto'],
     hero: { tagline: '~ build. break. document.', age: '17 years old. Luanda, Angola.', roles: 'Builder · Programmer · Experimenter', motto: 'I am the experiment.', cta: 'view projects' },
     about: { label: '01. — ABOUT', heading: ['Builder who ', 'builds', ', breaks and documents everything in public.'], cbpTitle: 'CBP Framework', cbpText: 'I work with a simple framework — Create, Break, Protect. I build something, try to break it, and document everything. The process is public because learning in private wastes half the value.', nowTitle: 'Now', nowText: 'I\'m in Luanda. Modest hardware, unstable internet, afternoon school. This is the environment where everything I build has to work — for now.', whyTitle: 'Why', whyText: 'I am the experiment. Programming, security, neuroscience, psychology and art aren\'t separate fields — they\'re different lenses on the same problem.', statsLabels: ['now', 'age', 'current stack', '2026 focus', 'studying', '2030 goal'], statsValues: ['Luanda, Angola', '17 years old', 'Python · Linux · Networking', 'MyFi · KiandaBot', 'OWASP · Burp Suite', 'AI Security Eng.'], openTo: 'OPEN TO:', openTags: ['technical collaborations', 'open source projects', 'code feedback', 'mentorships', 'remote opportunities'] },
     projects: {
@@ -68,6 +80,18 @@ const t = {
       ],
       roadmapLabel: 'ROADMAP', roadmapDesc: '// 2026 – 2030',
       roadmapYears: [{ year: '2026', label: 'foundations', items: ['MyFi', 'KiandaBot', 'LioExp', 'FABER'] }, { year: '2027', label: 'Security+', items: ['1st integration', 'hardware'] }, { year: '2028', label: 'senior remote', items: ['freelance', 'intl. client'] }, { year: '2030', label: 'AI Sec Eng', items: ['full swing'] }]
+    },
+    setup: {
+      label: '04. — SETUP', heading: 'Where I build.', sub: 'hardware, software — the workbench.',
+      items: [
+        { label: 'OS', value: 'Arch Linux' },
+        { label: 'DE / WM', value: 'terminal recipe' },
+        { label: 'Editor', value: 'Neovim' },
+        { label: 'Shell', value: 'Zsh + Oh My Zsh' },
+        { label: 'RAM', value: '4 GB' },
+        { label: 'Network', value: 'mobile internet, unstable' },
+        { label: 'Location', value: 'Luanda, Angola' }
+      ]
     },
     contact: {
       label: '04. — CONTACT', heading: 'Talk to me.', subtext: 'I prefer email. I reply to everything worth a reply.',
@@ -147,6 +171,12 @@ function render() {
   renderWaiting(data);
   renderSkills(data);
   renderRoadmap(data);
+
+  renderSetup(data);
+
+  $('setupLabel').textContent = data.setup.label;
+  $('setupHeading').textContent = data.setup.heading;
+  $('setupSub').textContent = data.setup.sub;
 
   $('skillsLabel').textContent = data.skills.label;
   $('skillsHeading').textContent = data.skills.heading;
@@ -298,6 +328,12 @@ function renderRoadmap(data) {
       </div>`
     ).join('')}</div>
   </div>`;
+}
+
+function renderSetup(data) {
+  $('setupGrid').innerHTML = data.setup.items.map(item =>
+    `<div class="setup-item"><span class="setup-label">${item.label}</span><span class="setup-value">${item.value}</span></div>`
+  ).join('');
 }
 
 function renderBriefing(data) {
