@@ -1119,6 +1119,37 @@ img {
   transform: translateY(0);
 }
 
+/* === Discord Icon === */
+.discord-icon { color: rgba(114,137,218,0.6); transition: color 0.2s; flex-shrink: 0; margin-top: 2px; }
+.discord-icon svg { width: 1.25rem; height: 1.25rem; }
+.yt-card:hover .discord-icon { color: #7289da; }
+
+/* === Footer === */
+.footer {
+  margin-top: 6rem;
+  padding: 2rem 1rem 6rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.footer-inner {
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+.footer-tagline {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.footer-verse {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-gray);
+}
+
 /* === Responsive === */
 @media (max-width: 639px) {
   .lang-toggle { top: 1rem; right: 1rem; font-size: 0.625rem; padding: 0.25rem 0.5rem; }
