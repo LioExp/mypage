@@ -1,3 +1,6 @@
+// =============================================
+// I18n Data
+// =============================================
 const t = {
   pt: {
     nav: ['inicio', 'sobre', 'projectos', 'skills', 'setup', 'contacto'],
@@ -39,7 +42,7 @@ const t = {
       ]
     },
     contact: {
-      label: '04. — CONTACTO', heading: 'Fala comigo.', subtext: 'Prefiro e-mail. Respondo a tudo que vale uma resposta.',
+      label: '05. — CONTACTO', heading: 'Fala comigo.', subtext: 'Prefiro e-mail. Respondo a tudo que vale uma resposta.',
       briefingToggleOpen: 'fechar briefing', briefingToggleClosed: 'como estruturar o teu e-mail',
       briefingIntro: 'Se a ideia envolve publicidade, parceria, software, projecto especial ou qualquer acção em que marca e repertório técnico precisem andar juntos, este é o canal principal.',
       briefingListLabel: 'Um bom briefing tem',
@@ -64,7 +67,7 @@ const t = {
     nav: ['home', 'about', 'projects', 'skills', 'setup', 'contact'],
     navIds: ['inicio', 'sobre', 'projectos', 'skills', 'setup', 'contacto'],
     hero: { tagline: '~ build. break. document.', age: '17 years old. Luanda, Angola.', roles: 'Builder · Programmer · Experimenter', motto: 'I am the experiment.', cta: 'view projects' },
-    about: { label: '01. — ABOUT', heading: ['Builder who ', 'builds', ', breaks and documents everything in public.'], cbpTitle: 'CBP Framework', cbpText: 'I work with a simple framework — Create, Break, Protect. I build something, try to break it, and document everything. The process is public because learning in private wastes half the value.', nowTitle: 'Now', nowText: 'I\'m in Luanda. Modest hardware, unstable internet, afternoon school. This is the environment where everything I build has to work — for now.', whyTitle: 'Why', whyText: 'I am the experiment. Programming, security, neuroscience, psychology and art aren\'t separate fields — they\'re different lenses on the same problem.', statsLabels: ['now', 'age', 'current stack', '2026 focus', 'studying', '2030 goal'], statsValues: ['Luanda, Angola', '17 years old', 'Python · Linux · Networking', 'MyFi · KiandaBot', 'OWASP · Burp Suite', 'AI Security Eng.'], openTo: 'OPEN TO:', openTags: ['technical collaborations', 'open source projects', 'code feedback', 'mentorships', 'remote opportunities'] },
+    about: { label: '01. — ABOUT', heading: ['Builder who ', 'builds', ', breaks and documents everything in public.'], cbpTitle: 'CBP Framework', cbpText: 'I work with a simple framework — Create, Break, Protect. I build something, try to break it, and document everything. The process is public because learning in private wastes half the value.', nowTitle: 'Now', nowText: "I'm in Luanda. Modest hardware, unstable internet, afternoon school. This is the environment where everything I build has to work — for now.", whyTitle: 'Why', whyText: 'I am the experiment. Programming, security, neuroscience, psychology and art aren\'t separate fields — they\'re different lenses on the same problem.', statsLabels: ['now', 'age', 'current stack', '2026 focus', 'studying', '2030 goal'], statsValues: ['Luanda, Angola', '17 years old', 'Python · Linux · Networking', 'MyFi · KiandaBot', 'OWASP · Burp Suite', 'AI Security Eng.'], openTo: 'OPEN TO:', openTags: ['technical collaborations', 'open source projects', 'code feedback', 'mentorships', 'remote opportunities'] },
     projects: {
       label: '02. — PROJECTS', active: 'ACTIVE', waiting: 'ON HOLD', showMore: 'show more', showLess: 'show less',
       faber: { badge: 'launching', sub: 'Phase 0 — imminent launch', desc: 'Code agent for the terminal. Rust. Offline-first. 4GB RAM minimum. For those Claude Code and the Pi exclude.', why: 'Why it exists', whyText: 'AI coding tools assume you have fibre, a paid account and recent hardware. FABER assumes none of that. It was built to work in the same environment where everything else has to work — modest hardware, unstable internet, no monthly subscription.', how: 'How it works', howText: 'Runs a quantized model locally via llama.cpp. No cloud, no tokens, no rate limits. The agent reads the project context, suggests code, executes commands and learns from direct feedback in the terminal. All in Rust to keep overhead minimal.', status: 'Current status', statusItems: ['Rust core functional', 'Stable llama.cpp integration', 'Basic CLI operational', 'Tested on 4GB RAM hardware', 'Documentation and landing in progress'], who: 'Who it\'s for', whoText: 'Developers in emerging markets. Those using Raspberry Pi as their main machine. Those who don\'t want to depend on subscriptions to have a functional code agent.' },
@@ -100,7 +103,7 @@ const t = {
       ]
     },
     contact: {
-      label: '04. — CONTACT', heading: 'Talk to me.', subtext: 'I prefer email. I reply to everything worth a reply.',
+      label: '05. — CONTACT', heading: 'Talk to me.', subtext: 'I prefer email. I reply to everything worth a reply.',
       briefingToggleOpen: 'close briefing', briefingToggleClosed: 'how to structure your email',
       briefingIntro: 'If the idea involves advertising, partnership, software, a special project or any action where brand and technical background need to work together, this is the main channel.',
       briefingListLabel: 'A good briefing includes',
@@ -123,6 +126,9 @@ const t = {
   }
 };
 
+// =============================================
+// Icons
+// =============================================
 const icons = {
   github: '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.92.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>',
   external: '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>',
@@ -130,28 +136,111 @@ const icons = {
   discord: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>'
 };
 
+// =============================================
+// Project Definitions (data only)
+// =============================================
+const PROJECTS = [
+  {
+    id: 'FABER', key: 'faber', color: '#C62828',
+    img: 'assets/faber-preview.png', imgBg: 'transparent',
+    tags: ['Rust', 'llama.cpp', 'CLI', 'LLM local'],
+    github: 'https://github.com/LioExp/Faber', landing: '#'
+  },
+  {
+    id: 'MyFi', key: 'myfi', color: '#3b82f6',
+    img: 'assets/myfi-preview.png', imgBg: '#050505',
+    tags: ['Python', 'CLI', 'Networking', 'Linux'],
+    github: 'https://github.com/LioExp/MyFi', landing: 'https://lioexp.github.io/MyFi/'
+  },
+  {
+    id: 'KiandaBot', key: 'kianda', color: '#7c3aed',
+    tags: ['Python', 'Evolution API', 'AI', 'WhatsApp'],
+    github: 'https://github.com/LioExp/Kianda-bot', landing: 'https://kiandabot.vercel.app/',
+    terminal: true
+  }
+];
+
+// =============================================
+// Constants
+// =============================================
+const FILTER_COLORS = { domino: '#22c55e', aprender: '#60a5fa', roadmap: '#6b7280' };
+
+function hexToRgba(hex, alpha) {
+  const v = parseInt(hex.slice(1), 16);
+  return `rgba(${v >> 16},${(v >> 8) & 255},${v & 255},${alpha})`;
+}
+
+// =============================================
+// State
+// =============================================
 let lang = localStorage.getItem('lang') || 'pt';
 let openProjects = {};
-
 let skillFilter = null;
 let briefingOpen = false;
 
 function $(id) { return document.getElementById(id); }
 
+// =============================================
+// Detail section definitions per project
+// =============================================
+function getDetailSections(key, pr) {
+  const map = {
+    faber: [
+      { label: pr.why, text: pr.whyText },
+      { label: pr.how, text: pr.howText },
+      { label: pr.status, list: pr.statusItems },
+      { label: pr.who, text: pr.whoText }
+    ],
+    myfi: [
+      { label: pr.problem, text: pr.problemText },
+      { label: pr.features, list: pr.featureItems },
+      { label: pr.v2, text: pr.v2Text },
+      { label: pr.roadmap, text: pr.roadmapText }
+    ],
+    kianda: [
+      { label: pr.context, text: pr.contextText },
+      { label: pr.how, text: pr.howText },
+      { label: pr.diff, list: pr.diffItems },
+      { label: pr.vision, text: pr.visionText }
+    ]
+  };
+  return map[key];
+}
+
+// =============================================
+// Render Dispatcher
+// =============================================
 function render() {
   const data = t[lang];
-  const navLinks = document.querySelectorAll('.nav-link');
-  navLinks.forEach((l, i) => {
+  updateNav(data);
+  renderHero(data);
+  renderAbout(data);
+  renderProjectsSection(data);
+  renderSkillsSection(data);
+  renderSetupSection(data);
+  renderContactSection(data);
+  renderFooter(data);
+}
+
+// =============================================
+// Section Renderers
+// =============================================
+function updateNav(data) {
+  document.querySelectorAll('.nav-link').forEach((l, i) => {
     l.textContent = data.nav[i];
     l.href = '#' + data.navIds[i];
   });
+}
 
+function renderHero(data) {
   $('tagline').textContent = data.hero.tagline;
   $('heroAge').textContent = data.hero.age;
   $('heroRoles').textContent = data.hero.roles;
   $('heroMotto').textContent = data.hero.motto;
   $('ctaText').textContent = data.hero.cta;
+}
 
+function renderAbout(data) {
   $('aboutLabel').textContent = data.about.label;
   $('aboutTitle').innerHTML = `${data.about.heading[0]}<span class="text-purple">${data.about.heading[1]}</span>${data.about.heading[2]}`;
   $('cbpTitle').textContent = data.about.cbpTitle;
@@ -166,160 +255,141 @@ function render() {
   ).join('');
 
   $('openToLabel').textContent = data.about.openTo;
-  $('openTags').innerHTML = data.about.openTags.map(t =>
-    `<span class="tag">${t}</span>`
-  ).join('');
+  $('openTags').innerHTML = data.about.openTags.map(t => `<span class="tag">${t}</span>`).join('');
+}
 
+// ---- Projects ----
+function renderProjectsSection(data) {
   $('projectsLabel').textContent = data.projects.label;
   $('activeLabel').textContent = data.projects.active;
   $('waitingLabel').textContent = data.projects.waiting;
 
-  renderProjects(data);
-  renderWaiting(data);
-  renderSkills(data);
-  renderRoadmap(data);
-
-  renderSetup(data);
-
-  $('setupLabel').textContent = data.setup.label;
-  $('setupHeading').textContent = data.setup.heading;
-  $('setupSub').textContent = data.setup.sub;
-
-  $('skillsLabel').textContent = data.skills.label;
-  $('skillsHeading').textContent = data.skills.heading;
-  $('skillsSub').textContent = data.skills.subheading;
-
-  $('contactLabel').textContent = data.contact.label;
-  $('contactHeading').textContent = data.contact.heading;
-  $('contactText').textContent = data.contact.subtext;
-  $('briefingBtnText').textContent = briefingOpen ? data.contact.briefingToggleOpen : data.contact.briefingToggleClosed;
-  $('whereLabel').textContent = data.contact.whereLabel;
-  renderYtCards(data);
-  renderSocialList(data);
-  renderDiscord(data);
-  renderBriefing(data);
-  renderFooter(data);
+  $('projectsGrid').innerHTML = PROJECTS.map(p => renderProjectCard(p, data)).join('');
+  $('waitingGrid').innerHTML = renderWaitingList(data);
 }
 
-function renderProjects(data) {
-  const grid = $('projectsGrid');
-  const projects = [
-    { id: 'FABER', key: 'faber', barColor: 'bg-red-600/50', barHover: '#C62828', badgeColor: 'rgba(198,40,40,0.12)', badgeText: '#C62828', badgeBorder: 'rgba(198,40,40,0.25)', dotBg: '#C62828', img: 'assets/faber-preview.png', tags: ['Rust', 'llama.cpp', 'CLI', 'LLM local'], imgBg: 'transparent', github: 'https://github.com/LioExp/Faber', landing: '#' },
-    { id: 'MyFi', key: 'myfi', barColor: 'bg-blue-500/50', barHover: '#3b82f6', badgeColor: 'rgba(59,130,246,0.1)', badgeText: '#3b82f6', badgeBorder: 'rgba(59,130,246,0.2)', dotBg: '#3b82f6', img: 'assets/myfi-preview.png', tags: ['Python', 'CLI', 'Networking', 'Linux'], imgBg: '#050505', github: 'https://github.com/LioExp/MyFi', landing: 'https://lioexp.github.io/MyFi/' },
-    { id: 'KiandaBot', key: 'kianda', barColor: 'bg-purple-500/50', barHover: '#7c3aed', badgeColor: 'rgba(124,58,237,0.1)', badgeText: '#7c3aed', badgeBorder: 'rgba(124,58,237,0.2)', dotBg: '#7c3aed', tags: ['Python', 'Evolution API', 'AI', 'WhatsApp'], terminal: true, github: 'https://github.com/LioExp/Kianda-bot', landing: 'https://kiandabot.vercel.app/' }
-  ];
-
-  grid.innerHTML = projects.map(p => renderProject(p, data)).join('');
-}
-
-function renderProject(p, data) {
+function renderProjectCard(p, data) {
   const pr = data.projects[p.key];
   const isOpen = openProjects[p.id];
-  const barColor = p.id === 'FABER' ? '#C62828' : p.id === 'MyFi' ? '#3b82f6' : '#7c3aed';
-
-  let preview = '';
-  if (p.terminal) {
-    preview = `<div class="terminal">
-      <div class="terminal-dots"><div class="terminal-dot" style="background:rgba(239,68,68,0.2)"></div><div class="terminal-dot" style="background:rgba(234,179,8,0.2)"></div><div class="terminal-dot" style="background:rgba(34,197,94,0.2)"></div></div>
-      <div class="text-gray-500">cliente → ${lang === 'pt' ? 'Olá, têm o produto X?' : 'Hi, do you have product X?'}</div>
-      <div class="terminal-line green">bot → ${lang === 'pt' ? 'Sim! Temos em stock. Posso enviar hoje.' : 'Yes! In stock. I can ship today.'}</div>
-      <div class="text-gray-500 terminal-line">cliente → ${lang === 'pt' ? 'Qual o preço?' : 'What\'s the price?'}</div>
-      <div class="terminal-line green">bot → ${lang === 'pt' ? '5.000 Kz. Entrega hoje incluída.' : '5,000 Kz. Same-day delivery included.'}</div>
-      <div class="terminal-cursor"><span class="text-purple">❯</span> <span class="cursor-blink">_</span></div>
-    </div>`;
-  } else {
-    preview = `<div class="project-img"${p.imgBg ? ` style="background:${p.imgBg}"` : ''}><img src="${p.img}" alt="${p.id} preview" draggable="false" /></div>`;
-  }
-
-  const detailSections = p.key === 'faber' ? [
-    { label: pr.why, text: pr.whyText },
-    { label: pr.how, text: pr.howText },
-    { label: pr.status, list: pr.statusItems },
-    { label: pr.who, text: pr.whoText }
-  ] : p.key === 'myfi' ? [
-    { label: pr.problem, text: pr.problemText },
-    { label: pr.features, list: pr.featureItems },
-    { label: pr.v2, text: pr.v2Text },
-    { label: pr.roadmap, text: pr.roadmapText }
-  ] : [
-    { label: pr.context, text: pr.contextText },
-    { label: pr.how, text: pr.howText },
-    { label: pr.diff, list: pr.diffItems },
-    { label: pr.vision, text: pr.visionText }
-  ];
+  const c = p.color;
 
   return `<div class="project-card">
-    <div class="project-bar" style="background:${barColor}33"></div>
-    <div class="project-header">
-      <h4 class="project-name">${p.id}</h4>
-      <span class="project-badge" style="background:${p.badgeColor};color:${p.badgeText};border-color:${p.badgeBorder}">
-        <span class="badge-dot" style="background:${p.dotBg}"></span>
-        ${pr.badge}
-      </span>
-    </div>
+    ${projectBar(c)}
+    ${projectHeader(p, pr)}
     <p class="project-sub">${pr.sub}</p>
     <p class="project-desc">${pr.desc}</p>
-    ${preview}
-    <div class="project-tags">${p.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}</div>
-    <div class="project-actions">
-      <button class="expand-btn" onclick="toggleProject('${p.id}')"><span class="arrow-purple" style="transform:${isOpen ? 'rotate(90deg)' : 'rotate(0)'}">→</span> ${isOpen ? data.projects.showLess : data.projects.showMore}</button>
-      <div class="project-links">
-        <a href="${p.github}" target="_blank" rel="noopener noreferrer" class="pill-link">${icons.github} GitHub</a>
-        <a href="${p.landing}" target="_blank" rel="noopener noreferrer" class="pill-link">${icons.external} Landing</a>
-      </div>
-    </div>
-    <div class="project-detail${isOpen ? ' open' : ''}">
-      <div class="project-detail-inner">
-        ${detailSections.map(s => {
-          if (s.list) return `<div><p class="detail-label">${s.label}</p><ul class="detail-list">${s.list.map(i => `<li><span class="detail-bullet${p.key === 'kianda' ? ' purple' : ''}">·</span><span>${i}</span></li>`).join('')}</ul></div>`;
-          return `<div><p class="detail-label">${s.label}</p><p style="line-height:1.625">${s.text}</p></div>`;
-        }).join('')}
-      </div>
+    ${projectPreview(p)}
+    ${projectTags(p)}
+    ${projectActions(p, data, isOpen)}
+    ${projectDetail(p, pr, isOpen)}
+  </div>`;
+}
+
+function projectBar(color) {
+  return `<div class="project-bar" style="background:${color}33"></div>`;
+}
+
+function projectHeader(p, pr) {
+  const c = p.color;
+  return `<div class="project-header">
+    <h4 class="project-name">${p.id}</h4>
+    <span class="project-badge" style="background:${hexToRgba(c, 0.12)};color:${c};border-color:${hexToRgba(c, 0.25)}">
+      <span class="badge-dot" style="background:${c}"></span>
+      ${pr.badge}
+    </span>
+  </div>`;
+}
+
+function projectPreview(p) {
+  if (p.terminal) return terminalPreview();
+  return `<div class="project-img"${p.imgBg ? ` style="background:${p.imgBg}"` : ''}><img src="${p.img}" alt="${p.id} preview" draggable="false" /></div>`;
+}
+
+function terminalPreview() {
+  return `<div class="terminal">
+    <div class="terminal-dots"><div class="terminal-dot" style="background:rgba(239,68,68,0.2)"></div><div class="terminal-dot" style="background:rgba(234,179,8,0.2)"></div><div class="terminal-dot" style="background:rgba(34,197,94,0.2)"></div></div>
+    <div class="text-gray-500">cliente → ${lang === 'pt' ? 'Olá, têm o produto X?' : 'Hi, do you have product X?'}</div>
+    <div class="terminal-line green">bot → ${lang === 'pt' ? 'Sim! Temos em stock. Posso enviar hoje.' : 'Yes! In stock. I can ship today.'}</div>
+    <div class="text-gray-500 terminal-line">cliente → ${lang === 'pt' ? 'Qual o preço?' : "What's the price?"}</div>
+    <div class="terminal-line green">bot → ${lang === 'pt' ? '5.000 Kz. Entrega hoje incluída.' : '5,000 Kz. Same-day delivery included.'}</div>
+    <div class="terminal-cursor"><span class="text-purple">❯</span> <span class="cursor-blink">_</span></div>
+  </div>`;
+}
+
+function projectTags(p) {
+  return `<div class="project-tags">${p.tags.map(t => `<span class="project-tag">${t}</span>`).join('')}</div>`;
+}
+
+function projectActions(p, data, isOpen) {
+  return `<div class="project-actions">
+    <button class="expand-btn" data-project="${p.id}"><span class="arrow-purple" style="transform:${isOpen ? 'rotate(90deg)' : 'rotate(0)'}">→</span> ${isOpen ? data.projects.showLess : data.projects.showMore}</button>
+    <div class="project-links">
+      <a href="${p.github}" target="_blank" rel="noopener noreferrer" class="pill-link">${icons.github} GitHub</a>
+      <a href="${p.landing}" target="_blank" rel="noopener noreferrer" class="pill-link">${icons.external} Landing</a>
     </div>
   </div>`;
 }
 
-function renderWaiting(data) {
-  $('waitingGrid').innerHTML = data.projects.waitingProjects.map(p =>
+function projectDetail(p, pr, isOpen) {
+  const sections = getDetailSections(p.key, pr);
+  return `<div class="project-detail${isOpen ? ' open' : ''}">
+    <div class="project-detail-inner">
+      ${sections.map(s => {
+        if (s.list) return `<div><p class="detail-label">${s.label}</p><ul class="detail-list">${s.list.map(i => `<li><span class="detail-bullet${p.key === 'kianda' ? ' purple' : ''}">·</span><span>${i}</span></li>`).join('')}</ul></div>`;
+        return `<div><p class="detail-label">${s.label}</p><p style="line-height:1.625">${s.text}</p></div>`;
+      }).join('')}
+    </div>
+  </div>`;
+}
+
+function renderWaitingList(data) {
+  return data.projects.waitingProjects.map(p =>
     `<div class="waiting-item"><h5 class="waiting-name">${p.href ? `<a href="${p.href}" target="_blank" rel="noopener noreferrer" style="transition:color 0.2s">${p.name}</a>` : p.name}</h5><p class="waiting-desc">${p.desc}</p></div>`
   ).join('');
 }
 
-function renderSkills(data) {
-  const pillWrap = $('filterPills');
+// ---- Skills ----
+function renderSkillsSection(data) {
+  $('skillsLabel').textContent = data.skills.label;
+  $('skillsHeading').textContent = data.skills.heading;
+  $('skillsSub').textContent = data.skills.subheading;
+
+  renderFilterPills(data);
+  renderSkillCategories(data);
+  renderRoadmap(data);
+}
+
+function renderFilterPills(data) {
   const filters = ['domino', 'aprender', 'roadmap'];
-  pillWrap.innerHTML = filters.map(f => {
+  $('filterPills').innerHTML = filters.map(f => {
     const active = skillFilter === f;
-    const dotColor = f === 'domino' ? '#22c55e' : f === 'aprender' ? '#60a5fa' : '#6b7280';
+    const dotColor = FILTER_COLORS[f];
     const roadmapStyle = f === 'roadmap' ? 'opacity:0.4' : '';
-    return `<button class="filter-btn${active ? ' active' : ''}" onclick="setFilter('${f}')">
+    return `<button class="filter-btn${active ? ' active' : ''}" data-filter="${f}">
       <span class="filter-dot" style="background:${dotColor};${roadmapStyle}"></span>
       ${data.skills.filters[f]}
     </button>`;
   }).join('');
+}
 
-  const cats = $('skillsCategories');
-  cats.innerHTML = data.skills.categories.map(cat => {
-    const visibleDomino = !skillFilter || skillFilter === 'domino' ? cat.domino : [];
-    const visibleAprender = !skillFilter || skillFilter === 'aprender' ? cat.aprender : [];
-    const visibleRoadmap = !skillFilter || skillFilter === 'roadmap' ? cat.roadmap : [];
+function renderSkillCategories(data) {
+  $('skillsCategories').innerHTML = data.skills.categories.map(cat => {
+    const show = (key) => !skillFilter || skillFilter === key;
+    const visible = (key) => show(key) ? cat[key] : [];
     const hasAny = cat.domino.length + cat.aprender.length + cat.roadmap.length > 0;
     if (!hasAny) return '';
 
-    const groups = [];
-    if (visibleDomino.length > 0) {
-      groups.push(`<div><p class="skill-group-label">${data.skills.filters.domino}</p><div class="skill-items">${visibleDomino.map(s => `<span class="skill-item"><span class="skill-item-dot" style="background:#22c55e"></span>${s}</span>`).join('')}</div></div>`);
-    }
-    if (visibleAprender.length > 0) {
-      groups.push(`<div><p class="skill-group-label">${data.skills.filters.aprender}</p><div class="skill-items">${visibleAprender.map(s => `<span class="skill-item"><span class="skill-item-dot" style="background:#60a5fa"></span>${s}</span>`).join('')}</div></div>`);
-    }
-    if (visibleRoadmap.length > 0) {
-      groups.push(`<div><p class="skill-group-label">${data.skills.filters.roadmap}</p><div class="skill-items">${visibleRoadmap.map(s => `<span class="skill-item roadmap"><span class="skill-item-dot"></span>${s}</span>`).join('')}</div></div>`);
-    }
+    const groups = ['domino', 'aprender', 'roadmap'].map(key => {
+      const items = visible(key);
+      if (!items.length) return '';
+      const dotColor = FILTER_COLORS[key];
+      const isRoadmap = key === 'roadmap';
+      return `<div><p class="skill-group-label">${data.skills.filters[key]}</p><div class="skill-items">${items.map(s => `<span class="skill-item${isRoadmap ? ' roadmap' : ''}"><span class="skill-item-dot" style="background:${isRoadmap ? 'none' : dotColor};${isRoadmap ? 'border:1px solid #6b7280' : ''}"></span>${s}</span>`).join('')}</div></div>`;
+    }).join('');
 
     return `<div class="skill-category">
       <div><p class="cat-label">${cat.label}</p><p class="cat-desc">${cat.desc}</p></div>
-      <div class="skill-groups">${groups.join('')}</div>
+      <div class="skill-groups">${groups}</div>
     </div>`;
   }).join('');
 }
@@ -337,25 +407,124 @@ function renderRoadmap(data) {
   </div>`;
 }
 
-function renderSetup(data) {
+// ---- Setup ----
+function renderSetupSection(data) {
+  $('setupLabel').textContent = data.setup.label;
+  $('setupHeading').textContent = data.setup.heading;
+  $('setupSub').textContent = data.setup.sub;
+
   $('setupGrid').innerHTML = `
-    <div class="setup-image-wrap" onclick="openSetupModal()">
+    <div class="setup-image-wrap" data-open-modal>
       <img src="assets/setup-2026.jpg" alt="Setup 2026" class="setup-image" draggable="false" />
       <div class="setup-image-hint">${lang === 'pt' ? 'clique para ver os componentes' : 'click to see the components'}</div>
     </div>`;
 }
 
+// ---- Contact ----
+function renderContactSection(data) {
+  $('contactLabel').textContent = data.contact.label;
+  $('contactHeading').textContent = data.contact.heading;
+  $('contactText').textContent = data.contact.subtext;
+  $('briefingBtnText').textContent = briefingOpen ? data.contact.briefingToggleOpen : data.contact.briefingToggleClosed;
+  const arrow = document.querySelector('.arrow-toggle');
+  if (arrow) arrow.classList.toggle('open', briefingOpen);
+  $('whereLabel').textContent = data.contact.whereLabel;
+
+  renderYtCards(data);
+  renderSocialList(data);
+  renderDiscordCard(data);
+  renderBriefing(data);
+}
+
+function renderYtCards(data) {
+  $('ytGrid').innerHTML = `
+    <a href="https://youtube.com/@lioexp" target="_blank" rel="noopener noreferrer" class="yt-card" data-testid="link-contact-yt-pt">
+      <div class="yt-icon">${icons.yt}</div>
+      <div class="yt-info">
+        <div class="yt-title"><span class="yt-name">YouTube PT</span><span class="yt-lang">PT</span></div>
+        <p class="yt-desc">${data.contact.ytPTdesc}</p>
+        <div class="yt-footer"><span class="yt-handle">@lioexp →</span></div>
+      </div>
+    </a>
+    <a href="https://youtube.com/@lioexp-en" target="_blank" rel="noopener noreferrer" class="yt-card" data-testid="link-contact-yt-en">
+      <div class="yt-icon">${icons.yt}</div>
+      <div class="yt-info">
+        <div class="yt-title"><span class="yt-name">YouTube EN</span><span class="yt-lang">EN</span></div>
+        <p class="yt-desc">${data.contact.ytENdesc}</p>
+        <div class="yt-footer"><span class="yt-handle">@lioexp-en →</span></div>
+      </div>
+    </a>`;
+}
+
+function renderSocialList(data) {
+  $('socialList').innerHTML = data.contact.socials.map(s =>
+    `<a href="${s.href}" target="${s.href.startsWith('mailto') ? '' : '_blank'}" rel="noopener noreferrer" class="social-item" data-testid="${s.testid}">
+      <div><span class="social-name">${s.label}</span><p class="social-sub">${s.sub}</p></div>
+      <span class="social-handle">${s.handle} →</span>
+    </a>`
+  ).join('');
+}
+
+function renderDiscordCard(data) {
+  const d = data.contact.discord;
+  $('discordCard').innerHTML = `
+    <a href="${d.href}" target="_blank" rel="noopener noreferrer" class="yt-card">
+      <div class="yt-icon discord-icon">${icons.discord}</div>
+      <div class="yt-info">
+        <div class="yt-title"><span class="yt-name">${d.name}</span></div>
+        <p class="yt-desc">${d.desc}</p>
+        <div class="yt-footer"><span class="yt-handle">${d.handle} →</span></div>
+      </div>
+    </a>`;
+}
+
+function renderBriefing(data) {
+  if (!briefingOpen) {
+    $('briefingContent').classList.remove('open');
+    $('briefingContent').innerHTML = '';
+    return;
+  }
+  $('briefingContent').classList.add('open');
+  $('briefingContent').innerHTML = `<div class="briefing-inner">
+    <p>${data.contact.briefingIntro}</p>
+    <div>
+      <p class="briefing-list-label">${data.contact.briefingListLabel}</p>
+      <ul class="briefing-list">${data.contact.briefingItems.map(i => `<li>${i}</li>`).join('')}</ul>
+    </div>
+    <div class="briefing-fast">
+      <p class="briefing-fast-label">${data.contact.fastestWayLabel}</p>
+      <p>${data.contact.fastestWayText}</p>
+    </div>
+    <a href="mailto:lioexp0@gmail.com?subject=Briefing — Colaboração" class="briefing-email">${data.contact.sendEmail}</a>
+  </div>`;
+}
+
+// ---- Footer ----
+function renderFooter(data) {
+  const fullVerse = lang === 'pt'
+    ? 'Tudo o que fizerem, façam de todo o coração, como para o Senhor, e não para os homens'
+    : 'Whatever you do, work at it with all your heart, as working for the Lord, not for human masters';
+  $('footer').innerHTML = `
+    <div class="footer-inner">
+      <p class="footer-tagline">~ ${data.contact.footer.tagline}</p>
+      <button class="verse-btn" data-verse>${data.contact.footer.colossians}</button>
+      <p class="verse-full" id="verseFull">"${fullVerse}" — Colossenses 3:23</p>
+    </div>`;
+}
+
+// =============================================
+// Setup Modal
+// =============================================
 function openSetupModal() {
   const html = document.documentElement;
   html.style.overflow = 'hidden';
   const overlay = document.createElement('div');
   overlay.className = 'setup-modal-overlay';
   overlay.id = 'setupModal';
-  overlay.onclick = function (e) { if (e.target === this) closeSetupModal(); };
   const data = t[lang];
   overlay.innerHTML = `
     <div class="setup-modal">
-      <button class="setup-modal-close" onclick="closeSetupModal()">×</button>
+      <button class="setup-modal-close" data-close-modal>×</button>
       <div class="setup-modal-content">
         <div class="setup-modal-image"><img src="assets/setup-2026.jpg" alt="Setup 2026" draggable="false" /></div>
         <div class="setup-modal-items">
@@ -375,7 +544,7 @@ function openSetupModal() {
 }
 
 function closeSetupModal() {
-  const modal = document.getElementById('setupModal');
+  const modal = $('setupModal');
   if (!modal) return;
   modal.classList.remove('open');
   document.documentElement.style.overflow = '';
@@ -387,87 +556,9 @@ function closeOnEscape(e) {
   if (e.key === 'Escape') closeSetupModal();
 }
 
-function renderBriefing(data) {
-  if (!briefingOpen) { $('briefingContent').classList.remove('open'); $('briefingContent').innerHTML = ''; return; }
-  $('briefingContent').classList.add('open');
-  $('briefingContent').innerHTML = `<div class="briefing-inner">
-    <p>${data.contact.briefingIntro}</p>
-    <div>
-      <p class="briefing-list-label">${data.contact.briefingListLabel}</p>
-      <ul class="briefing-list">${data.contact.briefingItems.map(i => `<li>${i}</li>`).join('')}</ul>
-    </div>
-    <div class="briefing-fast">
-      <p class="briefing-fast-label">${data.contact.fastestWayLabel}</p>
-      <p>${data.contact.fastestWayText}</p>
-    </div>
-    <a href="mailto:lioexp0@gmail.com?subject=Briefing — Colaboração" class="briefing-email">${data.contact.sendEmail}</a>
-  </div>`;
-}
-
-function renderYtCards(data) {
-  $('ytGrid').innerHTML = `
-    <a href="https://youtube.com/@lioexp" target="_blank" rel="noopener noreferrer" class="yt-card" data-testid="link-contact-yt-pt">
-      <div class="yt-icon">${icons.yt}</div>
-      <div class="yt-info">
-        <div class="yt-title"><span class="yt-name">YouTube PT</span><span class="yt-lang">PT</span></div>
-        <p class="yt-desc">${data.contact.ytPTdesc}</p>
-        <div class="yt-footer">
-          <span class="yt-handle">@lioexp →</span>
-        </div>
-      </div>
-    </a>
-    <a href="https://youtube.com/@lioexp-en" target="_blank" rel="noopener noreferrer" class="yt-card" data-testid="link-contact-yt-en">
-      <div class="yt-icon">${icons.yt}</div>
-      <div class="yt-info">
-        <div class="yt-title"><span class="yt-name">YouTube EN</span><span class="yt-lang">EN</span></div>
-        <p class="yt-desc">${data.contact.ytENdesc}</p>
-        <div class="yt-footer">
-          <span class="yt-handle">@lioexp-en →</span>
-        </div>
-      </div>
-    </a>`;
-}
-
-function renderSocialList(data) {
-  $('socialList').innerHTML = data.contact.socials.map(s =>
-    `<a href="${s.href}" target="${s.href.startsWith('mailto') ? '' : '_blank'}" rel="noopener noreferrer" class="social-item" data-testid="${s.testid}">
-      <div><span class="social-name">${s.label}</span><p class="social-sub">${s.sub}</p></div>
-      <span class="social-handle">${s.handle} →</span>
-    </a>`
-  ).join('');
-}
-
-function renderDiscord(data) {
-  const d = data.contact.discord;
-  $('discordCard').innerHTML = `
-    <a href="${d.href}" target="_blank" rel="noopener noreferrer" class="yt-card">
-      <div class="yt-icon discord-icon">${icons.discord}</div>
-      <div class="yt-info">
-        <div class="yt-title"><span class="yt-name">${d.name}</span></div>
-        <p class="yt-desc">${d.desc}</p>
-        <div class="yt-footer">
-          <span class="yt-handle">${d.handle} →</span>
-        </div>
-      </div>
-    </a>`;
-}
-
-function renderFooter(data) {
-  const fullVerse = lang === 'pt'
-    ? 'Tudo o que fizerem, façam de todo o coração, como para o Senhor, e não para os homens'
-    : 'Whatever you do, work at it with all your heart, as working for the Lord, not for human masters';
-  $('footer').innerHTML = `
-    <div class="footer-inner">
-      <p class="footer-tagline">~ ${data.contact.footer.tagline}</p>
-      <button class="verse-btn" onclick="toggleVerse()">${data.contact.footer.colossians}</button>
-      <p class="verse-full" id="verseFull">“${fullVerse}” — Colossenses 3:23</p>
-    </div>`;
-}
-
-function toggleVerse() {
-  document.getElementById('verseFull').classList.toggle('open');
-}
-
+// =============================================
+// State Mutators
+// =============================================
 function toggleProject(name) {
   openProjects[name] = !openProjects[name];
   render();
@@ -490,6 +581,13 @@ function switchLang(l) {
   render();
 }
 
+function toggleVerse() {
+  $('verseFull').classList.toggle('open');
+}
+
+// =============================================
+// Observers
+// =============================================
 let navObserver = null;
 
 function initNavObserver() {
@@ -526,18 +624,17 @@ function initRevealObserver() {
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.lang-btn').forEach(b => {
-    b.addEventListener('click', () => switchLang(b.dataset.lang));
-  });
-
-  document.getElementById('briefingBtn').addEventListener('click', toggleBriefing);
-
-  switchLang(lang);
-  initNavObserver();
-  initRevealObserver();
-
+// =============================================
+// Event Delegation
+// =============================================
+function initEvents() {
   document.addEventListener('click', (e) => {
+    const langBtn = e.target.closest('.lang-btn');
+    if (langBtn) { switchLang(langBtn.dataset.lang); return; }
+
+    const briefingBtn = e.target.closest('#briefingBtn');
+    if (briefingBtn) { toggleBriefing(); return; }
+
     const link = e.target.closest('a[href^="#"]');
     if (link) {
       e.preventDefault();
@@ -550,6 +647,32 @@ document.addEventListener('DOMContentLoaded', () => {
           link.classList.add('active');
         }
       }
+      return;
     }
+
+    const projectBtn = e.target.closest('[data-project]');
+    if (projectBtn) { toggleProject(projectBtn.dataset.project); return; }
+
+    const filterBtn = e.target.closest('[data-filter]');
+    if (filterBtn) { setFilter(filterBtn.dataset.filter); return; }
+
+    if (e.target.closest('[data-open-modal]')) { openSetupModal(); return; }
+
+    if (e.target.closest('[data-close-modal]')) { closeSetupModal(); return; }
+
+    if (e.target.classList.contains('setup-modal-overlay')) { closeSetupModal(); return; }
+
+    const verseBtn = e.target.closest('[data-verse]');
+    if (verseBtn) { toggleVerse(); return; }
   });
+}
+
+// =============================================
+// Init
+// =============================================
+document.addEventListener('DOMContentLoaded', () => {
+  initEvents();
+  switchLang(lang);
+  initNavObserver();
+  initRevealObserver();
 });
