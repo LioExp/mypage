@@ -1415,9 +1415,44 @@ img {
 }
 
 .footer-verse {
+  margin-top: 0.5rem;
+}
+
+.verse-btn {
+  background: none;
+  border: none;
   font-family: var(--font-mono);
   font-size: 0.75rem;
   color: var(--text-gray);
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  transition: color 0.2s, background 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.verse-btn:hover,
+.verse-btn:focus-visible {
+  color: var(--accent);
+  background: rgba(124,58,237,0.08);
+}
+
+.verse-full {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, opacity 0.35s ease, margin 0.35s ease;
+  margin: 0;
+}
+
+.verse-full.open {
+  max-height: 120px;
+  opacity: 1;
+  margin-top: 0.75rem;
 }
 
 /* === Responsive === */
