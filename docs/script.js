@@ -31,8 +31,7 @@ const t = {
         { label: 'Editor', value: 'Neovim', detail: 'Configurado do zero. Leve, rápido, sem distrações.', img: null },
         { label: 'Shell', value: 'Zsh + Oh My Zsh', detail: 'Prompt informativo, plugins essenciais, autocomplete.', img: null },
         { label: 'RAM', value: '4 GB', detail: 'Modesto. Cada processo conta. A optimização não é opcional.', img: null },
-        { label: 'Rede', value: 'internet móvel, instável', detail: '4G intermitente. Tudo que construo tem de funcionar offline-first.', img: null },
-        { label: 'Localização', value: 'Luanda, Angola', detail: 'Fuso horário WAT. Ecossistema tech emergente.', img: null }
+        { label: 'Rede', value: 'internet móvel, instável', detail: '4G intermitente. Tudo que construo tem de funcionar offline-first.', img: null }
       ]
     },
     contact: {
@@ -89,8 +88,7 @@ const t = {
         { label: 'Editor', value: 'Neovim', detail: 'Configured from zero. Lightweight, fast, no distractions.', img: null },
         { label: 'Shell', value: 'Zsh + Oh My Zsh', detail: 'Informative prompt, essential plugins, autocomplete.', img: null },
         { label: 'RAM', value: '4 GB', detail: 'Modest. Every process counts. Optimization is not optional.', img: null },
-        { label: 'Network', value: 'mobile internet, unstable', detail: 'Intermittent 4G. Everything I build must work offline-first.', img: null },
-        { label: 'Location', value: 'Luanda, Angola', detail: 'WAT timezone. Emerging tech ecosystem.', img: null }
+        { label: 'Network', value: 'mobile internet, unstable', detail: 'Intermittent 4G. Everything I build must work offline-first.', img: null }
       ]
     },
     contact: {
