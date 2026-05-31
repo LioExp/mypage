@@ -132,7 +132,7 @@ const icons = {
 
 let lang = localStorage.getItem('lang') || 'pt';
 let openProjects = {};
-let openSetup = {};
+
 let skillFilter = null;
 let briefingOpen = false;
 
@@ -338,22 +338,52 @@ function renderRoadmap(data) {
 }
 
 function renderSetup(data) {
-  $('setupGrid').innerHTML = data.setup.items.map(item => {
-    const isOpen = openSetup[item.label];
-    return `<div class="setup-card">
-      <div class="setup-item" onclick="toggleSetup('${item.label}')">
-        <span class="setup-label">${item.label}</span>
-        <span class="setup-value">${item.value}</span>
-        <span class="setup-arrow" style="transform:${isOpen ? 'rotate(90deg)' : 'rotate(0)'}">→</span>
-      </div>
-      <div class="setup-detail${isOpen ? ' open' : ''}">
-        <div class="setup-detail-inner">
-          <p class="setup-detail-text">${item.detail}</p>
-          ${item.img ? `<div class="setup-img"><img src="${item.img}" alt="${item.label}" /></div>` : ''}
+  $('setupGrid').innerHTML = `
+    <div class="setup-image-wrap" onclick="openSetupModal()">
+      <img src="assets/setup-2026.jpg" alt="Setup 2026" class="setup-image" draggable="false" />
+      <div class="setup-image-hint">${lang === 'pt' ? 'clique para ver os componentes' : 'click to see the components'}</div>
+    </div>`;
+}
+
+function openSetupModal() {
+  const html = document.documentElement;
+  html.style.overflow = 'hidden';
+  const overlay = document.createElement('div');
+  overlay.className = 'setup-modal-overlay';
+  overlay.id = 'setupModal';
+  overlay.onclick = function (e) { if (e.target === this) closeSetupModal(); };
+  const data = t[lang];
+  overlay.innerHTML = `
+    <div class="setup-modal">
+      <button class="setup-modal-close" onclick="closeSetupModal()">×</button>
+      <div class="setup-modal-content">
+        <div class="setup-modal-image"><img src="assets/setup-2026.jpg" alt="Setup 2026" draggable="false" /></div>
+        <div class="setup-modal-items">
+          ${data.setup.items.map(item => `
+            <div class="setup-modal-item">
+              <span class="setup-modal-label">${item.label}</span>
+              <span class="setup-modal-value">${item.value}</span>
+              <p class="setup-modal-detail">${item.detail}</p>
+            </div>`).join('')}
         </div>
       </div>
     </div>`;
-  }).join('');
+  document.body.appendChild(overlay);
+  requestAnimationFrame(() => overlay.classList.add('open'));
+  document.addEventListener('keydown', closeOnEscape);
+}
+
+function closeSetupModal() {
+  const modal = document.getElementById('setupModal');
+  if (!modal) return;
+  modal.classList.remove('open');
+  document.documentElement.style.overflow = '';
+  document.removeEventListener('keydown', closeOnEscape);
+  setTimeout(() => modal.remove(), 300);
+}
+
+function closeOnEscape(e) {
+  if (e.key === 'Escape') closeSetupModal();
 }
 
 function renderBriefing(data) {
@@ -431,11 +461,6 @@ function renderFooter(data) {
 
 function toggleProject(name) {
   openProjects[name] = !openProjects[name];
-  render();
-}
-
-function toggleSetup(label) {
-  openSetup[label] = !openSetup[label];
   render();
 }
 
