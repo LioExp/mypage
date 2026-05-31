@@ -26,13 +26,13 @@ const t = {
     setup: {
       label: '04. — SETUP', heading: 'Onde construo.', sub: 'hardware, software — a bancada.',
       items: [
-        { label: 'SO', value: 'Arch Linux' },
-        { label: 'DE / WM', value: 'terminal recipe' },
-        { label: 'Editor', value: 'Neovim' },
-        { label: 'Shell', value: 'Zsh + Oh My Zsh' },
-        { label: 'RAM', value: '4 GB' },
-        { label: 'Rede', value: 'internet móvel, instável' },
-        { label: 'Localização', value: 'Luanda, Angola' }
+        { label: 'SO', value: 'Arch Linux', detail: 'Rolling release. Tudo configurado do zero. Aprendo o sistema enquanto o uso.', img: null },
+        { label: 'DE / WM', value: 'terminal recipe', detail: 'Sem ambiente gráfico pesado. Terminal é o meu desktop.', img: null },
+        { label: 'Editor', value: 'Neovim', detail: 'Configurado do zero. Leve, rápido, sem distrações.', img: null },
+        { label: 'Shell', value: 'Zsh + Oh My Zsh', detail: 'Prompt informativo, plugins essenciais, autocomplete.', img: null },
+        { label: 'RAM', value: '4 GB', detail: 'Modesto. Cada processo conta. A optimização não é opcional.', img: null },
+        { label: 'Rede', value: 'internet móvel, instável', detail: '4G intermitente. Tudo que construo tem de funcionar offline-first.', img: null },
+        { label: 'Localização', value: 'Luanda, Angola', detail: 'Fuso horário WAT. Ecossistema tech emergente.', img: null }
       ]
     },
     contact: {
@@ -84,13 +84,13 @@ const t = {
     setup: {
       label: '04. — SETUP', heading: 'Where I build.', sub: 'hardware, software — the workbench.',
       items: [
-        { label: 'OS', value: 'Arch Linux' },
-        { label: 'DE / WM', value: 'terminal recipe' },
-        { label: 'Editor', value: 'Neovim' },
-        { label: 'Shell', value: 'Zsh + Oh My Zsh' },
-        { label: 'RAM', value: '4 GB' },
-        { label: 'Network', value: 'mobile internet, unstable' },
-        { label: 'Location', value: 'Luanda, Angola' }
+        { label: 'OS', value: 'Arch Linux', detail: 'Rolling release. Everything configured from scratch. I learn the system while using it.', img: null },
+        { label: 'DE / WM', value: 'terminal recipe', detail: 'No heavy desktop environment. The terminal is my desktop.', img: null },
+        { label: 'Editor', value: 'Neovim', detail: 'Configured from zero. Lightweight, fast, no distractions.', img: null },
+        { label: 'Shell', value: 'Zsh + Oh My Zsh', detail: 'Informative prompt, essential plugins, autocomplete.', img: null },
+        { label: 'RAM', value: '4 GB', detail: 'Modest. Every process counts. Optimization is not optional.', img: null },
+        { label: 'Network', value: 'mobile internet, unstable', detail: 'Intermittent 4G. Everything I build must work offline-first.', img: null },
+        { label: 'Location', value: 'Luanda, Angola', detail: 'WAT timezone. Emerging tech ecosystem.', img: null }
       ]
     },
     contact: {
@@ -126,6 +126,7 @@ const icons = {
 
 let lang = localStorage.getItem('lang') || 'pt';
 let openProjects = {};
+let openSetup = {};
 let skillFilter = null;
 let briefingOpen = false;
 
@@ -331,9 +332,22 @@ function renderRoadmap(data) {
 }
 
 function renderSetup(data) {
-  $('setupGrid').innerHTML = data.setup.items.map(item =>
-    `<div class="setup-item"><span class="setup-label">${item.label}</span><span class="setup-value">${item.value}</span></div>`
-  ).join('');
+  $('setupGrid').innerHTML = data.setup.items.map(item => {
+    const isOpen = openSetup[item.label];
+    return `<div class="setup-card">
+      <div class="setup-item" onclick="toggleSetup('${item.label}')">
+        <span class="setup-label">${item.label}</span>
+        <span class="setup-value">${item.value}</span>
+        <span class="setup-arrow" style="transform:${isOpen ? 'rotate(90deg)' : 'rotate(0)'}">→</span>
+      </div>
+      <div class="setup-detail${isOpen ? ' open' : ''}">
+        <div class="setup-detail-inner">
+          <p class="setup-detail-text">${item.detail}</p>
+          ${item.img ? `<div class="setup-img"><img src="${item.img}" alt="${item.label}" /></div>` : ''}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
 }
 
 function renderBriefing(data) {
@@ -411,6 +425,11 @@ function renderFooter(data) {
 
 function toggleProject(name) {
   openProjects[name] = !openProjects[name];
+  render();
+}
+
+function toggleSetup(label) {
+  openSetup[label] = !openSetup[label];
   render();
 }
 
