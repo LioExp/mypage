@@ -359,6 +359,7 @@ function openSetupModal() {
       <div class="setup-modal-content">
         <div class="setup-modal-image"><img src="assets/setup-2026.jpg" alt="Setup 2026" draggable="false" /></div>
         <div class="setup-modal-items">
+          <p class="setup-modal-heading">${lang === 'pt' ? 'Componentes' : 'Components'}</p>
           ${data.setup.items.map(item => `
             <div class="setup-modal-item">
               <span class="setup-modal-label">${item.label}</span>

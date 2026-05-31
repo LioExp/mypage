@@ -1162,7 +1162,7 @@ img {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,0.88);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1177,9 +1177,8 @@ img {
 
 .setup-modal {
   position: relative;
-  background: #0a0a0a;
-  border: 1px solid var(--border);
-  border-radius: 0;
+  background: #0c0c0c;
+  border: none;
   width: 100%;
   height: 100%;
   display: flex;
@@ -1196,33 +1195,47 @@ img {
     max-width: 56rem;
     max-height: 85vh;
     border-radius: 0.75rem;
+    border: 1px solid var(--border);
     height: auto;
   }
 }
 
 .setup-modal-close {
   position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
+  top: 0.5rem;
+  right: 0.5rem;
   z-index: 10;
-  width: 2rem;
-  height: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 9999px;
-  border: 1px solid var(--border);
-  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(0,0,0,0.55);
   color: #fff;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s;
+  transition: background 0.2s, border-color 0.2s;
   line-height: 1;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (min-width: 768px) {
+  .setup-modal-close {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.25rem;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+  }
 }
 
 .setup-modal-close:hover {
-  background: rgba(124,58,237,0.2);
-  border-color: rgba(124,58,237,0.4);
+  background: rgba(124,58,237,0.25);
+  border-color: rgba(124,58,237,0.5);
 }
 
 .setup-modal-content {
@@ -1241,14 +1254,15 @@ img {
 .setup-modal-image {
   flex-shrink: 0;
   overflow: hidden;
-  max-height: 40vh;
+  max-height: 28vh;
+  min-height: 160px;
 }
 
 @media (min-width: 768px) {
   .setup-modal-image {
     flex: 1;
     max-height: none;
-    min-height: 400px;
+    min-height: 420px;
   }
 }
 
@@ -1261,10 +1275,10 @@ img {
 
 .setup-modal-items {
   flex: 1;
-  padding: 1.25rem;
+  padding: 1rem 1.25rem 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.25rem;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -1272,14 +1286,32 @@ img {
 @media (min-width: 768px) {
   .setup-modal-items {
     padding: 1.5rem;
-    gap: 1rem;
+    gap: 0.625rem;
     max-width: 50%;
   }
 }
 
-.setup-modal-item {
+.setup-modal-heading {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 0.25rem;
+  padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--border);
-  padding-bottom: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .setup-modal-heading {
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.625rem;
+  }
+}
+
+.setup-modal-item {
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  padding: 0.625rem 0;
 }
 
 .setup-modal-item:last-child {
@@ -1287,14 +1319,20 @@ img {
   padding-bottom: 0;
 }
 
+@media (min-width: 768px) {
+  .setup-modal-item {
+    padding: 0.75rem 0;
+  }
+}
+
 .setup-modal-label {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.625rem;
   color: var(--text-dim);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   display: block;
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.1rem;
 }
 
 .setup-modal-value {
@@ -1302,7 +1340,14 @@ img {
   font-size: 0.875rem;
   color: #fff;
   display: block;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.15rem;
+  line-height: 1.4;
+}
+
+@media (min-width: 768px) {
+  .setup-modal-value {
+    margin-bottom: 0.25rem;
+  }
 }
 
 .setup-modal-detail {
@@ -1310,6 +1355,38 @@ img {
   color: var(--text-muted);
   line-height: 1.5;
   margin: 0;
+}
+
+/* Landscape phones: less image, more list */
+@media (max-height: 480px) and (orientation: landscape) {
+  .setup-modal-image {
+    max-height: 40vh;
+    min-height: 100px;
+  }
+
+  .setup-modal-items {
+    padding: 0.5rem 1rem;
+    gap: 0;
+  }
+
+  .setup-modal-heading {
+    font-size: 0.55rem;
+    margin-bottom: 0.15rem;
+    padding-bottom: 0.3rem;
+  }
+
+  .setup-modal-item {
+    padding: 0.35rem 0;
+  }
+
+  .setup-modal-value {
+    font-size: 0.8125rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .setup-modal-detail {
+    font-size: 0.75rem;
+  }
 }
 
 /* === Discord Icon === */
