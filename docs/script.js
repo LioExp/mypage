@@ -26,12 +26,15 @@ const t = {
     setup: {
       label: '04. — SETUP', heading: 'Onde construo.', sub: 'hardware, software — a bancada.',
       items: [
-        { label: 'SO', value: 'Arch Linux', detail: 'Rolling release. Tudo configurado do zero. Aprendo o sistema enquanto o uso.', img: null },
-        { label: 'DE / WM', value: 'terminal recipe', detail: 'Sem ambiente gráfico pesado. Terminal é o meu desktop.', img: null },
+        { label: 'SO', value: 'Arch Linux 7.0.2', detail: 'Rolling release. Kernel atualizado, tudo configurado do zero. Aprendo o sistema enquanto o uso.', img: null },
+        { label: 'CPU', value: 'Intel Pentium N3510', detail: '4 cores a 1.99GHz. Processador Bay Trail de 2013. Suficiente para compilar, navegar e aprender.', img: null },
+        { label: 'RAM', value: '3.7 GiB', detail: 'Modesto. Cada processo conta. A optimização não é opcional. Swap de 1.9 GiB para desenrascar.', img: null },
+        { label: 'Disco', value: '500 GB HDD', detail: 'HGST 5400 RPM. Nada de SSD — paciência é parte do workflow.', img: null },
+        { label: 'Rede', value: 'Atheros AR9565', detail: 'WiFi nativo. Internet móvel intermitente. Tudo que construo tem de funcionar offline-first.', img: null },
+        { label: 'GPU', value: 'Intel HD Graphics (Bay Trail)', detail: 'Gráficos integrados. Sem aceleração 3D — terminal e navegador é o que importa.', img: null },
+        { label: 'DE / WM', value: 'terminal recipe', detail: 'Sem ambiente gráfico pesado. O terminal é o meu desktop.', img: null },
         { label: 'Editor', value: 'Neovim', detail: 'Configurado do zero. Leve, rápido, sem distrações.', img: null },
-        { label: 'Shell', value: 'Zsh + Oh My Zsh', detail: 'Prompt informativo, plugins essenciais, autocomplete.', img: null },
-        { label: 'RAM', value: '4 GB', detail: 'Modesto. Cada processo conta. A optimização não é opcional.', img: null },
-        { label: 'Rede', value: 'internet móvel, instável', detail: '4G intermitente. Tudo que construo tem de funcionar offline-first.', img: null }
+        { label: 'Shell', value: 'Zsh + Oh My Zsh', detail: 'Prompt informativo, plugins essenciais, autocomplete.', img: null }
       ]
     },
     contact: {
@@ -83,12 +86,15 @@ const t = {
     setup: {
       label: '04. — SETUP', heading: 'Where I build.', sub: 'hardware, software — the workbench.',
       items: [
-        { label: 'OS', value: 'Arch Linux', detail: 'Rolling release. Everything configured from scratch. I learn the system while using it.', img: null },
+        { label: 'OS', value: 'Arch Linux 7.0.2', detail: 'Rolling release. Up-to-date kernel, everything configured from scratch. I learn the system while using it.', img: null },
+        { label: 'CPU', value: 'Intel Pentium N3510', detail: '4 cores at 1.99GHz. Bay Trail processor from 2013. Enough to compile, browse and learn.', img: null },
+        { label: 'RAM', value: '3.7 GiB', detail: 'Modest. Every process counts. Optimization is not optional. 1.9 GiB swap for when it gets tight.', img: null },
+        { label: 'Disk', value: '500 GB HDD', detail: 'HGST 5400 RPM. No SSD — patience is part of the workflow.', img: null },
+        { label: 'Network', value: 'Atheros AR9565', detail: 'Native WiFi. Intermittent mobile internet. Everything I build must work offline-first.', img: null },
+        { label: 'GPU', value: 'Intel HD Graphics (Bay Trail)', detail: 'Integrated graphics. No 3D acceleration — terminal and browser are what matter.', img: null },
         { label: 'DE / WM', value: 'terminal recipe', detail: 'No heavy desktop environment. The terminal is my desktop.', img: null },
         { label: 'Editor', value: 'Neovim', detail: 'Configured from zero. Lightweight, fast, no distractions.', img: null },
-        { label: 'Shell', value: 'Zsh + Oh My Zsh', detail: 'Informative prompt, essential plugins, autocomplete.', img: null },
-        { label: 'RAM', value: '4 GB', detail: 'Modest. Every process counts. Optimization is not optional.', img: null },
-        { label: 'Network', value: 'mobile internet, unstable', detail: 'Intermittent 4G. Everything I build must work offline-first.', img: null }
+        { label: 'Shell', value: 'Zsh + Oh My Zsh', detail: 'Informative prompt, essential plugins, autocomplete.', img: null }
       ]
     },
     contact: {
