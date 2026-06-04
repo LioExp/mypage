@@ -432,13 +432,56 @@ function renderSetupSection(data) {
     </div>`;
 }
 
+let ytAnimId = null;
+let ytPaused = false;
+
+function startYtScroll() {
+  const track = $('ytFeedTrack');
+  if (!track || track.dataset.anim === '1') return;
+  track.dataset.anim = '1';
+
+  const feed = track.parentElement;
+  let x = 0;
+
+  feed.addEventListener('mouseenter', () => ytPaused = true);
+  feed.addEventListener('mouseleave', () => ytPaused = false);
+  feed.addEventListener('touchstart', () => ytPaused = true, { passive: true });
+  feed.addEventListener('touchend', () => ytPaused = false, { passive: true });
+
+  const step = () => {
+    if (!track.dataset.anim) return;
+    if (!ytPaused) {
+      x -= 0.6;
+      const half = track.scrollWidth / 2;
+      if (Math.abs(x) >= half) x = 0;
+      track.style.transform = `translateX(${x}px)`;
+    }
+    ytAnimId = requestAnimationFrame(step);
+  };
+  ytAnimId = requestAnimationFrame(step);
+}
+
+function stopYtScroll() {
+  if (ytAnimId) cancelAnimationFrame(ytAnimId);
+  ytAnimId = null;
+}
+
 async function fetchYtFeed() {
   const track = $('ytFeedTrack');
   if (!track) return;
+  stopYtScroll();
+  delete track.dataset.anim;
+  track.style.transform = '';
+
+  const fallback = () => {
+    track.innerHTML = `<a href="https://youtube.com/@lioexp" target="_blank" rel="noopener noreferrer" class="yt-feed-item">${icons.yt} <span class="yt-feed-title">youtube.com/@lioexp</span></a>`;
+    startYtScroll();
+  };
+
   try {
     const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.youtube.com%2Ffeeds%2Fvideos.xml%3Fchannel_id%3DUCZIZwWoayEW1CXxqE0TwyLQ');
     const data = await res.json();
-    if (data.status !== 'ok' || !data.items?.length) return;
+    if (data.status !== 'ok' || !data.items?.length) { fallback(); return; }
     const items = data.items.slice(0, 12);
     const html = items.map(v => `
       <a href="${v.link}" target="_blank" rel="noopener noreferrer" class="yt-feed-item">
@@ -447,7 +490,8 @@ async function fetchYtFeed() {
       </a>
     `).join('');
     track.innerHTML = html + html;
-  } catch {}
+    startYtScroll();
+  } catch { fallback(); }
 }
 
 // ---- Contact ----
