@@ -228,6 +228,7 @@ function render() {
   renderSetupSection(data);
   renderContactSection(data);
   renderFooter(data);
+  fetchYtFeed();
 }
 
 // =============================================
@@ -425,7 +426,28 @@ function renderSetupSection(data) {
     <div class="setup-image-wrap" data-open-modal>
       <img src="assets/setup-2026.jpg" alt="Setup 2026" class="setup-image" draggable="false" loading="lazy" />
       <div class="setup-image-hint">${lang === 'pt' ? 'clique para ver os componentes' : 'click to see the components'}</div>
+    </div>
+    <div class="yt-feed" id="ytFeed">
+      <div class="yt-feed-track" id="ytFeedTrack"></div>
     </div>`;
+}
+
+async function fetchYtFeed() {
+  const track = $('ytFeedTrack');
+  if (!track) return;
+  try {
+    const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.youtube.com%2Ffeeds%2Fvideos.xml%3Fchannel_id%3DUCZIZwWoayEW1CXxqE0TwyLQ');
+    const data = await res.json();
+    if (data.status !== 'ok' || !data.items?.length) return;
+    const items = data.items.slice(0, 12);
+    const html = items.map(v => `
+      <a href="${v.link}" target="_blank" rel="noopener noreferrer" class="yt-feed-item">
+        <img src="${v.thumbnail}" alt="${v.title}" class="yt-feed-thumb" loading="lazy" />
+        <span class="yt-feed-title">${v.title}</span>
+      </a>
+    `).join('');
+    track.innerHTML = html + html;
+  } catch {}
 }
 
 // ---- Contact ----
