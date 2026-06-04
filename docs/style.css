@@ -1240,27 +1240,27 @@ img {
 /* === GitHub Graph === */
 .gh-graph {
   margin-top: 1.25rem;
-  overflow: hidden;
-  border-radius: 0.375rem;
   width: 100%;
 }
 
 .gh-graph-img {
-  width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.gh-graph-img svg {
   display: block;
   width: 100%;
   height: auto;
-  min-width: 520px;
+  border-radius: 0.375rem;
   background: transparent;
+  filter: invert(0.88);
+  min-width: 540px;
 }
 
-.gh-graph-img svg rect[fill="#1a1a2e"] {
-  fill: #1a1a2e;
+@media (max-width: 640px) {
+  .gh-graph {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .gh-graph-img {
+    min-width: 540px;
+  }
 }
 
 /* Setup Modal */
