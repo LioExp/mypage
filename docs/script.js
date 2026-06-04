@@ -165,6 +165,7 @@ const PROJECTS = [
 // Constants
 // =============================================
 const FILTER_COLORS = { domino: '#22c55e', aprender: '#60a5fa', roadmap: '#6b7280' };
+const COUNTER_API = 'https://mypage-counter.lioexp.workers.dev';
 
 function hexToRgba(hex, alpha) {
   const v = parseInt(hex.slice(1), 16);
@@ -535,7 +536,7 @@ function updateVisitorCounter() {
   const isNew = !localStorage.getItem(countedKey);
   const endpoint = isNew ? 'hit' : 'get';
 
-  fetch(`https://api.countapi.xyz/${endpoint}/lioexp.github.io/mypage`)
+  fetch(`${COUNTER_API}/${endpoint}`)
     .then(r => r.json())
     .then(d => {
       const v = d.value;

@@ -1,0 +1,9 @@
+{
+  "name": "mypage-counter",
+  "scripts": {
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
