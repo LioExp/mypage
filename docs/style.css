@@ -1394,39 +1394,6 @@ img {
 .discord-icon svg { width: 1.25rem; height: 1.25rem; }
 .yt-card:hover .discord-icon { color: #7289da; }
 
-/* === Visitor Counter === */
-.visitor-counter {
-  position: fixed;
-  bottom: 5rem;
-  right: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  color: var(--text-gray);
-  opacity: 0.5;
-  z-index: 50;
-  pointer-events: none;
-}
-
-.visitor-icon {
-  width: 14px;
-  height: 14px;
-}
-
-.visitor-num {
-  font-variant-numeric: tabular-nums;
-}
-
-@media (min-width: 640px) {
-  .visitor-counter {
-    bottom: 2.5rem;
-    right: 1.5rem;
-    font-size: 0.7rem;
-  }
-}
-
 /* === Footer === */
 .footer {
   margin-top: 6rem;
