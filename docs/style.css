@@ -1168,7 +1168,7 @@ img {
   align-items: center;
   gap: 0.75rem;
   width: max-content;
-  padding: 1.25rem 0;
+  padding: 1.5rem 0;
   will-change: transform;
 }
 
@@ -1212,7 +1212,7 @@ img {
 @media (min-width: 640px) {
   .yt-feed-track {
     gap: 1rem;
-    padding: 1.5rem 0;
+    padding: 2rem 0;
   }
 
   .yt-feed-item {
