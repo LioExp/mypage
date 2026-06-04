@@ -429,6 +429,9 @@ function renderSetupSection(data) {
     </div>
     <div class="yt-feed" id="ytFeed">
       <div class="yt-feed-track" id="ytFeedTrack"></div>
+    </div>
+    <div class="gh-graph">
+      <img src="https://ghchart.rshah.org/LioExp" alt="GitHub contribution graph" class="gh-graph-img" loading="lazy" />
     </div>`;
 }
 
