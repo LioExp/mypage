@@ -1161,8 +1161,6 @@ img {
 .yt-feed {
   margin-top: 1.5rem;
   overflow: hidden;
-  background: var(--bg-card);
-  border-radius: 0.5rem;
 }
 
 .yt-feed-track {
