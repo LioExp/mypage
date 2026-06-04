@@ -170,6 +170,14 @@ function hexToRgba(hex, alpha) {
   return `rgba(${v >> 16},${(v >> 8) & 255},${v & 255},${alpha})`;
 }
 
+function debounce(fn, ms) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), ms);
+  };
+}
+
 // =============================================
 // State
 // =============================================
@@ -302,7 +310,7 @@ function projectHeader(p, pr) {
 
 function projectPreview(p) {
   if (p.terminal) return terminalPreview();
-  return `<div class="project-img"${p.imgBg ? ` style="background:${p.imgBg}"` : ''}><img src="${p.img}" alt="${p.id} preview" draggable="false" /></div>`;
+  return `<div class="project-img"${p.imgBg ? ` style="background:${p.imgBg}"` : ''}><img src="${p.img}" alt="${p.id} preview" draggable="false" loading="lazy" /></div>`;
 }
 
 function terminalPreview() {
@@ -415,7 +423,7 @@ function renderSetupSection(data) {
 
   $('setupGrid').innerHTML = `
     <div class="setup-image-wrap" data-open-modal>
-      <img src="assets/setup-2026.jpg" alt="Setup 2026" class="setup-image" draggable="false" />
+      <img src="assets/setup-2026.jpg" alt="Setup 2026" class="setup-image" draggable="false" loading="lazy" />
       <div class="setup-image-hint">${lang === 'pt' ? 'clique para ver os componentes' : 'click to see the components'}</div>
     </div>`;
 }
@@ -526,7 +534,7 @@ function openSetupModal() {
     <div class="setup-modal">
       <button class="setup-modal-close" data-close-modal>×</button>
       <div class="setup-modal-content">
-        <div class="setup-modal-image"><img src="assets/setup-2026.jpg" alt="Setup 2026" draggable="false" /></div>
+        <div class="setup-modal-image"><img src="assets/setup-2026.jpg" alt="Setup 2026" draggable="false" loading="lazy" /></div>
         <div class="setup-modal-items">
           <p class="setup-modal-heading">${lang === 'pt' ? 'Componentes' : 'Components'}</p>
           ${data.setup.items.map(item => `
@@ -603,6 +611,8 @@ function initNavObserver() {
       if (idx !== -1) {
         document.querySelectorAll('.nav-link').forEach((l, i) => {
           l.classList.toggle('active', i === idx);
+          if (i === idx) l.setAttribute('aria-current', 'page');
+          else l.removeAttribute('aria-current');
         });
       }
     }
@@ -643,8 +653,12 @@ function initEvents() {
       if (el) {
         el.scrollIntoView({ behavior: 'smooth' });
         if (link.classList.contains('nav-link')) {
-          document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+          document.querySelectorAll('.nav-link').forEach(l => {
+            l.classList.remove('active');
+            l.removeAttribute('aria-current');
+          });
           link.classList.add('active');
+          link.setAttribute('aria-current', 'page');
         }
       }
       return;
@@ -670,9 +684,17 @@ function initEvents() {
 // =============================================
 // Init
 // =============================================
+const debouncedRender = debounce(render, 100);
+
+window.addEventListener('resize', debouncedRender);
+
 document.addEventListener('DOMContentLoaded', () => {
   initEvents();
   switchLang(lang);
   initNavObserver();
   initRevealObserver();
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+  }
 });
