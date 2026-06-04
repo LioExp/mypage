@@ -229,6 +229,7 @@ function render() {
   renderContactSection(data);
   renderFooter(data);
   fetchYtFeed();
+  fetchGhGraph();
 }
 
 // =============================================
@@ -431,7 +432,7 @@ function renderSetupSection(data) {
       <div class="yt-feed-track" id="ytFeedTrack"></div>
     </div>
     <div class="gh-graph">
-      <img src="https://ghchart.rshah.org/LioExp" alt="GitHub contribution graph" class="gh-graph-img" loading="lazy" />
+      <div class="gh-graph-img" id="ghGraph"></div>
     </div>`;
 }
 
@@ -495,6 +496,55 @@ async function fetchYtFeed() {
     track.innerHTML = html + html;
     startYtScroll();
   } catch { fallback(); }
+}
+
+// ---- GitHub Graph ----
+async function fetchGhGraph() {
+  const container = $('ghGraph');
+  if (!container) return;
+
+  try {
+    const res = await fetch('https://ghchart.rshah.org/LioExp');
+    let svg = await res.text();
+
+    // Replace green tones with site's purple palette
+    const colorMap = {
+      '#ebedf0': '#1a1a2e',
+      '#9be9a8': 'rgba(124,58,237,0.12)',
+      '#40c463': 'rgba(124,58,237,0.30)',
+      '#30a14e': 'rgba(124,58,237,0.55)',
+      '#216e39': '#7c3aed',
+    };
+    for (const [from, to] of Object.entries(colorMap)) {
+      svg = svg.replaceAll(from, to);
+    }
+
+    // Make text/dark elements light
+    svg = svg.replace(/fill="#[0-9a-f]{6}"/gi, (m) => {
+      if (m.toLowerCase() === 'fill="#1b1f23"') return 'fill="#aaa"';
+      if (m.toLowerCase() === 'fill="#24292f"') return 'fill="#aaa"';
+      if (m.toLowerCase() === 'fill="#000000"') return 'fill="#888"';
+      return m;
+    });
+    svg = svg.replace(/fill="#000"/gi, 'fill="#888"');
+
+    // Remove background rectangle
+    svg = svg.replace(/<rect[^>]*?fill="#f6f8fa"[^>]*?\/>/gi, '');
+    svg = svg.replace(/<rect[^>]*?fill="#ffffff"[^>]*?\/>/gi, '');
+    svg = svg.replace(/<rect[^>]*?fill="#fff"[^>]*?\/>/gi, '');
+
+    container.innerHTML = svg;
+
+    // Force the SVG to scale
+    const svgEl = container.querySelector('svg');
+    if (svgEl) {
+      svgEl.style.width = '100%';
+      svgEl.style.height = 'auto';
+      svgEl.style.display = 'block';
+    }
+  } catch {
+    container.innerHTML = '<p style="color:#666;font-size:0.75rem;text-align:center;">GitHub graph unavailable</p>';
+  }
 }
 
 // ---- Contact ----
