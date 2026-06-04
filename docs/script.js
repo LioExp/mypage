@@ -229,6 +229,7 @@ function render() {
   renderContactSection(data);
   renderFooter(data);
   fetchYtFeed();
+  fetchGhGraph();
 }
 
 // =============================================
@@ -430,9 +431,7 @@ function renderSetupSection(data) {
     <div class="yt-feed" id="ytFeed">
       <div class="yt-feed-track" id="ytFeedTrack"></div>
     </div>
-    <div class="gh-graph">
-      <img src="https://ghchart.rshah.org/LioExp" alt="GitHub contribution graph" class="gh-graph-img" loading="lazy" />
-    </div>`;
+    <div class="gh-graph" id="ghGraph"></div>`;
 }
 
 let ytAnimId = null;
@@ -495,6 +494,78 @@ async function fetchYtFeed() {
     track.innerHTML = html + html;
     startYtScroll();
   } catch { fallback(); }
+}
+
+// ---- GitHub Graph ----
+const GH_PALETTE = [
+  'transparent',
+  'rgba(124,58,237,0.12)',
+  'rgba(124,58,237,0.30)',
+  'rgba(124,58,237,0.55)',
+  '#7c3aed',
+];
+const GH_LEVELS = ['NONE', 'FIRST_QUARTILE', 'SECOND_QUARTILE', 'THIRD_QUARTILE', 'FOURTH_QUARTILE'];
+const GH_MONTHS = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+async function fetchGhGraph() {
+  const container = $('ghGraph');
+  if (!container) return;
+
+  try {
+    const res = await fetch('https://github-contributions-api.deno.dev/LioExp.json?from=2026-03-01&to=2026-06-30');
+    const data = await res.json();
+    const weeks = data.contributions;
+
+    // Month header
+    let monthHtml = '<div class="gh-months">';
+    monthHtml += '<span class="gh-spacer"></span>';
+    let last = '';
+    let span = 0;
+    let start = 0;
+    for (let w = 0; w < weeks.length; w++) {
+      const m = weeks[w][0]?.date?.substring(5, 7) || '';
+      if (m !== last) {
+        if (last) {
+          const label = GH_MONTHS[parseInt(last)] || last;
+          monthHtml += `<span class="gh-mlabel" style="grid-column:${start + 1}/${start + span + 1}">${label}</span>`;
+        }
+        last = m;
+        start = w + 1;
+        span = 1;
+      } else {
+        span++;
+      }
+    }
+    if (last) {
+      const label = GH_MONTHS[parseInt(last)] || last;
+      monthHtml += `<span class="gh-mlabel" style="grid-column:${start + 1}/${start + span + 1}">${label}</span>`;
+    }
+    monthHtml += '</div>';
+
+    // Body: day labels + weeks
+    const dayLabels = ['', 'Mon', '', 'Wed', '', 'Fri', ''];
+    let bodyHtml = '<div class="gh-body">';
+    bodyHtml += '<div class="gh-labels">';
+    for (const d of dayLabels) {
+      bodyHtml += `<span class="gh-dlabel">${d}</span>`;
+    }
+    bodyHtml += '</div>';
+    bodyHtml += '<div class="gh-weeks">';
+    for (const week of weeks) {
+      bodyHtml += '<div class="gh-week">';
+      for (const day of week) {
+        const idx = GH_LEVELS.indexOf(day.contributionLevel);
+        const color = GH_PALETTE[idx] || 'transparent';
+        bodyHtml += `<span class="gh-cell" style="background:${color}" title="${day.date}: ${day.contributionCount} commit${day.contributionCount !== 1 ? 's' : ''}"></span>`;
+      }
+      bodyHtml += '</div>';
+    }
+    bodyHtml += '</div></div>';
+
+    container.innerHTML = monthHtml + bodyHtml;
+  } catch {
+    container.innerHTML = '';
+  }
 }
 
 // ---- Contact ----

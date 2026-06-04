@@ -1239,27 +1239,81 @@ img {
 
 /* === GitHub Graph === */
 .gh-graph {
-  margin-top: 1.25rem;
-  width: 100%;
+  margin-top: 1rem;
 }
 
-.gh-graph-img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 0.375rem;
-  background: transparent;
-  filter: invert(0.88);
-  min-width: 540px;
+/* Month row */
+.gh-months {
+  display: grid;
+  grid-template-columns: 26px repeat(18, 10px);
+  gap: 2px;
+  margin-bottom: 2px;
+  padding-left: 0;
+}
+.gh-spacer { width: 26px; }
+.gh-mlabel {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  color: var(--text-muted);
+  line-height: 1;
+  padding-top: 1px;
+}
+
+/* Body */
+.gh-body {
+  display: flex;
+  gap: 2px;
+}
+
+/* Day labels column */
+.gh-labels {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 26px;
+  flex-shrink: 0;
+}
+.gh-dlabel {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  color: var(--text-muted);
+  line-height: 10px;
+  height: 10px;
+}
+
+/* Weeks */
+.gh-weeks {
+  display: flex;
+  gap: 2px;
+  overflow: hidden;
+}
+.gh-week {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Cells */
+.gh-cell {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
 }
 
 @media (max-width: 640px) {
-  .gh-graph {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+  .gh-months {
+    grid-template-columns: 20px repeat(18, 8px);
   }
-  .gh-graph-img {
-    min-width: 540px;
+  .gh-labels { width: 20px; }
+  .gh-cell {
+    width: 8px;
+    height: 8px;
+    border-radius: 1.5px;
+  }
+  .gh-dlabel {
+    height: 8px;
+    line-height: 8px;
   }
 }
 
