@@ -522,16 +522,28 @@ function renderFooter(data) {
     </div>`;
 }
 
-async function updateVisitorCounter() {
-  try {
-    const res = await fetch('https://api.countapi.xyz/hit/lioexp.github.io/mypage');
-    const data = await res.json();
-    const num = $('visitorCounter')?.querySelector('.visitor-num');
-    if (num) num.textContent = data.value.toLocaleString();
-  } catch {
-    const num = $('visitorCounter')?.querySelector('.visitor-num');
-    if (num) num.textContent = '0';
-  }
+function updateVisitorCounter() {
+  const num = $('visitorCounter')?.querySelector('.visitor-num');
+  if (!num) return;
+
+  const countedKey = 'vc';
+  const cachedKey = 'vc_n';
+  const cached = localStorage.getItem(cachedKey);
+
+  if (cached) num.textContent = Number(cached).toLocaleString();
+
+  const isNew = !localStorage.getItem(countedKey);
+  const endpoint = isNew ? 'hit' : 'get';
+
+  fetch(`https://api.countapi.xyz/${endpoint}/lioexp.github.io/mypage`)
+    .then(r => r.json())
+    .then(d => {
+      const v = d.value;
+      num.textContent = v.toLocaleString();
+      localStorage.setItem(cachedKey, v);
+      if (isNew) localStorage.setItem(countedKey, '1');
+    })
+    .catch(() => { if (!cached) num.textContent = '0'; });
 }
 
 // =============================================
