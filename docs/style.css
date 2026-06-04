@@ -1421,7 +1421,7 @@ img {
 
 @media (min-width: 640px) {
   .visitor-counter {
-    bottom: 5.5rem;
+    bottom: 2.5rem;
     right: 1.5rem;
     font-size: 0.7rem;
   }
