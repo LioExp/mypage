@@ -1239,82 +1239,88 @@ img {
 
 /* === GitHub Graph === */
 .gh-graph {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 /* Month row */
 .gh-months {
   display: grid;
-  grid-template-columns: 26px repeat(18, 10px);
-  gap: 2px;
-  margin-bottom: 2px;
+  grid-template-columns: 36px repeat(18, 20px);
+  gap: 3px;
+  margin-bottom: 4px;
   padding-left: 0;
 }
-.gh-spacer { width: 26px; }
+.gh-spacer { width: 36px; }
 .gh-mlabel {
   font-family: var(--font-mono);
-  font-size: 0.625rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   line-height: 1;
-  padding-top: 1px;
+  padding-top: 2px;
 }
 
 /* Body */
 .gh-body {
   display: flex;
-  gap: 2px;
+  gap: 3px;
 }
 
 /* Day labels column */
 .gh-labels {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  width: 26px;
+  gap: 3px;
+  width: 36px;
   flex-shrink: 0;
 }
 .gh-dlabel {
   font-family: var(--font-mono);
-  font-size: 0.5625rem;
+  font-size: 0.625rem;
   color: var(--text-muted);
-  line-height: 10px;
-  height: 10px;
+  line-height: 20px;
+  height: 20px;
 }
 
 /* Weeks */
 .gh-weeks {
   display: flex;
-  gap: 2px;
+  gap: 3px;
   overflow: hidden;
 }
 .gh-week {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
 }
 
 /* Cells */
 .gh-cell {
-  width: 10px;
-  height: 10px;
-  border-radius: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
   flex-shrink: 0;
 }
 
 @media (max-width: 640px) {
   .gh-months {
-    grid-template-columns: 20px repeat(18, 8px);
+    grid-template-columns: 26px repeat(18, 14px);
+    gap: 2px;
   }
-  .gh-labels { width: 20px; }
+  .gh-labels { width: 26px; gap: 2px; }
   .gh-cell {
-    width: 8px;
-    height: 8px;
-    border-radius: 1.5px;
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
   }
   .gh-dlabel {
-    height: 8px;
-    line-height: 8px;
+    height: 14px;
+    line-height: 14px;
+    font-size: 0.5rem;
   }
+  .gh-weeks { gap: 2px; }
+  .gh-week { gap: 2px; }
+  .gh-body { gap: 2px; }
+  .gh-mlabel { font-size: 0.625rem; }
 }
 
 /* Setup Modal */
