@@ -1161,6 +1161,7 @@ img {
 .yt-feed {
   margin-top: 1.5rem;
   overflow: hidden;
+  touch-action: pan-y;
 }
 
 .yt-feed-track {

@@ -444,11 +444,21 @@ function startYtScroll() {
 
   const feed = track.parentElement;
   let x = 0;
+  let touchMoved = false;
 
   feed.addEventListener('mouseenter', () => ytPaused = true);
   feed.addEventListener('mouseleave', () => ytPaused = false);
-  feed.addEventListener('touchstart', () => ytPaused = true, { passive: true });
-  feed.addEventListener('touchend', () => ytPaused = false, { passive: true });
+  feed.addEventListener('touchstart', () => { ytPaused = true; touchMoved = false; }, { passive: true });
+  feed.addEventListener('touchmove', () => { touchMoved = true; }, { passive: true });
+  feed.addEventListener('touchend', () => {
+    // resume a bit after touch ends so the scroll settles
+    setTimeout(() => { if (track.dataset.anim) ytPaused = false; }, 80);
+  }, { passive: true });
+
+  // Prevent accidental link navigation during scroll
+  feed.addEventListener('click', (e) => {
+    if (touchMoved) { e.preventDefault(); e.stopPropagation(); }
+  }, true);
 
   const step = () => {
     if (!track.dataset.anim) return;
