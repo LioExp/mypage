@@ -1103,6 +1103,11 @@ img {
 .social-item:hover { background: rgba(255,255,255,0.02); }
 .social-name { font-size: 0.875rem; color: #fff; transition: color 0.2s; }
 .social-item:hover .social-name { color: var(--accent); }
+
+.discord-icon { color: rgba(114,137,218,0.6); transition: color 0.2s; flex-shrink: 0; margin-top: 2px; }
+.discord-icon svg { width: 1.25rem; height: 1.25rem; }
+.yt-card:hover .discord-icon { color: #7289da; }
+
 .social-sub { font-size: 0.75rem; color: var(--text-gray); margin-top: 2px; }
 .social-handle { font-size: 0.75rem; color: var(--text-dim); transition: color 0.2s; }
 .social-item:hover .social-handle { color: #d1d5db; }
