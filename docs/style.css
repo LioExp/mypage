@@ -1104,7 +1104,7 @@ img {
 .social-name { font-size: 0.875rem; color: #fff; transition: color 0.2s; }
 .social-item:hover .social-name { color: var(--accent); }
 
-.discord-card { margin-top: 1rem; }
+.discord-card { margin-bottom: 0.75rem; }
 .discord-icon { color: rgba(114,137,218,0.6); transition: color 0.2s; flex-shrink: 0; margin-top: 2px; }
 .discord-icon svg { width: 1.25rem; height: 1.25rem; }
 .yt-card:hover .discord-icon { color: #7289da; }
