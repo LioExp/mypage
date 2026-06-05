@@ -170,13 +170,6 @@ function hexToRgba(hex, alpha) {
   return `rgba(${v >> 16},${(v >> 8) & 255},${v & 255},${alpha})`;
 }
 
-function debounce(fn, ms) {
-  let timer;
-  return (...args) => {
-    clearTimeout(timer);
-    timer = setTimeout(() => fn(...args), ms);
-  };
-}
 
 // =============================================
 // State
@@ -834,9 +827,6 @@ function initEvents() {
 // =============================================
 // Init
 // =============================================
-const debouncedRender = debounce(render, 100);
-
-window.addEventListener('resize', debouncedRender);
 
 document.addEventListener('DOMContentLoaded', () => {
   initEvents();
