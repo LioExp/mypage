@@ -154,9 +154,9 @@ const PROJECTS = [
   },
   {
     id: 'KiandaBot', key: 'kianda', color: '#7c3aed',
+    img: 'assets/kianda-preview.png', imgBg: '#0a0a0a',
     tags: ['Python', 'Evolution API', 'AI', 'WhatsApp'],
     github: 'https://github.com/LioExp/Kianda-bot', landing: 'https://kiandabot.vercel.app/',
-    terminal: true
   }
 ];
 
@@ -305,19 +305,7 @@ function projectHeader(p, pr) {
 }
 
 function projectPreview(p) {
-  if (p.terminal) return terminalPreview();
   return `<div class="project-img"${p.imgBg ? ` style="background:${p.imgBg}"` : ''}><img src="${p.img}" alt="${p.id} preview" draggable="false" loading="lazy" /></div>`;
-}
-
-function terminalPreview() {
-  return `<div class="terminal">
-    <div class="terminal-dots"><div class="terminal-dot" style="background:rgba(239,68,68,0.2)"></div><div class="terminal-dot" style="background:rgba(234,179,8,0.2)"></div><div class="terminal-dot" style="background:rgba(34,197,94,0.2)"></div></div>
-    <div class="text-gray-500">cliente → ${lang === 'pt' ? 'Olá, têm o produto X?' : 'Hi, do you have product X?'}</div>
-    <div class="terminal-line green">bot → ${lang === 'pt' ? 'Sim! Temos em stock. Posso enviar hoje.' : 'Yes! In stock. I can ship today.'}</div>
-    <div class="text-gray-500 terminal-line">cliente → ${lang === 'pt' ? 'Qual o preço?' : "What's the price?"}</div>
-    <div class="terminal-line green">bot → ${lang === 'pt' ? '5.000 Kz. Entrega hoje incluída.' : '5,000 Kz. Same-day delivery included.'}</div>
-    <div class="terminal-cursor"><span class="text-purple">❯</span> <span class="cursor-blink">_</span></div>
-  </div>`;
 }
 
 function projectTags(p) {

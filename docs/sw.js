@@ -8,6 +8,7 @@ const URLS = [
   '/mypage/assets/favicon2.jpg',
   '/mypage/assets/faber-preview.png',
   '/mypage/assets/myfi-preview.png',
+  '/mypage/assets/kianda-preview.png',
   '/mypage/assets/setup-2026.jpg'
 ];
 
