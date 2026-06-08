@@ -1562,8 +1562,6 @@ img {
   }
 }
 
-/* === Discord Icon === */
-
 /* === Footer === */
 .footer {
   margin-top: 6rem;
@@ -1582,10 +1580,6 @@ img {
   font-size: 0.875rem;
   color: var(--accent);
   margin-bottom: 0.5rem;
-}
-
-.footer-verse {
-  margin-top: 0.5rem;
 }
 
 .verse-btn {

@@ -28,6 +28,7 @@ const t = {
     },
     setup: {
       label: '04. — SETUP', heading: 'Onde construo.', sub: 'hardware, software — a bancada.',
+      hint: 'clique para ver os componentes', modalHeading: 'Componentes',
       items: [
         { label: 'SO', value: 'Arch Linux 7.0.2', detail: 'Rolling release. Kernel atualizado, tudo configurado do zero. Aprendo o sistema enquanto o uso.', img: null },
         { label: 'CPU', value: 'Intel Pentium N3510', detail: '4 cores a 1.99GHz. Processador Bay Trail de 2013. Suficiente para compilar, navegar e aprender.', img: null },
@@ -60,7 +61,7 @@ const t = {
         { label: 'E-mail', sub: 'canal principal para colaborações', handle: 'lioexp0@gmail.com', href: 'mailto:lioexp0@gmail.com', testid: 'link-contact-email' }
       ],
       discord: { name: 'Discord', desc: 'comunidade, debugging, builds ao vivo', handle: 'entra no server', href: 'https://discord.gg/wkmuHa3P8q' },
-      footer: { tagline: 'build. break. document.', colossians: 'Col 3:23' }
+      footer: { tagline: 'build. break. document.', colossians: 'Col 3:23', verse: 'Tudo o que fizerem, façam de todo o coração, como para o Senhor, e não para os homens' }
     }
   },
   en: {
@@ -89,6 +90,7 @@ const t = {
     },
     setup: {
       label: '04. — SETUP', heading: 'Where I build.', sub: 'hardware, software — the workbench.',
+      hint: 'click to see the components', modalHeading: 'Components',
       items: [
         { label: 'OS', value: 'Arch Linux 7.0.2', detail: 'Rolling release. Up-to-date kernel, everything configured from scratch. I learn the system while using it.', img: null },
         { label: 'CPU', value: 'Intel Pentium N3510', detail: '4 cores at 1.99GHz. Bay Trail processor from 2013. Enough to compile, browse and learn.', img: null },
@@ -121,7 +123,7 @@ const t = {
         { label: 'Email', sub: 'main channel for collaborations', handle: 'lioexp0@gmail.com', href: 'mailto:lioexp0@gmail.com', testid: 'link-contact-email' }
       ],
       discord: { name: 'Discord', desc: 'community, debugging, live builds', handle: 'join the server', href: 'https://discord.gg/wkmuHa3P8q' },
-      footer: { tagline: 'build. break. document.', colossians: 'Col 3:23' }
+      footer: { tagline: 'build. break. document.', colossians: 'Col 3:23', verse: 'Whatever you do, work at it with all your heart, as working for the Lord, not for human masters' }
     }
   }
 };
@@ -135,6 +137,27 @@ const icons = {
   yt: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>',
   discord: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>',
 };
+
+// =============================================
+// Configuration & Constants
+// =============================================
+const YT_API_KEY = ''; // ← https://console.cloud.google.com (YouTube Data API v3, gratis)
+const YT_CHANNEL_ID = 'UCZIZwWoayEW1CXxqE0TwyLQ';
+const FILTER_COLORS = { domino: '#22c55e', aprender: '#60a5fa', roadmap: '#6b7280' };
+const SKILL_LEVELS = ['domino', 'aprender', 'roadmap'];
+const YT_FEED_LIMIT = 12;
+const YT_SCROLL_SPEED = 0.6;
+
+// =============================================
+// State
+// =============================================
+let lang = localStorage.getItem('lang') || 'pt';
+let openProjects = {};
+let skillFilter = null;
+let briefingOpen = false;
+let ytSubscriberCount = null;
+let ytAnimId = null;
+let ytPaused = false;
 
 // =============================================
 // Project Definitions (data only)
@@ -160,24 +183,10 @@ const PROJECTS = [
   }
 ];
 
-// =============================================
-// Constants
-// =============================================
-const FILTER_COLORS = { domino: '#22c55e', aprender: '#60a5fa', roadmap: '#6b7280' };
-
 function hexToRgba(hex, alpha) {
   const v = parseInt(hex.slice(1), 16);
   return `rgba(${v >> 16},${(v >> 8) & 255},${v & 255},${alpha})`;
 }
-
-
-// =============================================
-// State
-// =============================================
-let lang = localStorage.getItem('lang') || 'pt';
-let openProjects = {};
-let skillFilter = null;
-let briefingOpen = false;
 
 function $(id) { return document.getElementById(id); }
 
@@ -210,7 +219,7 @@ function getDetailSections(key, pr) {
 }
 
 // =============================================
-// Render Dispatcher
+// Render Dispatchers
 // =============================================
 function render() {
   const data = t[lang];
@@ -222,9 +231,11 @@ function render() {
   renderSetupSection(data);
   renderContactSection(data);
   renderFooter(data);
-  fetchYtFeed();
-  fetchGhGraph();
 }
+
+function renderProjects() { renderProjectsSection(t[lang]); }
+function renderSkills() { renderSkillsSection(t[lang]); }
+function renderContact() { renderContactSection(t[lang]); }
 
 // =============================================
 // Section Renderers
@@ -352,8 +363,7 @@ function renderSkillsSection(data) {
 }
 
 function renderFilterPills(data) {
-  const filters = ['domino', 'aprender', 'roadmap'];
-  $('filterPills').innerHTML = filters.map(f => {
+  $('filterPills').innerHTML = SKILL_LEVELS.map(f => {
     const active = skillFilter === f;
     const dotColor = FILTER_COLORS[f];
     const roadmapStyle = f === 'roadmap' ? 'opacity:0.4' : '';
@@ -371,7 +381,7 @@ function renderSkillCategories(data) {
     const hasAny = cat.domino.length + cat.aprender.length + cat.roadmap.length > 0;
     if (!hasAny) return '';
 
-    const groups = ['domino', 'aprender', 'roadmap'].map(key => {
+    const groups = SKILL_LEVELS.map(key => {
       const items = visible(key);
       if (!items.length) return '';
       const dotColor = FILTER_COLORS[key];
@@ -408,16 +418,13 @@ function renderSetupSection(data) {
   $('setupGrid').innerHTML = `
     <div class="setup-image-wrap" data-open-modal>
       <img src="assets/setup-2026.jpg" alt="Setup 2026" class="setup-image" draggable="false" loading="lazy" />
-      <div class="setup-image-hint">${lang === 'pt' ? 'clique para ver os componentes' : 'click to see the components'}</div>
+      <div class="setup-image-hint">${data.setup.hint}</div>
     </div>
     <div class="yt-feed" id="ytFeed">
       <div class="yt-feed-track" id="ytFeedTrack"></div>
     </div>
     <div class="gh-graph" id="ghGraph"></div>`;
 }
-
-let ytAnimId = null;
-let ytPaused = false;
 
 function startYtScroll() {
   const track = $('ytFeedTrack');
@@ -445,7 +452,7 @@ function startYtScroll() {
   const step = () => {
     if (!track.dataset.anim) return;
     if (!ytPaused) {
-      x -= 0.6;
+      x -= YT_SCROLL_SPEED;
       const half = track.scrollWidth / 2;
       if (Math.abs(x) >= half) x = 0;
       track.style.transform = `translateX(${x}px)`;
@@ -476,7 +483,7 @@ async function fetchYtFeed() {
     const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.youtube.com%2Ffeeds%2Fvideos.xml%3Fchannel_id%3DUCZIZwWoayEW1CXxqE0TwyLQ');
     const data = await res.json();
     if (data.status !== 'ok' || !data.items?.length) { fallback(); return; }
-    const items = data.items.slice(0, 12);
+    const items = data.items.slice(0, YT_FEED_LIMIT);
     const html = items.map(v => `
       <a href="${v.link}" target="_blank" rel="noopener noreferrer" class="yt-feed-item">
         <img src="${v.thumbnail}" alt="${v.title}" class="yt-feed-thumb" loading="lazy" />
@@ -486,6 +493,37 @@ async function fetchYtFeed() {
     track.innerHTML = html + html;
     startYtScroll();
   } catch { fallback(); }
+}
+
+// ---- YouTube Subscriber Count ----
+async function fetchYtSubscriberCount() {
+  const el = $('ytSubsPt');
+  if (!el) return;
+
+  if (ytSubscriberCount !== null) {
+    el.textContent = `${ytSubscriberCount} ${t[lang].contact.subscribers}`;
+    return;
+  }
+
+  if (!YT_API_KEY) {
+    el.textContent = '—';
+    return;
+  }
+
+  try {
+    const res = await fetch(
+      `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${YT_CHANNEL_ID}&key=${YT_API_KEY}`
+    );
+    const data = await res.json();
+    if (data?.items?.[0]?.statistics?.subscriberCount) {
+      ytSubscriberCount = parseInt(data.items[0].statistics.subscriberCount).toLocaleString();
+      el.textContent = `${ytSubscriberCount} ${t[lang].contact.subscribers}`;
+    } else {
+      el.textContent = '—';
+    }
+  } catch {
+    el.textContent = '—';
+  }
 }
 
 // ---- GitHub Graph ----
@@ -577,11 +615,15 @@ function renderContactSection(data) {
 }
 
 function renderYtCards(data) {
+  const subsText = ytSubscriberCount
+    ? `${ytSubscriberCount} ${data.contact.subscribers}`
+    : (YT_API_KEY ? '⋯' : '—');
+
   $('ytGrid').innerHTML = `
     <a href="https://youtube.com/@lioexp" target="_blank" rel="noopener noreferrer" class="yt-card" data-testid="link-contact-yt-pt">
       <div class="yt-icon">${icons.yt}</div>
       <div class="yt-info">
-        <div class="yt-title"><span class="yt-name">YouTube PT</span><span class="yt-lang">PT</span></div>
+        <div class="yt-title"><span class="yt-name">YouTube PT</span><span class="yt-lang yt-subs" id="ytSubsPt">${subsText}</span></div>
         <p class="yt-desc">${data.contact.ytPTdesc}</p>
         <div class="yt-footer"><span class="yt-handle">@lioexp →</span></div>
       </div>
@@ -594,6 +636,8 @@ function renderYtCards(data) {
         <div class="yt-footer"><span class="yt-handle">@lioexp-en →</span></div>
       </div>
     </a>`;
+
+  fetchYtSubscriberCount();
 }
 
 function renderSocialList(data) {
@@ -641,14 +685,11 @@ function renderBriefing(data) {
 
 // ---- Footer ----
 function renderFooter(data) {
-  const fullVerse = lang === 'pt'
-    ? 'Tudo o que fizerem, façam de todo o coração, como para o Senhor, e não para os homens'
-    : 'Whatever you do, work at it with all your heart, as working for the Lord, not for human masters';
   $('footer').innerHTML = `
     <div class="footer-inner">
       <p class="footer-tagline">~ ${data.contact.footer.tagline}</p>
       <button class="verse-btn" data-verse>${data.contact.footer.colossians}</button>
-      <p class="verse-full" id="verseFull">"${fullVerse}" — Colossenses 3:23</p>
+      <p class="verse-full" id="verseFull">"${data.contact.footer.verse}" — Colossenses 3:23</p>
     </div>`;
 }
 
@@ -668,7 +709,7 @@ function openSetupModal() {
       <div class="setup-modal-content">
         <div class="setup-modal-image"><img src="assets/setup-2026.jpg" alt="Setup 2026" draggable="false" loading="lazy" /></div>
         <div class="setup-modal-items">
-          <p class="setup-modal-heading">${lang === 'pt' ? 'Componentes' : 'Components'}</p>
+          <p class="setup-modal-heading">${data.setup.modalHeading}</p>
           ${data.setup.items.map(item => `
             <div class="setup-modal-item">
               <span class="setup-modal-label">${item.label}</span>
@@ -701,17 +742,17 @@ function closeOnEscape(e) {
 // =============================================
 function toggleProject(name) {
   openProjects[name] = !openProjects[name];
-  render();
+  renderProjects();
 }
 
 function toggleBriefing() {
   briefingOpen = !briefingOpen;
-  render();
+  renderContact();
 }
 
 function setFilter(f) {
   skillFilter = skillFilter === f ? null : f;
-  render();
+  renderSkills();
 }
 
 function switchLang(l) {
@@ -822,7 +863,8 @@ document.addEventListener('DOMContentLoaded', () => {
   switchLang(lang);
   initNavObserver();
   initRevealObserver();
-
+  fetchYtFeed();
+  fetchGhGraph();
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js');
   }
