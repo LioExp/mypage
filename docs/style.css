@@ -12,8 +12,8 @@
   --border-light: #333039;
   --text: #e5e5e5;
   --text-muted: #9ca3af;
-  --text-dim: #6b7280;
-  --text-gray: #4b5563;
+  --text-dim: #757580;
+  --text-gray: #8a8a94;
   --accent: #7c3aed;
   --accent-glow: rgba(124,58,237,0.4);
   --accent-bg: rgba(124,58,237,0.1);
@@ -54,9 +54,6 @@ img {
 .text-purple { color: var(--accent); }
 .text-white { color: #fff; }
 .text-gray-300 { color: #d1d5db; }
-.text-gray-400 { color: var(--text-muted); }
-.text-gray-500 { color: var(--text-dim); }
-.text-gray-600 { color: var(--text-gray); }
 
 /* === Language Toggle === */
 .lang-toggle {
@@ -763,53 +760,6 @@ img {
 .detail-list li { display: flex; align-items: flex-start; gap: 0.35rem; line-height: 1.45; font-size: 0.7rem; }
 .detail-bullet { color: var(--accent); margin-top: 1px; }
 
-/* Terminal mockup */
-.terminal {
-  background: #05020b;
-  border: 1px solid var(--border);
-  border-radius: 0.25rem;
-  padding: 1rem 1.25rem;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  margin-bottom: 2rem;
-  overflow-x: auto;
-}
-
-@media (min-width: 768px) {
-  .terminal { font-size: 0.875rem; padding: 1.25rem; }
-}
-
-.terminal-dots {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 0.75rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.terminal-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-}
-
-.terminal-line { margin-top: 0.25rem; }
-.terminal-line.green { color: rgba(74,222,128,0.8); }
-.terminal-cursor {
-  color: #fff;
-  margin-top: 0.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.cursor-blink { animation: blink 1s step-end infinite; }
-
-@keyframes blink {
-  50% { opacity: 0; }
-}
-
 /* Waiting projects */
 .waiting-grid {
   display: flex;
@@ -1398,43 +1348,10 @@ img {
   margin-top: 1.5rem;
 }
 
-/* Month row */
-.gh-months {
-  display: grid;
-  grid-template-columns: 36px repeat(18, 20px);
-  gap: 3px;
-  margin-bottom: 4px;
-  padding-left: 0;
-}
-.gh-spacer { width: 36px; }
-.gh-mlabel {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  line-height: 1;
-  padding-top: 2px;
-}
-
 /* Body */
 .gh-body {
   display: flex;
   gap: 3px;
-}
-
-/* Day labels column */
-.gh-labels {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  width: 36px;
-  flex-shrink: 0;
-}
-.gh-dlabel {
-  font-family: var(--font-mono);
-  font-size: 0.625rem;
-  color: var(--text-muted);
-  line-height: 20px;
-  height: 20px;
 }
 
 /* Weeks */
@@ -1451,32 +1368,21 @@ img {
 
 /* Cells */
 .gh-cell {
-  width: 20px;
-  height: 20px;
-  border-radius: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
   flex-shrink: 0;
 }
 
 @media (max-width: 640px) {
-  .gh-months {
-    grid-template-columns: 26px repeat(18, 14px);
-    gap: 2px;
-  }
-  .gh-labels { width: 26px; gap: 2px; }
   .gh-cell {
-    width: 14px;
-    height: 14px;
-    border-radius: 2px;
-  }
-  .gh-dlabel {
-    height: 14px;
-    line-height: 14px;
-    font-size: 0.5rem;
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
   }
   .gh-weeks { gap: 2px; }
   .gh-week { gap: 2px; }
   .gh-body { gap: 2px; }
-  .gh-mlabel { font-size: 0.625rem; }
 }
 
 /* Setup Modal */

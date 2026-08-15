@@ -1,4 +1,4 @@
-const CACHE = 'mypage-v3';
+const CACHE = 'mypage-v4';
 const URLS = [
   '/mypage/',
   '/mypage/index.html',
@@ -14,11 +14,12 @@ const URLS = [
   '/mypage/assets/setup-2026.jpg'
 ];
 
-const NAV_URLS = new Set(['/mypage/', '/mypage/index.html']);
-
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE).then(cache => cache.addAll(URLS)).then(() => self.skipWaiting())
+    caches.open(CACHE).then(async cache => {
+      await Promise.allSettled(URLS.map(u => cache.add(u)));
+      return self.skipWaiting();
+    })
   );
 });
 
@@ -35,27 +36,11 @@ self.addEventListener('fetch', event => {
   if (req.method !== 'GET') return;
   if (!req.url.startsWith(self.location.origin)) return;
 
-  const url = new URL(req.url);
-  const isNav = NAV_URLS.has(url.pathname);
-
-  if (isNav) {
-    event.respondWith(
-      fetch(req).then(res => {
-        const clone = res.clone();
-        caches.open(CACHE).then(cache => cache.put(req, clone));
-        return res;
-      }).catch(() => caches.match(req))
-    );
-  } else {
-    event.respondWith(
-      caches.match(req).then(cached => {
-        const fetchPromise = fetch(req).then(res => {
-          const clone = res.clone();
-          caches.open(CACHE).then(cache => cache.put(req, clone));
-          return res;
-        }).catch(() => cached);
-        return cached || fetchPromise;
-      })
-    );
-  }
+  event.respondWith(
+    fetch(req).then(res => {
+      const clone = res.clone();
+      caches.open(CACHE).then(cache => cache.put(req, clone));
+      return res;
+    }).catch(() => caches.match(req))
+  );
 });

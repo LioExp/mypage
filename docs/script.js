@@ -21,12 +21,13 @@ const t = {
         { id: 'dev', label: 'DEV', desc: 'ferramentas de construção', domino: ['Python', 'Bash', 'CLI design', 'Git'], aprender: ['Rust', 'APIs REST'], roadmap: ['WASM', 'sistemas distribuídos'] },
         { id: 'linux', label: 'LINUX & INFRA', desc: 'o ambiente onde tudo corre', domino: ['Arch Linux', 'terminal workflow', 'filesystem'], aprender: ['systemd', 'cron', 'iptables'], roadmap: ['containers', 'CI/CD'] },
         { id: 'networking', label: 'NETWORKING', desc: 'entender antes de proteger', domino: ['redes locais', 'monitorização'], aprender: ['TCP/IP profundo', 'DNS', 'tshark'], roadmap: ['packet crafting', 'network forensics'] },
-        { id: 'security', label: 'SEGURANÇA', desc: 'o destino', domino: [], aprender: ['OWASP Top 10', 'Burp Suite', 'prompt injection'], roadmap: ['Security+', 'Purple team', 'IA security', 'garba'] }
+        { id: 'security', label: 'SEGURANÇA', desc: 'o destino', domino: [], aprender: ['OWASP Top 10', 'Burp Suite', 'prompt injection'], roadmap: ['Security+', 'Purple team', 'IA security'] }
       ],
       roadmapLabel: 'ROADMAP', roadmapLinkLabel: 'ver o roadmap completo',
     },
     setup: {
       heading: 'Onde construo.',
+      sub: 'onde tudo acontece :3 .',
       hint: 'clique para ver os componentes', modalHeading: 'Componentes',
       items: [
         { label: 'SO', value: 'Arch Linux 7.0.2', detail: 'Rolling release. Kernel atualizado, tudo configurado do zero. Aprendo o sistema enquanto o uso.', img: null },
@@ -44,6 +45,7 @@ const t = {
     contact: {
       heading: 'Fala comigo.', subtext: 'Prefiro e-mail. Respondo a tudo que vale uma resposta.',
       briefingToggleOpen: 'fechar briefing', briefingToggleClosed: 'como estruturar o teu e-mail',
+      mailtoSubject: 'Briefing — Colaboração',
       briefingIntro: 'Se a ideia envolve publicidade, parceria, software, projecto especial ou qualquer acção em que marca e repertório técnico precisem andar juntos, este é o canal principal.',
       briefingListLabel: 'Um bom briefing tem',
       briefingItems: ['Objectivo da campanha', 'Produto ou link principal', 'Janela de publicação', 'Formato desejado', 'Mensagens obrigatórias', 'Faixa de orçamento', 'Necessidade de uso de imagem, direitos ou whitelisting'],
@@ -82,12 +84,13 @@ const t = {
         { id: 'dev', label: 'DEV', desc: 'building tools', domino: ['Python', 'Bash', 'CLI design', 'Git'], aprender: ['Rust', 'REST APIs'], roadmap: ['WASM', 'distributed systems'] },
         { id: 'linux', label: 'LINUX & INFRA', desc: 'the environment where everything runs', domino: ['Arch Linux', 'terminal workflow', 'filesystem'], aprender: ['systemd', 'cron', 'iptables'], roadmap: ['containers', 'CI/CD'] },
         { id: 'networking', label: 'NETWORKING', desc: 'understand before protecting', domino: ['local networks', 'monitoring'], aprender: ['deep TCP/IP', 'DNS', 'tshark'], roadmap: ['packet crafting', 'network forensics'] },
-        { id: 'security', label: 'SECURITY', desc: 'the destination', domino: [], aprender: ['OWASP Top 10', 'Burp Suite', 'prompt injection'], roadmap: ['Security+', 'Purple team', 'AI security', 'garba'] }
+        { id: 'security', label: 'SECURITY', desc: 'the destination', domino: [], aprender: ['OWASP Top 10', 'Burp Suite', 'prompt injection'], roadmap: ['Security+', 'Purple team', 'AI security'] }
       ],
       roadmapLabel: 'ROADMAP', roadmapLinkLabel: 'view the full roadmap',
     },
     setup: {
       heading: 'Where I build.',
+      sub: 'where everything happens :3 .',
       hint: 'click to see the components', modalHeading: 'Components',
       items: [
         { label: 'OS', value: 'Arch Linux 7.0.2', detail: 'Rolling release. Up-to-date kernel, everything configured from scratch. I learn the system while using it.', img: null },
@@ -105,6 +108,7 @@ const t = {
     contact: {
       heading: 'Talk to me.', subtext: 'I prefer email. I reply to everything worth a reply.',
       briefingToggleOpen: 'close briefing', briefingToggleClosed: 'how to structure your email',
+      mailtoSubject: 'Briefing — Collaboration',
       briefingIntro: 'If the idea involves advertising, partnership, software, a special project or any action where brand and technical background need to work together, this is the main channel.',
       briefingListLabel: 'A good briefing includes',
       briefingItems: ['Campaign objective', 'Product or main link', 'Publication window', 'Desired format', 'Required messages', 'Budget range', 'Image usage, rights or whitelisting needs'],
@@ -150,12 +154,14 @@ const YT_SCROLL_SPEED = 0.6;
 // State
 // =============================================
 let lang = localStorage.getItem('lang') || 'pt';
+document.documentElement.lang = lang;
 let openProjects = {};
 let skillFilter = null;
 let briefingOpen = false;
 let ytSubscriberCount = null;
 let ytAnimId = null;
 let ytPaused = false;
+let lastFocused = null;
 
 // =============================================
 // Project Definitions (data only)
@@ -181,12 +187,31 @@ const PROJECTS = [
   }
 ];
 
-function hexToRgba(hex, alpha) {
-  const v = parseInt(hex.slice(1), 16);
-  return `rgba(${v >> 16},${(v >> 8) & 255},${v & 255},${alpha})`;
+function $(id) { return document.getElementById(id); }
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, (c) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+  })[c]);
 }
 
-function $(id) { return document.getElementById(id); }
+const fetchCache = new Map();
+
+async function fetchJson(url, ttlMs) {
+  const hit = fetchCache.get(url);
+  if (hit && Date.now() - hit.t < ttlMs) return hit.v;
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 8000);
+  try {
+    const res = await fetch(url, { signal: ctrl.signal });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const v = await res.json();
+    fetchCache.set(url, { t: Date.now(), v });
+    return v;
+  } finally {
+    clearTimeout(timer);
+  }
+}
 
 // =============================================
 // Detail section definitions per project
@@ -414,6 +439,7 @@ function renderRoadmap(data) {
 
 // ---- Setup ----
 function renderSetupSection(data) {
+  stopYtScroll();
   $('setupHeading').textContent = data.setup.heading;
   $('setupSub').textContent = data.setup.sub;
 
@@ -452,6 +478,7 @@ function startYtScroll() {
   }, true);
 
   const step = () => {
+    if (!track.isConnected) { ytAnimId = null; return; }
     if (!track.dataset.anim) return;
     if (!ytPaused) {
       x -= YT_SCROLL_SPEED;
@@ -482,14 +509,13 @@ async function fetchYtFeed() {
   };
 
   try {
-    const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.youtube.com%2Ffeeds%2Fvideos.xml%3Fchannel_id%3DUCZIZwWoayEW1CXxqE0TwyLQ');
-    const data = await res.json();
+    const data = await fetchJson('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.youtube.com%2Ffeeds%2Fvideos.xml%3Fchannel_id%3DUCZIZwWoayEW1CXxqE0TwyLQ', 10 * 60 * 1000);
     if (data.status !== 'ok' || !data.items?.length) { fallback(); return; }
     const items = data.items.slice(0, YT_FEED_LIMIT);
     const html = items.map(v => `
-      <a href="${v.link}" target="_blank" rel="noopener noreferrer" class="yt-feed-item">
-        <img src="${v.thumbnail}" alt="${v.title}" class="yt-feed-thumb" loading="lazy" />
-        <span class="yt-feed-title">${v.title}</span>
+      <a href="${escapeHtml(v.link)}" target="_blank" rel="noopener noreferrer" class="yt-feed-item">
+        <img src="${escapeHtml(v.thumbnail)}" alt="${escapeHtml(v.title)}" class="yt-feed-thumb" loading="lazy" />
+        <span class="yt-feed-title">${escapeHtml(v.title)}</span>
       </a>
     `).join('');
     track.innerHTML = html + html;
@@ -513,10 +539,10 @@ async function fetchYtSubscriberCount() {
   }
 
   try {
-    const res = await fetch(
-      `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${YT_CHANNEL_ID}&key=${YT_API_KEY}`
+    const data = await fetchJson(
+      `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${YT_CHANNEL_ID}&key=${YT_API_KEY}`,
+      60 * 60 * 1000
     );
-    const data = await res.json();
     if (data?.items?.[0]?.statistics?.subscriberCount) {
       ytSubscriberCount = parseInt(data.items[0].statistics.subscriberCount).toLocaleString();
       el.textContent = `${ytSubscriberCount} ${t[lang].contact.subscribers}`;
@@ -531,28 +557,34 @@ async function fetchYtSubscriberCount() {
 // ---- GitHub Graph ----
 const GH_PALETTE = [
   'transparent',
-  'rgba(124,58,237,0.12)',
-  'rgba(124,58,237,0.30)',
-  'rgba(124,58,237,0.55)',
+  'rgba(124,58,237,0.25)',
+  'rgba(124,58,237,0.65)',
   '#7c3aed',
+  '#8b5cf6',
 ];
 const GH_LEVELS = ['NONE', 'FIRST_QUARTILE', 'SECOND_QUARTILE', 'THIRD_QUARTILE', 'FOURTH_QUARTILE'];
-const GH_MONTHS = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 async function fetchGhGraph() {
   const container = $('ghGraph');
   if (!container) return;
 
-  const FROM = new Date('2026-03-01T00:00:00');
-  const TO = new Date('2026-06-30T23:59:59');
+  const TO = new Date();
+  const FROM = new Date(TO);
+  FROM.setDate(FROM.getDate() - 118);
+  TO.setHours(23, 59, 59, 999);
 
   try {
-    const res = await fetch('https://github-contributions-api.jogruber.de/v4/LioExp?y=2026');
-    const data = await res.json();
-    const days = data.contributions.filter((d) => {
-      const t = new Date(d.date + 'T00:00:00');
-      return t >= FROM && t <= TO;
-    });
+    const years = [...new Set([FROM.getFullYear(), TO.getFullYear()])];
+    const all = await Promise.all(years.map((y) =>
+      fetchJson(`https://github-contributions-api.jogruber.de/v4/LioExp?y=${y}`, 60 * 60 * 1000)
+    ));
+    const days = all
+      .flatMap((d) => d.contributions || [])
+      .filter((d) => {
+        const t = new Date(d.date + 'T00:00:00');
+        return t >= FROM && t <= TO;
+      })
+      .sort((a, b) => a.date.localeCompare(b.date));
 
     // Group days into Sunday–Saturday columns like GitHub
     const weeks = [];
@@ -573,41 +605,8 @@ async function fetchGhGraph() {
       weeks.push(week);
     }
 
-    // Month header
-    let monthHtml = '<div class="gh-months">';
-    monthHtml += '<span class="gh-spacer"></span>';
-    let last = '';
-    let span = 0;
-    let start = 0;
-    for (let w = 0; w < weeks.length; w++) {
-      const firstDay = weeks[w].find((d) => d);
-      const m = firstDay?.date?.substring(5, 7) || '';
-      if (m !== last) {
-        if (last) {
-          const label = GH_MONTHS[parseInt(last)] || last;
-          monthHtml += `<span class="gh-mlabel" style="grid-column:${start + 1}/${start + span + 1}">${label}</span>`;
-        }
-        last = m;
-        start = w + 1;
-        span = 1;
-      } else {
-        span++;
-      }
-    }
-    if (last) {
-      const label = GH_MONTHS[parseInt(last)] || last;
-      monthHtml += `<span class="gh-mlabel" style="grid-column:${start + 1}/${start + span + 1}">${label}</span>`;
-    }
-    monthHtml += '</div>';
-
-    // Body: day labels + weeks
-    const dayLabels = ['', 'Mon', '', 'Wed', '', 'Fri', ''];
+    // Body: weeks only
     let bodyHtml = '<div class="gh-body">';
-    bodyHtml += '<div class="gh-labels">';
-    for (const d of dayLabels) {
-      bodyHtml += `<span class="gh-dlabel">${d}</span>`;
-    }
-    bodyHtml += '</div>';
     bodyHtml += '<div class="gh-weeks">';
     for (const week of weeks) {
       bodyHtml += '<div class="gh-week">';
@@ -616,15 +615,16 @@ async function fetchGhGraph() {
           bodyHtml += '<span class="gh-cell" style="background:transparent"></span>';
           continue;
         }
-        const idx = GH_LEVELS.indexOf(day.contributionLevel);
-        const color = GH_PALETTE[idx] || 'transparent';
+        let idx = typeof day.level === 'number' ? day.level : GH_LEVELS.indexOf(day.contributionLevel);
+        if (idx < 0 || idx > 4) idx = 0;
+        const color = GH_PALETTE[idx];
         bodyHtml += `<span class="gh-cell" style="background:${color}" title="${day.date}: ${day.count} commit${day.count !== 1 ? 's' : ''}"></span>`;
       }
       bodyHtml += '</div>';
     }
     bodyHtml += '</div></div>';
 
-    container.innerHTML = monthHtml + bodyHtml;
+    container.innerHTML = bodyHtml;
   } catch {
     container.innerHTML = '';
   }
@@ -709,7 +709,7 @@ function renderBriefing(data) {
       <p class="briefing-fast-label">${data.contact.fastestWayLabel}</p>
       <p>${data.contact.fastestWayText}</p>
     </div>
-    <a href="mailto:lioexp0@gmail.com?subject=Briefing — Colaboração" class="briefing-email">${data.contact.sendEmail}</a>
+    <a href="mailto:lioexp0@gmail.com?subject=${encodeURIComponent(data.contact.mailtoSubject)}" class="briefing-email">${data.contact.sendEmail}</a>
   </div>`;
 }
 
@@ -719,7 +719,7 @@ function renderFooter(data) {
     <div class="footer-inner">
       <p class="footer-tagline">~ ${data.contact.footer.tagline}</p>
       <button class="verse-btn" data-verse>${data.contact.footer.colossians}</button>
-      <p class="verse-full" id="verseFull">"${data.contact.footer.verse}" — Colossenses 3:23</p>
+      <p class="verse-full" id="verseFull">"${data.contact.footer.verse}" — ${data.contact.footer.colossians}</p>
     </div>`;
 }
 
@@ -732,10 +732,13 @@ function openSetupModal() {
   const overlay = document.createElement('div');
   overlay.className = 'setup-modal-overlay';
   overlay.id = 'setupModal';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-label', t[lang].setup.modalHeading);
   const data = t[lang];
   overlay.innerHTML = `
     <div class="setup-modal">
-      <button class="setup-modal-close" data-close-modal>×</button>
+      <button class="setup-modal-close" data-close-modal aria-label="Fechar">×</button>
       <div class="setup-modal-content">
         <div class="setup-modal-image"><img src="assets/setup-2026.jpg" alt="Setup 2026" draggable="false" loading="lazy" /></div>
         <div class="setup-modal-items">
@@ -752,6 +755,9 @@ function openSetupModal() {
   document.body.appendChild(overlay);
   requestAnimationFrame(() => overlay.classList.add('open'));
   document.addEventListener('keydown', closeOnEscape);
+  lastFocused = document.activeElement;
+  trapFocus(overlay);
+  overlay.querySelector('.setup-modal-close').focus();
 }
 
 function closeSetupModal() {
@@ -760,11 +766,39 @@ function closeSetupModal() {
   modal.classList.remove('open');
   document.documentElement.style.overflow = '';
   document.removeEventListener('keydown', closeOnEscape);
+  untrapFocus();
   setTimeout(() => modal.remove(), 300);
+  if (lastFocused) lastFocused.focus();
 }
 
 function closeOnEscape(e) {
   if (e.key === 'Escape') closeSetupModal();
+}
+
+function trapFocus(root) {
+  const focusables = () => [...root.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')].filter(el => el.offsetParent !== null);
+  const onKey = (e) => {
+    if (e.key !== 'Tab') return;
+    const items = focusables();
+    if (!items.length) { e.preventDefault(); return; }
+    const first = items[0];
+    const last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  };
+  root.addEventListener('keydown', onKey);
+  root.dataset.focusTrap = '1';
+  root._trapKey = onKey;
+}
+
+function untrapFocus(root) {
+  const r = $('setupModal');
+  if (r && r._trapKey) r.removeEventListener('keydown', r._trapKey);
 }
 
 // =============================================
@@ -788,8 +822,11 @@ function setFilter(f) {
 function switchLang(l) {
   lang = l;
   localStorage.setItem('lang', l);
+  document.documentElement.lang = l;
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === l));
   render();
+  fetchYtFeed();
+  fetchGhGraph();
 }
 
 function toggleVerse() {
@@ -893,8 +930,6 @@ document.addEventListener('DOMContentLoaded', () => {
   switchLang(lang);
   initNavObserver();
   initRevealObserver();
-  fetchYtFeed();
-  fetchGhGraph();
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js');
   }

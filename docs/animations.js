@@ -72,26 +72,6 @@
   }
 
   // -------------------------------------------------------
-  // 1b) ProjectCard cascade (portfolio variants) — .pa-card
-  // -------------------------------------------------------
-  function initProjectCascade(root) {
-    (root.querySelectorAll('.pa-card') || []).forEach((card) => {
-      if (card.dataset.paInit === '1') return;
-      card.dataset.paInit = '1';
-
-      observeReveal(card);
-      if (reduced) { card.dataset.paDone = '1'; return; }
-
-      // libera o transform após o reveal terminar
-      card.addEventListener('transitionend', (e) => {
-        if (e.target === card && e.propertyName === 'transform') {
-          card.dataset.paDone = '1';
-        }
-      });
-    });
-  }
-
-  // -------------------------------------------------------
   // 1c) LineReveal — linhas do about aparecem uma a uma
   // -------------------------------------------------------
   const lineIO = new IntersectionObserver((entries) => {
@@ -389,127 +369,6 @@
   }
 
   // -------------------------------------------------------
-  // 8b) Hero Photo Floating Transition -> Profile Avatar Dock
-  // -------------------------------------------------------
-  let photoFloatRaf = 0;
-  function initHeroPhotoScroll() {
-    const heroWrap = document.querySelector('.hero-photo-wrap');
-    const heroCard = document.querySelector('.hero-photo-card');
-    const heroPhoto = document.querySelector('#heroPhoto');
-    const heroBadge = document.querySelector('.hero-photo-badge');
-    const aboutWrap = document.querySelector('.profile-avatar-wrap');
-    const aboutAvatar = document.querySelector('.profile-avatar');
-
-    if (!heroWrap || !heroCard || !aboutWrap || heroWrap.dataset.photoFloatInit === '1') return;
-    heroWrap.dataset.photoFloatInit = '1';
-
-    let totalDeltaX = 0;
-    let totalDeltaY = 0;
-    let scaleRatio = 0.666;
-    let startScroll = 0;
-    let endScroll = 500;
-    let heroBaseW = 120;
-
-    function getOffsetCoords(el) {
-      let x = 0;
-      let y = 0;
-      let curr = el;
-      while (curr && curr !== document.body && curr !== document.documentElement) {
-        x += curr.offsetLeft || 0;
-        y += curr.offsetTop || 0;
-        curr = curr.offsetParent;
-      }
-      return {
-        x,
-        y,
-        w: el.offsetWidth || 80,
-        h: el.offsetHeight || 80,
-        cx: x + (el.offsetWidth || 80) / 2,
-        cy: y + (el.offsetHeight || 80) / 2
-      };
-    }
-
-    function measure() {
-      const prevTransform = heroCard.style.transform;
-      heroCard.style.transform = 'none';
-
-      const heroC = getOffsetCoords(heroWrap);
-      const aboutC = getOffsetCoords(aboutWrap);
-
-      heroCard.style.transform = prevTransform;
-
-      totalDeltaX = aboutC.cx - heroC.cx;
-      totalDeltaY = aboutC.cy - heroC.cy;
-      heroBaseW = heroC.w || 120;
-      scaleRatio = (aboutC.w || 80) / heroBaseW;
-
-      startScroll = 0;
-      endScroll = Math.max(180, aboutC.y - (window.innerHeight * 0.38));
-    }
-
-    measure();
-    window.addEventListener('resize', debounce(measure, 150), { passive: true });
-
-    const onScroll = () => {
-      if (reduced) return;
-      if (photoFloatRaf) return;
-      photoFloatRaf = requestAnimationFrame(() => {
-        photoFloatRaf = 0;
-        const y = window.scrollY || window.pageYOffset;
-
-        if (y <= 0) {
-          heroCard.style.transform = '';
-          heroCard.style.borderRadius = '';
-          heroCard.style.padding = '';
-          if (heroPhoto) heroPhoto.style.borderRadius = '';
-          if (heroBadge) {
-            heroBadge.style.opacity = '';
-            heroBadge.style.transform = '';
-          }
-          if (aboutAvatar) aboutAvatar.style.opacity = '0';
-          return;
-        }
-
-        const rawProgress = (y - startScroll) / (endScroll - startScroll);
-        const progress = Math.min(1, Math.max(0, rawProgress));
-
-        // Curva suave de aceleração e desaceleração (smoothstep cúbico)
-        const ease = progress < 0.5
-          ? 2 * progress * progress
-          : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-
-        const currX = totalDeltaX * ease;
-        const currY = totalDeltaY * ease;
-        const currScale = 1 + (scaleRatio - 1) * ease;
-
-        const baseRadius = 20;
-        const targetRadius = heroBaseW / 2;
-        const currRadius = baseRadius + (targetRadius - baseRadius) * ease;
-        const currPadding = (0.35 * (1 - ease)).toFixed(2);
-
-        heroCard.style.transform = `translate3d(${currX.toFixed(1)}px, ${currY.toFixed(1)}px, 0) scale(${currScale.toFixed(4)})`;
-        heroCard.style.borderRadius = `${currRadius.toFixed(1)}px`;
-        heroCard.style.padding = `${currPadding}rem`;
-        if (heroPhoto) heroPhoto.style.borderRadius = `${currRadius.toFixed(1)}px`;
-
-        if (heroBadge) {
-          const badgeOpacity = Math.max(0, 1 - ease * 2.2);
-          heroBadge.style.opacity = badgeOpacity.toFixed(2);
-          heroBadge.style.transform = `translateY(${(ease * 10).toFixed(1)}px)`;
-          heroBadge.style.pointerEvents = badgeOpacity < 0.1 ? 'none' : '';
-        }
-
-        if (aboutAvatar) {
-          aboutAvatar.style.opacity = progress >= 0.99 ? '1' : '0';
-        }
-      });
-    };
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-  }
-
-  // -------------------------------------------------------
   // Varredura completa
   // -------------------------------------------------------
   function wire() {
@@ -518,8 +377,6 @@
     initRevealGroups(root);
     initBannerParallax();
     initMouseParallax();
-    initHeroPhotoScroll();
-    initProjectCascade(root);
     initLineReveal(root);
 
     // footer (render dinâmico) entra no observer de reveals
