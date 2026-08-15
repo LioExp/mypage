@@ -18,10 +18,10 @@ const t = {
       heading: 'Onde estou no mapa.', subheading: 'o fruto da minha jornada.',
       filters: { domino: 'domino', aprender: 'a aprender', roadmap: 'roadmap' },
       categories: [
-        { id: 'dev', label: 'DEV', desc: 'ferramentas de construção', domino: ['Python', 'Bash', 'CLI design', 'Git'], aprender: ['Rust', 'APIs REST'], roadmap: ['WASM', 'sistemas distribuídos'] },
-        { id: 'linux', label: 'LINUX & INFRA', desc: 'o ambiente onde tudo corre', domino: ['Arch Linux', 'terminal workflow'], aprender: ['systemd', 'cron', 'iptables'], roadmap: ['containers', 'CI/CD'] },
-        { id: 'networking', label: 'NETWORKING', desc: 'entender antes de proteger', domino: ['redes locais'], aprender: ['TCP/IP profundo', 'DNS', 'tshark'], roadmap: [] },
-        { id: 'security', label: 'SEGURANÇA', desc: 'o destino', domino: [], aprender: ['OWASP Top 10', 'Burp Suite', 'prompt injection'], roadmap: ['Security+', 'Purple team', 'IA security'] }
+        { id: 'dev', label: 'DEV', domino: ['Python', 'Bash', 'CLI design', 'Git'], aprender: ['Rust', 'APIs REST'], roadmap: ['WASM', 'sistemas distribuídos'] },
+        { id: 'linux', label: 'LINUX & INFRA', domino: ['Arch Linux', 'terminal workflow'], aprender: ['systemd', 'cron', 'iptables'], roadmap: ['containers', 'CI/CD'] },
+        { id: 'networking', label: 'NETWORKING', domino: ['redes locais'], aprender: ['TCP/IP profundo', 'DNS', 'tshark'], roadmap: [] },
+        { id: 'security', label: 'SEGURANÇA', domino: [], aprender: ['OWASP Top 10', 'Burp Suite', 'prompt injection'], roadmap: ['Security+', 'Purple team', 'IA security'] }
       ],
       roadmapLabel: 'ROADMAP', roadmapLinkLabel: 'ver o roadmap completo',
     },
@@ -81,10 +81,10 @@ const t = {
       heading: 'Where I am on the map.', subheading: 'the fruit of my journey.',
       filters: { domino: 'mastered', aprender: 'learning', roadmap: 'roadmap' },
       categories: [
-        { id: 'dev', label: 'DEV', desc: 'building tools', domino: ['Python', 'Bash', 'CLI design', 'Git'], aprender: ['Rust', 'REST APIs'], roadmap: ['WASM', 'distributed systems'] },
-        { id: 'linux', label: 'LINUX & INFRA', desc: 'the environment where everything runs', domino: ['Arch Linux', 'terminal workflow'], aprender: ['systemd', 'cron', 'iptables'], roadmap: ['containers', 'CI/CD'] },
-        { id: 'networking', label: 'NETWORKING', desc: 'understand before protecting', domino: ['local networks'], aprender: ['deep TCP/IP', 'DNS', 'tshark'], roadmap: [] },
-        { id: 'security', label: 'SECURITY', desc: 'the destination', domino: [], aprender: ['OWASP Top 10', 'Burp Suite', 'prompt injection'], roadmap: ['Security+', 'Purple team', 'AI security'] }
+        { id: 'dev', label: 'DEV', domino: ['Python', 'Bash', 'CLI design', 'Git'], aprender: ['Rust', 'REST APIs'], roadmap: ['WASM', 'distributed systems'] },
+        { id: 'linux', label: 'LINUX & INFRA', domino: ['Arch Linux', 'terminal workflow'], aprender: ['systemd', 'cron', 'iptables'], roadmap: ['containers', 'CI/CD'] },
+        { id: 'networking', label: 'NETWORKING', domino: ['local networks'], aprender: ['deep TCP/IP', 'DNS', 'tshark'], roadmap: [] },
+        { id: 'security', label: 'SECURITY', domino: [], aprender: ['OWASP Top 10', 'Burp Suite', 'prompt injection'], roadmap: ['Security+', 'Purple team', 'AI security'] }
       ],
       roadmapLabel: 'ROADMAP', roadmapLinkLabel: 'view the full roadmap',
     },
