@@ -1,23 +1,15 @@
 // =========================================================
 // ANIMATIONS LAYER
 // Drivers vanilla para todos os efeitos portados do portfolio:
-// typewriter, rotating text, blur words, marquee, tilt 3D,
-// parallax, reveals com stagger e reveal variants.
+// typewriter, rotating text, blur words, reveals com stagger.
 // =========================================================
 
 (() => {
   'use strict';
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const finePointer = window.matchMedia('(pointer: fine)').matches;
 
   if (reduced) document.documentElement.classList.add('reduce-motion');
-
-  // Ícones usados no marquee (LogoLoop) — a stack do site.
-  const MARQUEE_ITEMS = [
-    'python', 'archlinux', 'rust', 'gnubash', 'git',
-    'html', 'css', 'fastapi', 'neovim', 'owasp', 'burpsuite',
-  ];
 
   // -------------------------------------------------------
   // Helpers
@@ -90,12 +82,89 @@
       observeReveal(card);
       if (reduced) { card.dataset.paDone = '1'; return; }
 
-      // libera o transform rápido (tilt 3D) após o reveal terminar
+      // libera o transform após o reveal terminar
       card.addEventListener('transitionend', (e) => {
         if (e.target === card && e.propertyName === 'transform') {
           card.dataset.paDone = '1';
         }
       });
+    });
+  }
+
+  // -------------------------------------------------------
+  // 1c) LineReveal — linhas do about aparecem uma a uma
+  // -------------------------------------------------------
+  const lineIO = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('visible');
+      lineIO.unobserve(e.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+  function initLineReveal(root) {
+    (root.querySelectorAll('.about-para') || []).forEach((el) => {
+      const splitLines = () => {
+        const text = el.textContent;
+        if (el.dataset.lrText === text) return;
+        el.dataset.lrText = text;
+
+        el.textContent = '';
+        const spans = [];
+        text.split(/(\s+)/).forEach((part) => {
+          if (/^\s+$/.test(part)) {
+            el.appendChild(document.createTextNode(part));
+            return;
+          }
+          const s = document.createElement('span');
+          s.className = 'para-line';
+          s.textContent = part;
+          el.appendChild(s);
+          spans.push(s);
+        });
+
+        const groups = [];
+        let cur = [];
+        let last = null;
+        spans.forEach((s) => {
+          const top = s.offsetTop;
+          if (last !== null && top !== last) { groups.push(cur); cur = []; }
+          cur.push(s);
+          last = top;
+        });
+        if (cur.length) groups.push(cur);
+
+        groups.forEach((g, i) => {
+          g.forEach((s) => {
+            s.style.animationDelay = `calc(var(--para-line-stagger) * ${i})`;
+            if (el.classList.contains('visible')) {
+              s.style.animation = 'none';
+              s.style.opacity = '1';
+            }
+          });
+        });
+      };
+
+      if (el.dataset.lrInit === '1') return splitLines();
+      el.dataset.lrInit = '1';
+
+      window.addEventListener('resize', debounce(splitLines, 150));
+      if (reduced) {
+        el.classList.add('visible');
+      } else {
+        lineIO.observe(el);
+      }
+      splitLines();
+    });
+
+    (root.querySelectorAll('.about-photo') || []).forEach((el) => {
+      if (el.dataset.photoInit === '1') return;
+      el.dataset.photoInit = '1';
+      if (reduced) {
+        el.classList.add('visible');
+      } else {
+        lineIO.observe(el);
+      }
     });
   }
 
@@ -176,7 +245,7 @@
 
       el.textContent = '';
       if (reduced) {
-        el.appendChild(makeItem(words[0]));
+        el.textContent = words.join(' · ');
         return;
       }
 
@@ -186,6 +255,7 @@
       words.forEach((w) => col.appendChild(makeItem(w)));
       el.appendChild(col);
 
+      if (el.__rotInterval) clearInterval(el.__rotInterval);
       let idx = 0;
       if (words.length > 1) {
         el.__rotInterval = setInterval(() => {
@@ -269,82 +339,7 @@
   }
 
   // -------------------------------------------------------
-  // 5) Marquee (LogoLoop) — [data-marquee]
-  // -------------------------------------------------------
-  function initMarquee(el) {
-    if (el.dataset.marqueeInit === '1') return;
-    el.dataset.marqueeInit = '1';
-    el.classList.add('marquee');
-
-    const track = document.createElement('div');
-    track.className = 'marquee-track';
-
-    const buildGroup = () => {
-      const frag = document.createDocumentFragment();
-      MARQUEE_ITEMS.forEach((key) => {
-        const item = document.createElement('span');
-        item.className = 'marquee-item';
-        if (typeof icons !== 'undefined' && icons[key]) {
-          item.classList.add('mq-' + key);
-          item.innerHTML = icons[key];
-        } else {
-          item.textContent = key;
-        }
-        frag.appendChild(item);
-      });
-      return frag;
-    };
-
-    track.appendChild(buildGroup());
-    track.appendChild(buildGroup());
-
-    el.appendChild(track);
-    el.setAttribute('role', 'presentation');
-  }
-
-  // -------------------------------------------------------
-  // 6) MagicBento → tilt 3D + glare
-  // -------------------------------------------------------
-  const TILT_SELECTOR = '.stats-card, .project-card, .setup-image-wrap, .yt-card, .roadmap-card';
-
-  function enableTilt(el) {
-    if (el.dataset.tiltInit === '1') return;
-    if (!finePointer || reduced) return;
-    el.dataset.tiltInit = '1';
-
-    const glare = document.createElement('div');
-    glare.className = 'tilt-glare';
-    glare.setAttribute('aria-hidden', 'true');
-
-    const max = 6;
-    let raf = 0;
-
-    const onMove = (e) => {
-      const r = el.getBoundingClientRect();
-      const px = (e.clientX - r.left) / r.width;
-      const py = (e.clientY - r.top) / r.height;
-      const rx = -(py - 0.5) * 2 * max;
-      const ry = (px - 0.5) * 2 * max;
-      el.style.setProperty('--gx', `${Math.max(0, Math.min(100, px * 100))}%`);
-      el.style.setProperty('--gy', `${Math.max(0, Math.min(100, py * 100))}%`);
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        el.style.transform = `perspective(700px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
-      });
-    };
-
-    const onLeave = () => {
-      cancelAnimationFrame(raf);
-      el.style.transform = '';
-    };
-
-    el.appendChild(glare);
-    el.addEventListener('pointermove', onMove, { passive: true });
-    el.addEventListener('pointerleave', onLeave, { passive: true });
-  }
-
-  // -------------------------------------------------------
-  // 7) Parallax de scroll (banner) — [data-parallax]
+  // 5) Parallax de scroll (banner) — [data-parallax]
   // -------------------------------------------------------
   let bannerRaf = 0;
   function initBannerParallax() {
@@ -525,12 +520,15 @@
     initMouseParallax();
     initHeroPhotoScroll();
     initProjectCascade(root);
+    initLineReveal(root);
+
+    // footer (render dinâmico) entra no observer de reveals
+    const footer = document.querySelector('.footer');
+    if (footer) observeReveal(footer);
 
     root.querySelectorAll('[data-type]').forEach(initTypewriter);
     root.querySelectorAll('[data-rotate]').forEach(initRotating);
     root.querySelectorAll('[data-blur-text]').forEach(initBlurWords);
-    root.querySelectorAll('[data-marquee]').forEach(initMarquee);
-    root.querySelectorAll(TILT_SELECTOR).forEach(enableTilt);
   }
 
   // Re-wire após re-renders dinâmicos (i18n, filtros, accordions...)

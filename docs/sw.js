@@ -1,9 +1,11 @@
-const CACHE = 'mypage-v2';
+const CACHE = 'mypage-v3';
 const URLS = [
   '/mypage/',
   '/mypage/index.html',
   '/mypage/style.css',
+  '/mypage/animations.css',
   '/mypage/script.js',
+  '/mypage/animations.js',
   '/mypage/assets/banner.png',
   '/mypage/assets/favicon2.jpg',
   '/mypage/assets/faber-preview.png',

@@ -22,6 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="animations.css" />
 </head>
 <body>
   <div id="app" class="dark">
@@ -62,53 +63,46 @@
 
     <!-- Banner -->
     <div class="banner">
-      <img src="assets/banner.png" alt="LioExp banner" class="banner-img" draggable="false" />
+      <img src="assets/banner.png" alt="LioExp banner" class="banner-img" draggable="false" data-parallax />
     </div>
 
     <main class="main">
       <!-- HERO -->
       <section id="inicio" class="hero">
         <div class="hero-content">
-          <div class="ascii-logo" id="asciiLogo"><span class="text-white">██╗     ██╗ ██████╗ </span><span class="text-purple">███████╗██╗  ██╗██████╗</span><br><span class="text-white">██║     ██║██╔═══██╗</span><span class="text-purple">██╔════╝╚██╗██╔╝██╔══██╗</span><br><span class="text-white">██║     ██║██║   ██║</span><span class="text-purple">█████╗   ╚███╔╝ ██████╔╝</span><br><span class="text-white">██║     ██║██║   ██║</span><span class="text-purple">██╔══╝   ██╔██╗ ██╔═══╝</span><br><span class="text-white">███████╗██║╚██████╔╝</span><span class="text-purple">███████╗██╔╝ ██╗██║</span><br><span class="text-white">╚══════╝╚═╝ ╚═════╝</span><span class="text-purple"> ╚══════╝╚═╝  ╚═╝╚═╝</span></div>
-          <p class="tagline" id="tagline">~ build. break. document.</p>
+          <div class="ascii-logo" id="asciiLogo" data-mouse-parallax><span class="text-white">██╗     ██╗ ██████╗ </span><span class="text-purple">███████╗██╗  ██╗██████╗</span><br><span class="text-white">██║     ██║██╔═══██╗</span><span class="text-purple">██╔════╝╚██╗██╔╝██╔══██╗</span><br><span class="text-white">██║     ██║██║   ██║</span><span class="text-purple">█████╗   ╚███╔╝ ██████╔╝</span><br><span class="text-white">██║     ██║██║   ██║</span><span class="text-purple">██╔══╝   ██╔██╗ ██╔═══╝</span><br><span class="text-white">███████╗██║╚██████╔╝</span><span class="text-purple">███████╗██╔╝ ██╗██║</span><br><span class="text-white">╚══════╝╚═╝ ╚═════╝</span><span class="text-purple"> ╚══════╝╚═╝  ╚═╝╚═╝</span></div>
+          <p class="tagline" id="tagline" data-type="~ build. break. document.">~ build. break. document.</p>
           <div class="hero-info">
-            <p id="heroAge">17 anos. Luanda, Angola.</p>
-            <p id="heroRoles">Builder · Programmer · Experimentador</p>
+            <p id="heroAge">18 anos.</p>
+            <p id="heroRoles" data-rotate="Builder · Programmer · Experimentador">Builder · Programmer · Experimentador</p>
             <p class="text-gray-300" id="heroMotto">Eu sou o experimento.</p>
           </div>
           <div class="hero-cta">
             <a href="#projectos" class="cta-btn" id="ctaBtn"><span class="arrow-purple">→</span> <span id="ctaText">ver projectos</span></a>
             <div class="hero-socials">
-              <a href="https://github.com/lioexp" target="_blank" rel="noopener noreferrer" class="social-link" data-testid="link-hero-github">
+              <a href="https://github.com/lioexp" target="_blank" rel="noopener noreferrer" class="social-link" data-testid="link-hero-github" aria-label="GitHub" title="GitHub">
                 <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.92.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-                github
               </a>
               <span class="dot-sep">·</span>
-              <a href="https://x.com/lioexp" target="_blank" rel="noopener noreferrer" class="social-link" data-testid="link-hero-x">
+              <a href="https://x.com/lioexp" target="_blank" rel="noopener noreferrer" class="social-link" data-testid="link-hero-x" aria-label="X" title="X">
                 <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                x
               </a>
               <span class="dot-sep">·</span>
-              <a href="#" class="social-link" data-testid="link-hero-linkedin">
+              <a href="#" class="social-link" data-testid="link-hero-linkedin" aria-label="LinkedIn" title="LinkedIn">
                 <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C 0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                linkedin
               </a>
               <span class="dot-sep">·</span>
-              <a href="https://youtube.com/@lioexp" target="_blank" rel="noopener noreferrer" class="social-link yt-link" data-testid="link-hero-yt-pt">
+              <a href="https://youtube.com/@lioexp" target="_blank" rel="noopener noreferrer" class="social-link yt-link" data-testid="link-hero-yt-pt" aria-label="YouTube PT" title="YouTube PT">
                 <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                yt pt
               </a>
               <span class="dot-sep">·</span>
-              <a href="https://youtube.com/@lioexp-en" target="_blank" rel="noopener noreferrer" class="social-link yt-link" data-testid="link-hero-yt-en">
+              <a href="https://youtube.com/@lioexp-en" target="_blank" rel="noopener noreferrer" class="social-link yt-link" data-testid="link-hero-yt-en" aria-label="YouTube EN" title="YouTube EN">
                 <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                yt en
               </a>
               <span class="dot-sep">·</span>
-              <a href="mailto:lioexp0@gmail.com" class="social-link" data-testid="link-hero-email">
+              <a href="mailto:lioexp0@gmail.com" class="social-link" data-testid="link-hero-email" aria-label="E-mail" title="E-mail">
                 <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
-                e-mail
               </a>
-            </div>
           </div>
         </div>
       </section>
@@ -116,40 +110,29 @@
       <!-- ABOUT -->
       <section id="sobre" class="section about">
         <div class="reveal">
-          <div class="section-label" id="aboutLabel">SOBRE</div>
           <h2 class="section-title" id="aboutTitle">Builder que <span class="text-purple">constrói</span>, quebra e documenta tudo em público.</h2>
         </div>
-        <div class="about-grid reveal">
+        <div class="about-grid">
           <div class="about-text">
-            <div class="reveal">
-              <h3 class="subsection-title" id="cbpTitle">CBP Framework</h3>
-              <p class="text-gray-300 leading-relaxed text-base md:text-lg" id="cbpText">Trabalho com um framework simples — Create, Break, Protect. Construo uma coisa, tento destruí-la, e documento tudo. O processo é público porque aprender em privado desperdiça metade do valor.</p>
+            <p class="about-para" id="cbpText">Trabalho com um framework simples — Create, Break, Protect. Construo uma coisa, tento destruí-la, e documento tudo. O processo é público porque aprender em privado desperdiça metade do valor.</p>
+            <p class="about-para" id="nowText">Estou em Luanda. Hardware modesto, internet instável, escola de tarde. É o ambiente onde tudo o que construo tem de funcionar — por enquanto.</p>
+            <div class="about-photo" aria-hidden="true">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6"></path></svg>
             </div>
-            <div class="reveal" style="margin-top:3rem">
-              <h3 class="subsection-title" id="nowTitle">Agora</h3>
-              <p class="text-gray-300 leading-relaxed text-base md:text-lg" id="nowText">Estou em Luanda. Hardware modesto, internet instável, escola de tarde. É o ambiente onde tudo o que construo tem de funcionar — por enquanto.</p>
-            </div>
-            <div class="reveal" style="margin-top:3rem">
-              <h3 class="subsection-title" id="whyTitle">Porquê</h3>
-              <p class="text-gray-300 leading-relaxed text-base md:text-lg" id="whyText">Eu sou o experimento. Programação, segurança, neurociência, psicologia e arte não são áreas separadas — são lentes diferentes sobre o mesmo problema.</p>
+            <p class="about-para" id="whyText">Eu sou o experimento. Programação, segurança, neurociência, psicologia e arte não são áreas separadas — são lentes diferentes sobre o mesmo problema.</p>
+            <div class="open-to reveal">
+              <div class="tags-wrap" id="openTags"></div>
             </div>
           </div>
-          <div class="about-stats reveal">
-            <div class="stats-card" id="statsCard"></div>
-          </div>
-        </div>
-        <div class="open-to reveal">
-          <p class="subsection-title" id="openToLabel">ABERTO PARA:</p>
-          <div class="tags-wrap" id="openTags"></div>
         </div>
       </section>
 
       <!-- PROJECTS -->
       <section id="projectos" class="section projects">
         <div class="reveal">
-          <div class="section-label" id="projectsLabel">PROJECTOS</div>
+          <h2 class="section-title" id="projectsHeading">Projectos</h2>
         </div>
-        <div class="projects-wrap">
+        <div class="projects-wrap" data-reveal-group="0.1">
           <h3 class="projects-subtitle" id="activeLabel">ACTIVOS</h3>
           <div class="projects-grid" id="projectsGrid"></div>
           <div class="reveal" style="margin-top:3rem">
@@ -162,8 +145,7 @@
       <!-- SKILLS -->
       <section id="skills" class="section skills">
         <div class="reveal">
-          <div class="section-label" id="skillsLabel">SKILLS</div>
-          <h2 class="section-title" id="skillsHeading">Onde estou no mapa.</h2>
+          <h2 class="section-title" id="skillsHeading" data-blur-text>Onde estou no mapa.</h2>
           <p class="skills-sub" id="skillsSub"> o fruto da minha jornada .</p>
           <div class="filter-pills" id="filterPills"></div>
           <div class="skills-categories" id="skillsCategories"></div>
@@ -174,20 +156,16 @@
       <!-- SETUP -->
       <section id="setup" class="section setup">
         <div class="reveal">
-          <div class="section-label" id="setupLabel">SETUP</div>
           <h2 class="section-title" id="setupHeading">Onde <span class="text-purple">construo</span>.</h2>
           <p class="skills-sub" id="setupSub">onde tudo acontece :3 .</p>
-          <div class="setup-grid" id="setupGrid"></div>
+          <div class="setup-grid" id="setupGrid" data-reveal-group="0.12"></div>
         </div>
       </section>
 
       <!-- CONTACT -->
       <section id="contacto" class="section contact">
-        <div class="reveal">
-          <div class="section-label" id="contactLabel">CONTACTO</div>
-        </div>
         <div class="contact-wrap reveal">
-          <h2 class="contact-heading" id="contactHeading">Fala comigo.</h2>
+          <h2 class="contact-heading" id="contactHeading" data-blur-text>Fala comigo.</h2>
           <div class="contact-sub">
             <p class="contact-text" id="contactText">Prefiro e-mail. Respondo a tudo que vale uma resposta.</p>
             <div class="briefing-wrap">
@@ -195,7 +173,7 @@
               <div class="briefing-content" id="briefingContent"></div>
             </div>
           </div>
-          <div class="contact-socials">
+          <div class="contact-socials" data-reveal-group="0.12">
             <p class="subsection-title" id="whereLabel">Onde me encontras</p>
             <div class="yt-grid" id="ytGrid"></div>
             <div class="discord-card" id="discordCard"></div>
@@ -207,5 +185,6 @@
     <footer class="footer" id="footer"></footer>
   </div>
   <script src="script.js"></script>
+  <script src="animations.js"></script>
 </body>
 </html>
