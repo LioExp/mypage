@@ -82,16 +82,14 @@ html.reduce-motion .bw-anim {
 .tag,
 .skill-item,
 .project-tag,
-.pill-link,
-.filter-btn {
+.pill-link {
   transition: all 0.25s var(--anim-ease);
 }
 
 .tag:hover,
 .skill-item:hover,
 .project-tag:hover,
-.pill-link:hover,
-.filter-btn:hover {
+.pill-link:hover {
   transform: translateY(-2px);
 }
 
@@ -183,8 +181,7 @@ html.reduce-motion .bw-anim {
   50% { box-shadow: 0 0 26px var(--accent-glow); }
 }
 
-.nav-link.active,
-.filter-btn.active {
+.nav-link.active {
   animation: glow-pulse 2.6s ease-in-out infinite;
 }
 

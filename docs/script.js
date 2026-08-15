@@ -19,8 +19,8 @@ const t = {
       filters: { domino: 'domino', aprender: 'a aprender', roadmap: 'roadmap' },
       categories: [
         { id: 'dev', label: 'DEV', desc: 'ferramentas de construção', domino: ['Python', 'Bash', 'CLI design', 'Git'], aprender: ['Rust', 'APIs REST'], roadmap: ['WASM', 'sistemas distribuídos'] },
-        { id: 'linux', label: 'LINUX & INFRA', desc: 'o ambiente onde tudo corre', domino: ['Arch Linux', 'terminal workflow', 'filesystem'], aprender: ['systemd', 'cron', 'iptables'], roadmap: ['containers', 'CI/CD'] },
-        { id: 'networking', label: 'NETWORKING', desc: 'entender antes de proteger', domino: ['redes locais', 'monitorização'], aprender: ['TCP/IP profundo', 'DNS', 'tshark'], roadmap: ['packet crafting', 'network forensics'] },
+        { id: 'linux', label: 'LINUX & INFRA', desc: 'o ambiente onde tudo corre', domino: ['Arch Linux', 'terminal workflow'], aprender: ['systemd', 'cron', 'iptables'], roadmap: ['containers', 'CI/CD'] },
+        { id: 'networking', label: 'NETWORKING', desc: 'entender antes de proteger', domino: ['redes locais'], aprender: ['TCP/IP profundo', 'DNS', 'tshark'], roadmap: [] },
         { id: 'security', label: 'SEGURANÇA', desc: 'o destino', domino: [], aprender: ['OWASP Top 10', 'Burp Suite', 'prompt injection'], roadmap: ['Security+', 'Purple team', 'IA security'] }
       ],
       roadmapLabel: 'ROADMAP', roadmapLinkLabel: 'ver o roadmap completo',
@@ -82,8 +82,8 @@ const t = {
       filters: { domino: 'mastered', aprender: 'learning', roadmap: 'roadmap' },
       categories: [
         { id: 'dev', label: 'DEV', desc: 'building tools', domino: ['Python', 'Bash', 'CLI design', 'Git'], aprender: ['Rust', 'REST APIs'], roadmap: ['WASM', 'distributed systems'] },
-        { id: 'linux', label: 'LINUX & INFRA', desc: 'the environment where everything runs', domino: ['Arch Linux', 'terminal workflow', 'filesystem'], aprender: ['systemd', 'cron', 'iptables'], roadmap: ['containers', 'CI/CD'] },
-        { id: 'networking', label: 'NETWORKING', desc: 'understand before protecting', domino: ['local networks', 'monitoring'], aprender: ['deep TCP/IP', 'DNS', 'tshark'], roadmap: ['packet crafting', 'network forensics'] },
+        { id: 'linux', label: 'LINUX & INFRA', desc: 'the environment where everything runs', domino: ['Arch Linux', 'terminal workflow'], aprender: ['systemd', 'cron', 'iptables'], roadmap: ['containers', 'CI/CD'] },
+        { id: 'networking', label: 'NETWORKING', desc: 'understand before protecting', domino: ['local networks'], aprender: ['deep TCP/IP', 'DNS', 'tshark'], roadmap: [] },
         { id: 'security', label: 'SECURITY', desc: 'the destination', domino: [], aprender: ['OWASP Top 10', 'Burp Suite', 'prompt injection'], roadmap: ['Security+', 'Purple team', 'AI security'] }
       ],
       roadmapLabel: 'ROADMAP', roadmapLinkLabel: 'view the full roadmap',
@@ -145,8 +145,6 @@ const icons = {
 // =============================================
 const YT_API_KEY = ''; // ← https://console.cloud.google.com (YouTube Data API v3, gratis)
 const YT_CHANNEL_ID = 'UCZIZwWoayEW1CXxqE0TwyLQ';
-const FILTER_COLORS = { domino: '#22c55e', aprender: '#60a5fa', roadmap: '#6b7280' };
-const SKILL_LEVELS = ['domino', 'aprender', 'roadmap'];
 const YT_FEED_LIMIT = 12;
 const YT_SCROLL_SPEED = 0.6;
 
@@ -156,7 +154,6 @@ const YT_SCROLL_SPEED = 0.6;
 let lang = localStorage.getItem('lang') || 'pt';
 document.documentElement.lang = lang;
 let openProjects = {};
-let skillFilter = null;
 let briefingOpen = false;
 let ytSubscriberCount = null;
 let ytAnimId = null;
@@ -313,6 +310,54 @@ const TECH_ICONS = {
   'Evolution API': '<svg class="tech-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4"></path><path d="M12 3v7"></path><path d="m9 7 3 3 3-3"></path><path d="M12 21v-3"></path></svg>',
 };
 
+const FEATHER = {
+  terminal: '<svg class="tech-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>',
+  zap: '<svg class="tech-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>',
+  server: '<svg class="tech-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>',
+  wind: '<svg class="tech-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"></path></svg>',
+  clock: '<svg class="tech-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>',
+  shield: '<svg class="tech-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>',
+  shieldPlus: '<svg class="tech-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="8" x2="12" y2="14"></line><line x1="9" y1="11" x2="15" y2="11"></line></svg>',
+  repeat: '<svg class="tech-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>',
+  layers: '<svg class="tech-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>',
+  globe: '<svg class="tech-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>',
+  message: '<svg class="tech-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>',
+  users: '<svg class="tech-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>',
+};
+
+const SKILL_ICONS = {
+  'Python': TECH_ICONS['Python'],
+  'Rust': TECH_ICONS['Rust'],
+  'CLI design': TECH_ICONS['CLI'],
+  'redes locais': TECH_ICONS['Networking'],
+  'local networks': TECH_ICONS['Networking'],
+  'IA security': TECH_ICONS['AI'],
+  'AI security': TECH_ICONS['AI'],
+  'Bash': FEATHER.terminal,
+  'terminal workflow': FEATHER.terminal,
+  'Git': '<svg class="tech-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M23.546 10.93L13.067.452c-.604-.603-1.582-.603-2.188 0L8.708 2.627l2.76 2.76c.645-.215 1.379-.07 1.889.441.516.515.658 1.258.438 1.9l2.658 2.66c.645-.223 1.387-.078 1.9.435.721.72.721 1.884 0 2.604-.719.719-1.881.719-2.6 0-.539-.541-.674-1.337-.404-1.996L12.86 8.955v6.525c.176.086.342.203.488.348.713.721.713 1.883 0 2.6-.719.721-1.889.721-2.609 0-.719-.719-.719-1.879 0-2.598.182-.18.387-.316.605-.406V8.835c-.217-.091-.424-.222-.6-.401-.545-.545-.676-1.342-.396-2.009L7.636 3.7.45 10.881c-.6.605-.6 1.584 0 2.189l10.48 10.477c.604.604 1.582.604 2.186 0l10.43-10.43c.605-.603.605-1.582 0-2.187"/></svg>',
+  'Arch Linux': '<svg class="tech-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M11.39.605C10.376 3.092 9.764 4.72 8.635 7.132c.693.734 1.543 1.589 2.923 2.554-1.484-.61-2.496-1.224-3.252-1.86C6.86 10.842 4.596 15.138 0 23.395c3.612-2.085 6.412-3.37 9.021-3.862a6.61 6.61 0 01-.171-1.547l.003-.115c.058-2.315 1.261-4.095 2.687-3.973 1.426.12 2.534 2.096 2.478 4.409a6.52 6.52 0 01-.146 1.243c2.58.505 5.352 1.787 8.914 3.844-.702-1.293-1.33-2.459-1.929-3.57-.943-.73-1.926-1.682-3.933-2.713 1.38.359 2.367.772 3.137 1.234-6.09-11.334-6.582-12.84-8.67-17.74z"/></svg>',
+  'systemd': FEATHER.wind,
+  'cron': FEATHER.clock,
+  'iptables': FEATHER.shield,
+  'containers': '<svg class="tech-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288Z"/></svg>',
+  'CI/CD': FEATHER.repeat,
+  'TCP/IP profundo': FEATHER.layers,
+  'deep TCP/IP': FEATHER.layers,
+  'DNS': FEATHER.globe,
+  'tshark': '<svg class="tech-icon" viewBox="0 0 24 24" fill="currentColor"><path d="m2.95 0c-1.62 0-2.95 1.32-2.95 2.95v18.1c0 1.63 1.32 2.95 2.95 2.95h18.1c1.62 0 2.95-1.32 2.95-2.95v-18.1c-.00024-1.63-1.32-2.95-2.95-2.95zm0 1.09h18.1c1.04 0 1.85.818 1.85 1.86v14h-5.27c-.335-.796-2.57-6.47.283-10.9a.516.517 0 00-.443-.794c-5.24.0827-8.2 3.19-9.74 6.21-1.35 2.64-1.63 4.91-1.69 5.53h-4.95v-14c0-1.04.817-1.86 1.85-1.86zm13.6 5.24c-2.62 5.24.248 11.4.248 11.4a.516.517 0 00.469.301h5.62v3.05c0 1.04-.817 1.86-1.85 1.86h-18.1c-1.04 0-1.85-.818-1.85-1.86v-3.05h5.39a.516.517 0 00.514-.477s.226-2.8 1.66-5.62c1.34-2.62 3.67-5.17 7.91-5.57z"/></svg>',
+  'OWASP Top 10': '<svg class="tech-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M15.897 20.503c-.384 0-1.782-2.489-1.97-3.198-.393-1.486-.308-2.114-.285-2.314.072-.613.667-.92.703-1.748.01-.256.14-1.535.243-2.534a1.723 1.723 0 01-.733-.343c.676.908-.32 1.995-1.767 3.443-1.536 1.536-4.945 2.961-4.945 2.961s1.425-3.41 2.961-4.945c1.13-1.129 2.04-1.983 2.816-1.983.22 0 .427.067.627.216a1.722 1.722 0 01-.343-.733c-.999.103-2.278.232-2.534.244-.829.036-1.135.63-1.747.702-.07.008-.194.024-.388.024-.36 0-.963-.054-1.926-.31-.772-.203-3.648-1.84-3.14-2.045.26-.105 1.087-.176 2.175-.176 1.047 0 2.337.066 3.596.23 1.57.205 3.01.463 3.992.656.016-.053.035-.104.058-.154l-1.004-.48s-.8-.92-.715-.984a.02.02 0 01.012-.003c.126 0 .767.733.829.816l.605.202-.284-.249s-.388-1.438-.287-1.472h.004c.106 0 .459 1.25.489 1.34.07.06.303.152.596.32l-.308-.79s.14-1.305.243-1.305h.003c.105.021-.02 1.089-.047 1.221l.51.783a1.31 1.31 0 01.463-.082c.184 0 .374.036.558.107-.236-.502-.218-1.025.095-1.338a.84.84 0 01.353-.209.462.462 0 01.457-.383c.127 0 .254.05.352.148a.497.497 0 01.147.335c.151-.311.329-.73.317-.867-.03-.307-.386-.852-.39-.857a.076.076 0 01.064-.119c.025 0 .05.012.064.035.016.023.381.582.414.927.018.198-.21.696-.333.95a2.227 2.227 0 01.873.874c.245-.12.715-.334.927-.334l.024.001c.345.033.904.399.927.414a.076.076 0 01-.084.128c-.005-.004-.55-.36-.857-.39h-.015c-.15 0-.552.171-.852.317.12.004.242.053.335.147a.482.482 0 01.012.681.459.459 0 01-.247.128.845.845 0 01-.21.354.924.924 0 01-.67.255c-.212 0-.441-.055-.667-.16.132.343.142.708.025 1.02l.783.51c.095-.019.666-.088.993-.088.13 0 .222.011.228.04.02.106-1.305.247-1.305.247l-.79-.308c.168.293.26.527.32.596.091.03 1.374.392 1.34.493-.004.012-.026.017-.063.017-.283 0-1.41-.304-1.41-.304l-.248-.284.202.605c.087.065.876.755.813.841-.004.005-.009.007-.016.007-.139 0-.967-.722-.967-.722l-.481-1.004a1.18 1.18 0 01-.154.058c.193.982.451 2.422.656 3.992.335 2.569.26 5.261.054 5.77-.016.041-.042.06-.076.06M12 24C5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12-5.373 12-12 12m0-22.153C6.393 1.847 1.847 6.393 1.847 12S6.393 22.153 12 22.153 22.153 17.607 22.153 12 17.607 1.847 12 1.847Z"/></svg>',
+  'Burp Suite': '<svg class="tech-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M0 0v24h24V0Zm11.063 3.357h1.874v2.756L10.41 9.2h2.527v3.748h4.579l-4.578 5.592v2.104h-1.876v-2.758l2.528-3.086h-2.527V11.05h-4.58l4.58-5.592Z"/></svg>',
+  'prompt injection': FEATHER.message,
+  'WASM': '<svg class="tech-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M14.745,0c0,0.042,0,0.085,0,0.129c0,1.52-1.232,2.752-2.752,2.752c-1.52,0-2.752-1.232-2.752-2.752 c0-0.045,0-0.087,0-0.129H0v24h24V0H14.745z M11.454,21.431l-1.169-5.783h-0.02l-1.264,5.783H7.39l-1.824-8.497h1.59l1.088,5.783 h0.02l1.311-5.783h1.487l1.177,5.854h0.02l1.242-5.854h1.561l-2.027,8.497H11.454z M20.209,21.431l-0.542-1.891h-2.861l-0.417,1.891 h-1.59l2.056-8.497h2.509l2.5,8.497H20.209z M17.812,15.028l-0.694,3.118h2.159l-0.796-3.118H17.812z"/></svg>',
+  'sistemas distribuídos': FEATHER.server,
+  'distributed systems': FEATHER.server,
+  'Security+': FEATHER.shieldPlus,
+  'Purple team': FEATHER.users,
+  'APIs REST': FEATHER.zap,
+  'REST APIs': FEATHER.zap,
+};
+
 function renderProjectCard(p, data) {
   const pr = data.projects[p.key];
   const isOpen = openProjects[p.id];
@@ -387,41 +432,24 @@ function renderSkillsSection(data) {
   $('skillsHeading').textContent = data.skills.heading;
   $('skillsSub').textContent = data.skills.subheading;
 
-  renderFilterPills(data);
   renderSkillCategories(data);
   renderRoadmap(data);
 }
 
-function renderFilterPills(data) {
-  $('filterPills').innerHTML = SKILL_LEVELS.map(f => {
-    const active = skillFilter === f;
-    const dotColor = FILTER_COLORS[f];
-    const roadmapStyle = f === 'roadmap' ? 'opacity:0.4' : '';
-    return `<button class="filter-btn${active ? ' active' : ''}" data-filter="${f}">
-      <span class="filter-dot" style="background:${dotColor};${roadmapStyle}"></span>
-      ${data.skills.filters[f]}
-    </button>`;
-  }).join('');
-}
-
 function renderSkillCategories(data) {
   $('skillsCategories').innerHTML = data.skills.categories.map(cat => {
-    const show = (key) => !skillFilter || skillFilter === key;
-    const visible = (key) => show(key) ? cat[key] : [];
-    const hasAny = cat.domino.length + cat.aprender.length + cat.roadmap.length > 0;
-    if (!hasAny) return '';
+    const items = [...cat.domino, ...cat.aprender, ...cat.roadmap];
+    if (!items.length) return '';
 
-    const groups = SKILL_LEVELS.map(key => {
-      const items = visible(key);
-      if (!items.length) return '';
-      const dotColor = FILTER_COLORS[key];
-      const isRoadmap = key === 'roadmap';
-      return `<div><p class="skill-group-label">${data.skills.filters[key]}</p><div class="skill-items">${items.map(s => `<span class="skill-item${isRoadmap ? ' roadmap' : ''}"><span class="skill-item-dot" style="background:${isRoadmap ? 'none' : dotColor};${isRoadmap ? 'border:1px solid #6b7280' : ''}"></span>${s}</span>`).join('')}</div></div>`;
-    }).join('');
-
-    return `<div class="skill-category">
-      <div><p class="cat-label">${cat.label}</p><p class="cat-desc">${cat.desc}</p></div>
-      <div class="skill-groups">${groups}</div>
+    return `<div class="skill-area">
+      <div class="skill-area-head">
+        <p class="cat-label">${cat.label}</p>
+        <p class="cat-desc">${cat.desc}</p>
+      </div>
+      <div class="skill-items">${items.map(s => {
+        const icon = SKILL_ICONS[s] || '';
+        return `<span class="skill-item" title="${s}" aria-label="${s}">${icon}</span>`;
+      }).join('')}</div>
     </div>`;
   }).join('');
 }
@@ -814,11 +842,6 @@ function toggleBriefing() {
   renderContact();
 }
 
-function setFilter(f) {
-  skillFilter = skillFilter === f ? null : f;
-  renderSkills();
-}
-
 function switchLang(l) {
   lang = l;
   localStorage.setItem('lang', l);
@@ -906,9 +929,6 @@ function initEvents() {
 
     const projectBtn = e.target.closest('[data-project]');
     if (projectBtn) { toggleProject(projectBtn.dataset.project); return; }
-
-    const filterBtn = e.target.closest('[data-filter]');
-    if (filterBtn) { setFilter(filterBtn.dataset.filter); return; }
 
     if (e.target.closest('[data-open-modal]')) { openSetupModal(); return; }
 
