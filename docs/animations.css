@@ -80,14 +80,14 @@ html.reduce-motion .bw-anim {
 
 /* === Hover scale / lift (whileHover) === */
 .tag,
-.skill-item,
+.skill-cell,
 .project-tag,
 .pill-link {
   transition: all 0.25s var(--anim-ease);
 }
 
 .tag:hover,
-.skill-item:hover,
+.skill-cell:hover,
 .project-tag:hover,
 .pill-link:hover {
   transform: translateY(-2px);
@@ -248,6 +248,7 @@ html.reduce-motion .bw-anim {
   border: 1px solid var(--border-light);
   border-radius: 0.5rem;
   background: var(--bg-card);
+  object-fit: cover;
   display: flex;
   align-items: center;
   justify-content: center;
