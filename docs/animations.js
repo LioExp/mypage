@@ -7,7 +7,7 @@
 (() => {
   'use strict';
 
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduced = false;
 
   if (reduced) document.documentElement.classList.add('reduce-motion');
 
