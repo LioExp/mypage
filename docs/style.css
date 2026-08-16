@@ -838,10 +838,11 @@ img {
   cursor: default;
 }
 
-.skill-cell svg {
+.skill-cell .skill-icon {
   width: 1.5rem;
   height: 1.5rem;
   flex-shrink: 0;
+  object-fit: contain;
 }
 
 .skill-name {
@@ -873,11 +874,7 @@ img {
   display: inline-flex;
   width: 1.5rem;
   height: 1.5rem;
-}
-
-.tux-cell .tux svg {
-  width: 100%;
-  height: 100%;
+  object-fit: contain;
 }
 
 .tux-label {

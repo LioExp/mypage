@@ -1,4 +1,4 @@
-const CACHE = 'mypage-v4';
+const CACHE = 'mypage-v5';
 const URLS = [
   '/mypage/',
   '/mypage/index.html',
@@ -11,7 +11,19 @@ const URLS = [
   '/mypage/assets/faber-preview.png',
   '/mypage/assets/myfi-preview.png',
   '/mypage/assets/kianda-preview.png',
-  '/mypage/assets/setup-2026.jpg'
+  '/mypage/assets/setup-2026.jpg',
+  '/mypage/assets/icons/tux.svg',
+  '/mypage/assets/icons/python.svg',
+  '/mypage/assets/icons/git.svg',
+  '/mypage/assets/icons/bash.svg',
+  '/mypage/assets/icons/rust.svg',
+  '/mypage/assets/icons/fastapi.svg',
+  '/mypage/assets/icons/wasm.svg',
+  '/mypage/assets/icons/arch-linux.svg',
+  '/mypage/assets/icons/debian.svg',
+  '/mypage/assets/icons/containers.svg',
+  '/mypage/assets/icons/owasp-top-10.svg',
+  '/mypage/assets/icons/burp-suite.svg'
 ];
 
 self.addEventListener('install', event => {
