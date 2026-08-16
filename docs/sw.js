@@ -1,4 +1,4 @@
-const CACHE = 'mypage-v5';
+const CACHE = 'mypage-v6';
 const URLS = [
   '/mypage/',
   '/mypage/index.html',

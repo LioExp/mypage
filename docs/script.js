@@ -149,7 +149,7 @@ const YT_SCROLL_SPEED = 0.6;
 // =============================================
 // State
 // =============================================
-let lang = localStorage.getItem('lang') || 'pt';
+let lang = localStorage.getItem('lang') || 'en';
 document.documentElement.lang = lang;
 let openProjects = {};
 let briefingOpen = false;
