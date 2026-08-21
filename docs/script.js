@@ -17,16 +17,15 @@ const t = {
     skills: {
       heading: 'Onde estou no mapa.', subheading: 'o fruto da minha jornada.',
       categories: [
-        { id: 'dev', label: 'DEV', domino: ['Python', 'Bash', 'Git'], aprender: ['Rust', 'FastAPI'], roadmap: ['WASM'] },
-        { id: 'linux', label: 'LINUX & INFRA', domino: ['Arch Linux', 'Debian'], aprender: [], roadmap: ['containers'] },
-        { id: 'networking', label: 'NETWORKING', domino: [], aprender: [], roadmap: [] },
-        { id: 'security', label: 'SEGURANÇA', domino: [], aprender: ['OWASP Top 10', 'Burp Suite'], roadmap: [] }
+        { id: 'systems', label: 'SYSTEMS & OS', skills: ['Rust', 'Bash', 'Arch Linux', 'Debian'] },
+        { id: 'backend', label: 'BACKEND & CLOUD', skills: ['Python', 'FastAPI', 'Containers', 'Git', 'WASM'] },
+        { id: 'security', label: 'SECURITY', skills: ['OWASP Top 10', 'Burp Suite'] }
       ],
       roadmapLabel: 'ROADMAP', roadmapLinkLabel: 'ver o roadmap completo',
     },
     setup: {
       heading: 'Onde construo.',
-      sub: 'onde tudo acontece :3 .',
+      sub: 'onde tudo acontece.',
       hint: 'clique para ver os componentes', modalHeading: 'Componentes',
       items: [
         { label: 'SO', value: 'Arch Linux 7.0.2', detail: 'Rolling release. Kernel atualizado, tudo configurado do zero. Aprendo o sistema enquanto o uso.', img: null },
@@ -79,16 +78,15 @@ const t = {
     skills: {
       heading: 'Where I am on the map.', subheading: 'the fruit of my journey.',
       categories: [
-        { id: 'dev', label: 'DEV', domino: ['Python', 'Bash', 'Git'], aprender: ['Rust', 'FastAPI'], roadmap: ['WASM'] },
-        { id: 'linux', label: 'LINUX & INFRA', domino: ['Arch Linux', 'Debian'], aprender: [], roadmap: ['containers'] },
-        { id: 'networking', label: 'NETWORKING', domino: [], aprender: [], roadmap: [] },
-        { id: 'security', label: 'SECURITY', domino: [], aprender: ['OWASP Top 10', 'Burp Suite'], roadmap: [] }
+        { id: 'systems', label: 'SYSTEMS & OS', skills: ['Rust', 'Bash', 'Arch Linux', 'Debian'] },
+        { id: 'backend', label: 'BACKEND & CLOUD', skills: ['Python', 'FastAPI', 'Containers', 'Git', 'WASM'] },
+        { id: 'security', label: 'SECURITY', skills: ['OWASP Top 10', 'Burp Suite'] }
       ],
       roadmapLabel: 'ROADMAP', roadmapLinkLabel: 'view the full roadmap',
     },
     setup: {
       heading: 'Where I build.',
-      sub: 'where everything happens :3 .',
+      sub: 'where everything happens.',
       hint: 'click to see the components', modalHeading: 'Components',
       items: [
         { label: 'OS', value: 'Arch Linux 7.0.2', detail: 'Rolling release. Up-to-date kernel, everything configured from scratch. I learn the system while using it.', img: null },
@@ -423,20 +421,68 @@ function renderSkillsSection(data) {
 
 const TUX_SVG = 'assets/icons/tux.svg';
 
-function renderSkillCategories(data) {
-  const items = data.skills.categories.flatMap(cat => [...cat.domino, ...cat.aprender, ...cat.roadmap]);
-  const tuxCell = `<div class="skill-cell tux-cell" title="Linux" aria-label="Linux">
-        <img class="tux" src="${TUX_SVG}" alt="" aria-hidden="true">
-        <span class="tux-label">LINUX</span>
-      </div>`;
+function injectBorderSvgs() {
+  const items = document.querySelectorAll('.skill-outer, .skill-group');
+  items.forEach(el => {
+    if (el.querySelector('.border-draw')) return;
+    const w = el.offsetWidth;
+    const h = el.offsetHeight;
+    const perim = 2 * (w + h);
+    const ns = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(ns, 'svg');
+    svg.classList.add('border-draw');
+    svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+    svg.style.setProperty('--perim', perim);
+    const rect = document.createElementNS(ns, 'rect');
+    rect.setAttribute('x', '0');
+    rect.setAttribute('y', '0');
+    rect.setAttribute('width', w);
+    rect.setAttribute('height', h);
+    rect.setAttribute('rx', '12');
+    rect.setAttribute('ry', '12');
+    rect.style.setProperty('--perim', perim);
+    svg.appendChild(rect);
+    el.prepend(svg);
+  });
+}
 
-  $('skillsCategories').innerHTML = `
-    <div class="skills-grid">${items.map(s => {
+function renderSkillCategories(data) {
+  const grouped = data.skills.categories.map(cat => {
+    const cells = cat.skills.map(s => {
       const icon = SKILL_ICONS[s];
       return `<div class="skill-cell" title="${s}" aria-label="${s}">${icon ? `<img class="skill-icon" src="${icon}" alt="" aria-hidden="true">` : ''}<span class="skill-name">${s}</span></div>`;
-    }).join('')}
-      ${tuxCell}
+    }).join('');
+    return `<div class="skill-group">
+      <span class="skill-group-label">${cat.label}</span>
+      <div class="skills-grid">${cells}</div>
     </div>`;
+  }).join('');
+
+  $('skillsCategories').innerHTML = `
+    <div class="skill-outer">
+      <span class="skill-outer-label">
+        <img class="skill-outer-tux" src="${TUX_SVG}" alt="" aria-hidden="true"> LINUX
+      </span>
+      ${grouped}
+    </div>`;
+
+  requestAnimationFrame(() => {
+    injectBorderSvgs();
+    const outer = $('skillsCategories').querySelector('.skill-outer');
+    if (outer) {
+      outer.classList.add('reveal');
+      observeReveal(outer);
+      outer.querySelectorAll('.skill-group').forEach(g => {
+        g.classList.add('reveal');
+        observeReveal(g);
+      });
+      outer.querySelectorAll('.skill-cell').forEach((cell, i) => {
+        cell.classList.add('reveal');
+        cell.style.transitionDelay = `${i * 60}ms`;
+        observeReveal(cell);
+      });
+    }
+  });
 }
 
 function renderRoadmap(data) {

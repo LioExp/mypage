@@ -817,6 +817,54 @@ img {
   margin-bottom: 2rem;
 }
 
+.skill-group {
+  margin-bottom: 1.5rem;
+  padding: 1.5rem 1rem 1rem;
+  position: relative;
+}
+
+.skill-group-label {
+  position: absolute;
+  top: -0.65em;
+  left: 1rem;
+  background: var(--bg);
+  padding: 0 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.skill-outer {
+  padding: 2rem 1rem 1rem;
+  position: relative;
+}
+
+.skill-outer-label {
+  position: absolute;
+  top: -0.75em;
+  left: 1.5rem;
+  background: var(--bg);
+  padding: 0 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.skill-outer-tux {
+  width: 1rem;
+  height: 1rem;
+  object-fit: contain;
+}
+
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
@@ -860,29 +908,6 @@ img {
 
 .skill-cell:hover .skill-name {
   color: #fff;
-}
-
-.tux-cell {
-  grid-column: 1 / -1;
-  aspect-ratio: auto;
-  height: 3.5rem;
-  flex-direction: row;
-  gap: 0.75rem;
-}
-
-.tux-cell .tux {
-  display: inline-flex;
-  width: 1.5rem;
-  height: 1.5rem;
-  object-fit: contain;
-}
-
-.tux-label {
-  font-family: var(--font-mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--text-gray);
 }
 
 .cat-label {
@@ -1464,6 +1489,7 @@ img {
   overflow: hidden;
   max-height: 28vh;
   min-height: 160px;
+  padding: 0.5rem;
 }
 
 @media (min-width: 768px) {
@@ -1471,6 +1497,7 @@ img {
     flex: 1;
     max-height: none;
     min-height: 420px;
+    padding: 0.75rem;
   }
 }
 
@@ -1479,6 +1506,7 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 0.5rem;
 }
 
 .setup-modal-items {

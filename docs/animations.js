@@ -46,6 +46,7 @@
       el.dataset.delayApplied = '1';
     }
   };
+  window.observeReveal = observeReveal;
 
   const addReveal = (el) => {
     if (el.classList.contains('reveal')) return;

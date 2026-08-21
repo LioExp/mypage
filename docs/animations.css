@@ -101,6 +101,18 @@
   transform: rotate(-10deg) scale(1.18);
 }
 
+/* === Skill cell zoom-in reveal === */
+.skill-cell.reveal {
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 0.4s ease-out, transform 0.4s var(--anim-spring);
+}
+
+.skill-cell.reveal.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
 /* === whileInView variants === */
 .reveal[data-variant="left"] { transform: translateX(-40px); }
 .reveal[data-variant="right"] { transform: translateX(40px); }
@@ -325,5 +337,73 @@ html.reduce-motion .footer .verse-btn,
 html.reduce-motion .footer .verse-full {
   opacity: 1;
   transform: none;
+  transition: none;
+}
+
+/* === Skills border draw-in === */
+.skill-outer,
+.skill-group {
+  position: relative;
+}
+
+.skill-outer > .border-draw,
+.skill-group > .border-draw {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.skill-outer > .border-draw rect,
+.skill-group > .border-draw rect {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 12 8;
+  animation: dash-drift 18s linear infinite;
+}
+
+.skill-outer > .border-draw rect {
+  stroke-width: 2.5;
+}
+
+.skill-outer-label,
+.skill-group-label {
+  opacity: 1;
+}
+
+@keyframes dash-drift {
+  to { stroke-dashoffset: -40; }
+}
+
+.skill-outer-label,
+.skill-group-label {
+  opacity: 0;
+  transition: opacity 0.4s ease 0.8s;
+}
+
+.skill-outer.visible .skill-outer-label,
+.skill-group.visible .skill-group-label {
+  opacity: 1;
+}
+
+.skill-group:nth-child(1) > .border-draw rect { transition-delay: 0s; }
+.skill-group:nth-child(2) > .border-draw rect { transition-delay: 0.25s; }
+.skill-group:nth-child(3) > .border-draw rect { transition-delay: 0.5s; }
+
+.skill-group:nth-child(1) .skill-group-label { transition-delay: 0.8s; }
+.skill-group:nth-child(2) .skill-group-label { transition-delay: 1.05s; }
+.skill-group:nth-child(3) .skill-group-label { transition-delay: 1.3s; }
+
+html.reduce-motion .skill-outer > .border-draw rect,
+html.reduce-motion .skill-group > .border-draw rect {
+  animation: none;
+}
+html.reduce-motion .skill-outer-label,
+html.reduce-motion .skill-group-label {
+  opacity: 1;
   transition: none;
 }
