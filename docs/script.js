@@ -126,6 +126,32 @@ const t = {
   }
 };
 
+const ASCII_LIOEXP = `<span class="text-white">██╗     ██╗ ██████╗ </span><span class="text-purple">███████╗██╗  ██╗██████╗</span><br><span class="text-white">██║     ██║██╔═══██╗</span><span class="text-purple">██╔════╝╚██╗██╔╝██╔══██╗</span><br><span class="text-white">██║     ██║██║   ██║</span><span class="text-purple">█████╗   ╚███╔╝ ██████╔╝</span><br><span class="text-white">██║     ██║██║   ██║</span><span class="text-purple">██╔══╝   ██╔██╗ ██╔═══╝</span><br><span class="text-white">███████╗██║╚██████╔╝</span><span class="text-purple">███████╗██╔╝ ██╗██║</span><br><span class="text-white">╚══════╝╚═╝ ╚═════╝</span><span class="text-purple"> ╚══════╝╚═╝  ╚═╝╚═╝</span>`;
+
+const ASCII_LIOCOSTA = `<span class="text-white">██╗     ██╗██████╗ </span><span class="text-purple"> ██████╗ ██████╗ ███████╗████████╗█████╗ </span><br><span class="text-white">██║     ██║██╔══██╗</span><span class="text-purple">██╔════╝██╔═══██╗██╔════╝╚══██╔══╝██╔══██╗</span><br><span class="text-white">██║     ██║██║  ██║</span><span class="text-purple">██║     ██║   ██║███████╗   ██║   ███████║</span><br><span class="text-white">██║     ██║██║  ██║</span><span class="text-purple">██║     ██║   ██║╚════██║   ██║   ██╔══██║</span><br><span class="text-white">███████╗██║██████╔╝</span><span class="text-purple">╚██████╗╚██████╔╝███████║   ██║   ██║  ██║</span><br><span class="text-white">╚══════╝╚═╝╚═════╝ </span><span class="text-purple"> ╚═════╝ ╚═════╝ ╚══════╝   ╚═╝   ╚═╝  ╚═╝</span>`;
+
+// =============================================
+// Persona Data
+// =============================================
+const PERSONAS = {
+  lioexp: {
+    displayName: 'LioExp',
+    title: 'LioExp — Portfolio',
+    banner: 'assets/banner.png',
+    githubUser: 'LioExp',
+    ascii: ASCII_LIOEXP,
+  },
+  liocosta: {
+    displayName: 'Lio Costa',
+    title: 'Lio Costa — Portfolio',
+    banner: 'assets/banner-liocosta.png',
+    githubUser: 'LioExp',
+    ascii: ASCII_LIOCOSTA,
+  }
+};
+
+let persona = localStorage.getItem('persona') || 'lioexp';
+
 // =============================================
 // Icons
 // =============================================
@@ -268,9 +294,6 @@ function updateNav(data) {
 
 function renderHero(data) {
   $('tagline').dataset.type = data.hero.tagline;
-  $('heroRoles').dataset.rotate = data.hero.roles;
-  $('heroAge').textContent = data.hero.age;
-  $('heroMotto').textContent = data.hero.motto;
   $('ctaText').textContent = data.hero.cta;
 }
 
@@ -321,7 +344,7 @@ const SKILL_ICONS = {
   
   
   
-  'containers': 'assets/icons/containers.svg',
+  'Containers': 'assets/icons/containers.svg',
   
   
   
@@ -883,6 +906,26 @@ function switchLang(l) {
   fetchGhGraph();
 }
 
+function switchPersona(p) {
+  persona = p;
+  localStorage.setItem('persona', p);
+  const btn = document.querySelector('.persona-btn');
+  if (btn) btn.classList.toggle('active', persona === 'liocosta');
+  applyPersona();
+}
+
+function applyPersona() {
+  const p = PERSONAS[persona];
+  document.title = p.title;
+  const banner = document.querySelector('.banner-img');
+  if (banner) banner.alt = p.displayName + ' banner';
+  const ascii = document.querySelector('.ascii-logo');
+  if (ascii) ascii.innerHTML = persona === 'lioexp' ? ASCII_LIOEXP : ASCII_LIOCOSTA;
+  document.querySelectorAll('.persona-text').forEach(el => {
+    if (el.dataset.personaText) el.textContent = el.dataset.personaText;
+  });
+}
+
 function toggleVerse() {
   $('verseFull').classList.toggle('open');
 }
@@ -936,6 +979,9 @@ function initEvents() {
     const langBtn = e.target.closest('.lang-btn');
     if (langBtn) { switchLang(langBtn.dataset.lang); return; }
 
+    const personaBtn = e.target.closest('.persona-btn');
+    if (personaBtn) { switchPersona(persona === 'lioexp' ? 'liocosta' : 'lioexp'); return; }
+
     const briefingBtn = e.target.closest('#briefingBtn');
     if (briefingBtn) { toggleBriefing(); return; }
 
@@ -979,6 +1025,8 @@ function initEvents() {
 document.addEventListener('DOMContentLoaded', () => {
   initEvents();
   switchLang(lang);
+  applyPersona();
+  switchPersona(persona);
   initNavObserver();
   initRevealObserver();
   if ('serviceWorker' in navigator) {

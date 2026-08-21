@@ -20,17 +20,24 @@
   <link rel="icon" type="image/jpeg" href="assets/favicon2.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bowlby+One&family=Courgette&family=Inter:wght@400;500;600;700&family=Lilita+One&family=Paytone+One&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="animations.css" />
 </head>
 <body>
   <div id="app" class="dark">
-    <!-- Language Toggle -->
-    <div class="lang-toggle" id="langToggle">
-      <button class="lang-btn active" data-lang="pt">PT</button>
-      <span class="lang-sep">/</span>
-      <button class="lang-btn" data-lang="en">EN</button>
+    <!-- Toggles -->
+    <div class="top-toggles">
+      <div class="persona-toggle" id="personaToggle">
+        <button class="persona-btn active" data-persona="lioexp" aria-label="Alternar persona" title="Alternar persona">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        </button>
+      </div>
+      <div class="lang-toggle" id="langToggle">
+        <button class="lang-btn active" data-lang="pt">PT</button>
+        <span class="lang-sep">/</span>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
     </div>
 
     <!-- Navigation -->
@@ -70,13 +77,8 @@
       <!-- HERO -->
       <section id="inicio" class="hero">
         <div class="hero-content">
-          <div class="ascii-logo" id="asciiLogo" data-mouse-parallax><span class="text-white">██╗     ██╗ ██████╗ </span><span class="text-purple">███████╗██╗  ██╗██████╗</span><br><span class="text-white">██║     ██║██╔═══██╗</span><span class="text-purple">██╔════╝╚██╗██╔╝██╔══██╗</span><br><span class="text-white">██║     ██║██║   ██║</span><span class="text-purple">█████╗   ╚███╔╝ ██████╔╝</span><br><span class="text-white">██║     ██║██║   ██║</span><span class="text-purple">██╔══╝   ██╔██╗ ██╔═══╝</span><br><span class="text-white">███████╗██║╚██████╔╝</span><span class="text-purple">███████╗██╔╝ ██╗██║</span><br><span class="text-white">╚══════╝╚═╝ ╚═════╝</span><span class="text-purple"> ╚══════╝╚═╝  ╚═╝╚═╝</span></div>
+          <div class="ascii-logo" id="asciiLogo"><span class="text-white">██╗     ██╗ ██████╗ </span><span class="text-purple">███████╗██╗  ██╗██████╗</span><br><span class="text-white">██║     ██║██╔═══██╗</span><span class="text-purple">██╔════╝╚██╗██╔╝██╔══██╗</span><br><span class="text-white">██║     ██║██║   ██║</span><span class="text-purple">█████╗   ╚███╔╝ ██████╔╝</span><br><span class="text-white">██║     ██║██║   ██║</span><span class="text-purple">██╔══╝   ██╔██╗ ██╔═══╝</span><br><span class="text-white">███████╗██║╚██████╔╝</span><span class="text-purple">███████╗██╔╝ ██╗██║</span><br><span class="text-white">╚══════╝╚═╝ ╚═════╝</span><span class="text-purple"> ╚══════╝╚═╝  ╚═╝╚═╝</span></div>
           <p class="tagline" id="tagline" data-type="~ build. break. document.">~ build. break. document.</p>
-          <div class="hero-info">
-            <p id="heroAge">18 anos.</p>
-            <p id="heroRoles" data-rotate="Builder · Programmer · Experimentador">Builder · Programmer · Experimentador</p>
-            <p class="text-gray-300" id="heroMotto">Eu sou o experimento.</p>
-          </div>
           <div class="hero-cta">
             <a href="#projectos" class="cta-btn" id="ctaBtn"><span class="arrow-purple">→</span> <span id="ctaText">ver projectos</span></a>
             <div class="hero-socials">
