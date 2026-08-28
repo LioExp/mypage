@@ -1,6 +1,6 @@
 # LioExp — Portfolio
 
-<blockquote style="border-left: 3px solid #7c3aed; padding-left: 1em; color: #a78bfa;">
+<blockquote style="border-left: 3px solid #6A5ACD; padding-left: 1em; color: #6A5ACD;">
 build. break. document. — em público.
 </blockquote>
 
