@@ -6,7 +6,7 @@ const t = {
     nav: ['inicio', 'sobre', 'projectos', 'skills', 'setup', 'contacto'],
     navIds: ['inicio', 'sobre', 'projectos', 'skills', 'setup', 'contacto'],
     hero: { tagline: '~ build. break. document.', age: '18 anos.', roles: 'Builder · Programmer · Experimentador', motto: 'Eu sou o experimento.', cta: 'ver projectos' },
-    about: { heading: ['Builder que ', 'constrói', ', quebra e documenta tudo em público.'], cbpText: 'Trabalho com um framework simples — Create, Break, Protect. Construo uma coisa, tento destruí-la, e documento tudo. O processo é público porque aprender em privado desperdiça metade do valor.', nowText: 'Estou em Luanda. Hardware modesto, internet instável, escola de tarde. É o ambiente onde tudo o que construo tem de funcionar — por enquanto.', whyText: 'Eu sou o experimento. Programação, segurança, neurociência, psicologia e arte não são áreas separadas — são lentes diferentes sobre o mesmo problema.', openTags: ['collab', 'open source'] },
+    about: { heading: ['Builder que ', 'constrói', ', quebra e documenta tudo em público.'], displayTitle: ['about', 'me'], cbpText: 'Trabalho com um framework simples — Create, Break, Protect. Construo uma coisa, tento destruí-la, e documento tudo. O processo é público porque aprender em privado desperdiça metade do valor.', nowText: 'Estou em Luanda. Hardware modesto, internet instável, escola de tarde. É o ambiente onde tudo o que construo tem de funcionar — por enquanto.', whyText: 'Eu sou o experimento. Programação, segurança, neurociência, psicologia e arte não são áreas separadas — são lentes diferentes sobre o mesmo problema.', openTags: ['collab', 'open source'] },
     projects: {
       label: 'Projectos', active: 'ACTIVOS', waiting: 'EM ESPERA', showMore: 'ver mais', showLess: 'ver menos',
       faber: { badge: 'a lançar', sub: 'Fase 0 — lançamento iminente', desc: 'Agente de código em Rust para terminal. 100% offline-first e otimizado para correr LLMs locais com baixo consumo de hardware.', why: 'Porquê existe', whyText: 'As ferramentas de IA para código assumem que tens fibra, uma conta paga e hardware recente. FABER não assume nada disso. Foi construído para funcionar no mesmo ambiente onde tudo o resto tem de funcionar — hardware modesto, internet instável, sem subscrição mensal.', how: 'Como funciona', howText: 'Corre um modelo quantizado localmente via llama.cpp. Sem cloud, sem tokens, sem rate limits. O agente lê o contexto do projecto, sugere código, executa comandos e aprende com o feedback directo no terminal. Tudo em Rust para manter o overhead mínimo.', status: 'Estado actual', statusItems: ['Core em Rust funcional', 'Integração llama.cpp estável', 'CLI básica operacional', 'Testes em hardware de 4GB RAM', 'Documentação e landing em progresso'], who: 'Para quem', whoText: 'Developers em mercados emergentes. Quem usa Raspberry Pi como máquina principal. Quem não quer depender de subscrições para ter um agente de código funcional.' },
@@ -48,16 +48,16 @@ const t = {
       briefingListLabel: 'Um bom briefing tem',
       briefingItems: ['Objectivo da campanha', 'Produto ou link principal', 'Janela de publicação', 'Formato desejado', 'Mensagens obrigatórias', 'Faixa de orçamento', 'Necessidade de uso de imagem, direitos ou whitelisting'],
       fastestWayLabel: 'Forma mais rápida', fastestWayText: 'Mandar contexto, link do produto, prazo e expectativa comercial no mesmo e-mail acelera bastante a resposta.',
-      sendEmail: '→ enviar e-mail agora',
+      sendEmail: 'enviar e-mail agora',
       whereLabel: 'Onde me encontras',
       ytPTdesc: 'Vídeos longos. Builds, documentação de projectos, processo em aberto.',
       ytENdesc: 'Shorts. Quick takes, demos rápidas, audiência internacional.',
       subscribers: 'inscritos',
       socials: [
-        { label: 'X / Twitter', sub: 'pensamentos, updates, threads técnicas', handle: '@lioexp', href: 'https://x.com/lioexp', testid: 'link-contact-x' },
-        { label: 'LinkedIn', sub: 'rede profissional, colaborações formais', handle: 'in/lioexp', href: '#', testid: 'link-contact-linkedin' },
-        { label: 'GitHub', sub: 'código aberto, repositórios, contribuições', handle: 'github.com/lioexp', href: 'https://github.com/lioexp', testid: 'link-contact-github' },
-        { label: 'E-mail', sub: 'canal principal para colaborações', handle: 'lioexp0@gmail.com', href: 'mailto:lioexp0@gmail.com', testid: 'link-contact-email' }
+        { label: 'X / Twitter', icon: 'x', sub: 'pensamentos, updates, threads técnicas', handle: '@lioexp', href: 'https://x.com/lioexp', testid: 'link-contact-x' },
+        { label: 'LinkedIn', icon: 'linkedin', sub: 'rede profissional, colaborações formais', handle: 'in/lioexp', href: '#', testid: 'link-contact-linkedin' },
+        { label: 'GitHub', icon: 'github', sub: 'código aberto, repositórios, contribuições', handle: 'github.com/lioexp', href: 'https://github.com/lioexp', testid: 'link-contact-github' },
+        { label: 'E-mail', icon: 'email', sub: 'canal principal para colaborações', handle: 'lioexp0@gmail.com', href: 'mailto:lioexp0@gmail.com', testid: 'link-contact-email' }
       ],
       discord: { name: 'Discord', desc: 'comunidade, debugging, builds ao vivo', handle: 'entra no server', href: 'https://discord.gg/wkmuHa3P8q' },
       footer: { tagline: 'build. break. document.', colossians: 'Col 3:23', verse: 'Tudo o que fizerem, façam de todo o coração, como para o Senhor, e não para os homens' }
@@ -67,7 +67,7 @@ const t = {
     nav: ['home', 'about', 'projects', 'skills', 'setup', 'contact'],
     navIds: ['inicio', 'sobre', 'projectos', 'skills', 'setup', 'contacto'],
     hero: { tagline: '~ build. break. document.', age: '18 years old.', roles: 'Builder · Programmer · Experimenter', motto: 'I am the experiment.', cta: 'view projects' },
-    about: { label: 'ABOUT', heading: ['Builder who ', 'builds', ', breaks and documents everything in public.'], cbpText: 'I work with a simple framework — Create, Break, Protect. I build something, try to break it, and document everything. The process is public because learning in private wastes half the value.', nowText: "I'm in Luanda. Modest hardware, unstable internet, afternoon school. This is the environment where everything I build has to work — for now.", whyText: 'I am the experiment. Programming, security, neuroscience, psychology and art aren\'t separate fields — they\'re different lenses on the same problem.', openTags: ['collab', 'open source'] },
+    about: { label: 'ABOUT', heading: ['Builder who ', 'builds', ', breaks and documents everything in public.'], displayTitle: ['about', 'me'], cbpText: 'I work with a simple framework — Create, Break, Protect. I build something, try to break it, and document everything. The process is public because learning in private wastes half the value.', nowText: "I'm in Luanda. Modest hardware, unstable internet, afternoon school. This is the environment where everything I build has to work — for now.", whyText: 'I am the experiment. Programming, security, neuroscience, psychology and art aren\'t separate fields — they\'re different lenses on the same problem.', openTags: ['collab', 'open source'] },
     projects: {
       label: 'PROJECTS', active: 'ACTIVE', waiting: 'ON HOLD', showMore: 'show more', showLess: 'show less',
       faber: { badge: 'launching', sub: 'Phase 0 — imminent launch', desc: 'Rust code agent for the terminal. 100% offline-first and optimized to run local LLMs with minimal hardware overhead.', why: 'Why it exists', whyText: 'AI coding tools assume you have fibre, a paid account and recent hardware. FABER assumes none of that. It was built to work in the same environment where everything else has to work — modest hardware, unstable internet, no monthly subscription.', how: 'How it works', howText: 'Runs a quantized model locally via llama.cpp. No cloud, no tokens, no rate limits. The agent reads the project context, suggests code, executes commands and learns from direct feedback in the terminal. All in Rust to keep overhead minimal.', status: 'Current status', statusItems: ['Rust core functional', 'Stable llama.cpp integration', 'Basic CLI operational', 'Tested on 4GB RAM hardware', 'Documentation and landing in progress'], who: 'Who it\'s for', whoText: 'Developers in emerging markets. Those using Raspberry Pi as their main machine. Those who don\'t want to depend on subscriptions to have a functional code agent.' },
@@ -109,16 +109,16 @@ const t = {
       briefingListLabel: 'A good briefing includes',
       briefingItems: ['Campaign objective', 'Product or main link', 'Publication window', 'Desired format', 'Required messages', 'Budget range', 'Image usage, rights or whitelisting needs'],
       fastestWayLabel: 'Fastest way', fastestWayText: 'Sending context, product link, deadline and commercial expectation in the same email speeds up the reply significantly.',
-      sendEmail: '→ send email now',
+      sendEmail: 'send email now',
       whereLabel: 'Where to find me',
       ytPTdesc: 'Long-form videos. Builds, project documentation, process in the open.',
       ytENdesc: 'Shorts. Quick takes, fast demos, international audience.',
       subscribers: 'subscribers',
       socials: [
-        { label: 'X / Twitter', sub: 'thoughts, updates, technical threads', handle: '@lioexp', href: 'https://x.com/lioexp', testid: 'link-contact-x' },
-        { label: 'LinkedIn', sub: 'professional network, formal collaborations', handle: 'in/lioexp', href: '#', testid: 'link-contact-linkedin' },
-        { label: 'GitHub', sub: 'open source code, repositories, contributions', handle: 'github.com/lioexp', href: 'https://github.com/lioexp', testid: 'link-contact-github' },
-        { label: 'Email', sub: 'main channel for collaborations', handle: 'lioexp0@gmail.com', href: 'mailto:lioexp0@gmail.com', testid: 'link-contact-email' }
+        { label: 'X / Twitter', icon: 'x', sub: 'thoughts, updates, technical threads', handle: '@lioexp', href: 'https://x.com/lioexp', testid: 'link-contact-x' },
+        { label: 'LinkedIn', icon: 'linkedin', sub: 'professional network, formal collaborations', handle: 'in/lioexp', href: '#', testid: 'link-contact-linkedin' },
+        { label: 'GitHub', icon: 'github', sub: 'open source code, repositories, contributions', handle: 'github.com/lioexp', testid: 'link-contact-github', href: 'https://github.com/lioexp' },
+        { label: 'Email', icon: 'email', sub: 'main channel for collaborations', handle: 'lioexp0@gmail.com', href: 'mailto:lioexp0@gmail.com', testid: 'link-contact-email' }
       ],
       discord: { name: 'Discord', desc: 'community, debugging, live builds', handle: 'join the server', href: 'https://discord.gg/wkmuHa3P8q' },
       footer: { tagline: 'build. break. document.', colossians: 'Col 3:23', verse: 'Whatever you do, work at it with all your heart, as working for the Lord, not for human masters' }
@@ -129,6 +129,20 @@ const t = {
 const ASCII_LIOEXP = `<span class="text-white">██╗     ██╗ ██████╗ </span><span class="text-purple">███████╗██╗  ██╗██████╗</span><br><span class="text-white">██║     ██║██╔═══██╗</span><span class="text-purple">██╔════╝╚██╗██╔╝██╔══██╗</span><br><span class="text-white">██║     ██║██║   ██║</span><span class="text-purple">█████╗   ╚███╔╝ ██████╔╝</span><br><span class="text-white">██║     ██║██║   ██║</span><span class="text-purple">██╔══╝   ██╔██╗ ██╔═══╝</span><br><span class="text-white">███████╗██║╚██████╔╝</span><span class="text-purple">███████╗██╔╝ ██╗██║</span><br><span class="text-white">╚══════╝╚═╝ ╚═════╝</span><span class="text-purple"> ╚══════╝╚═╝  ╚═╝╚═╝</span>`;
 
 const ASCII_LIOCOSTA = `<span class="text-white">██╗     ██╗██████╗ </span><span class="text-purple"> ██████╗ ██████╗ ███████╗████████╗█████╗ </span><br><span class="text-white">██║     ██║██╔══██╗</span><span class="text-purple">██╔════╝██╔═══██╗██╔════╝╚══██╔══╝██╔══██╗</span><br><span class="text-white">██║     ██║██║  ██║</span><span class="text-purple">██║     ██║   ██║███████╗   ██║   ███████║</span><br><span class="text-white">██║     ██║██║  ██║</span><span class="text-purple">██║     ██║   ██║╚════██║   ██║   ██╔══██║</span><br><span class="text-white">███████╗██║██████╔╝</span><span class="text-purple">╚██████╗╚██████╔╝███████║   ██║   ██║  ██║</span><br><span class="text-white">╚══════╝╚═╝╚═════╝ </span><span class="text-purple"> ╚═════╝ ╚═════╝ ╚══════╝   ╚═╝   ╚═╝  ╚═╝</span>`;
+
+const ABOUT_ASCII = ` █████╗ ██████╗  ██████╗ ██╗   ██╗████████╗
+██╔══██╗██╔══██╗██╔═══██╗██║   ██║╚══██╔══╝
+███████║██████╔╝██║   ██║██║   ██║   ██║
+██╔══██║██╔══██╗██║   ██║██║   ██║   ██║
+██║  ██║██████╔╝╚██████╔╝╚██████╔╝   ██║
+╚═╝  ╚═╝╚═════╝  ╚═════╝  ╚═════╝    ╚═╝`;
+
+const ME_ASCII = `███╗   ███╗███████╗
+████╗ ████║██╔════╝
+██╔████╔██║█████╗
+██║╚██╔╝██║██╔══╝
+██║ ╚═╝ ██║███████╗
+╚═╝     ╚═╝╚══════╝`;
 
 // =============================================
 // Persona Data
@@ -160,12 +174,15 @@ const icons = {
   external: '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>',
   yt: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>',
   discord: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>',
+  x: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
+  linkedin: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>',
+  email: '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.25" y="4.5" width="19.5" height="15" rx="2.25"/><path d="m3 7 8.02 5.12a1.84 1.84 0 0 0 1.98 0L21 7"/></svg>',
 };
 
 // =============================================
 // Configuration & Constants
 // =============================================
-const YT_API_KEY = ''; // ← https://console.cloud.google.com (YouTube Data API v3, gratis)
+const YT_API_KEY = ''; // YouTube Data API v3: https://console.cloud.google.com
 const YT_CHANNEL_ID = 'UCZIZwWoayEW1CXxqE0TwyLQ';
 const YT_FEED_LIMIT = 12;
 const YT_SCROLL_SPEED = 0.6;
@@ -299,7 +316,10 @@ function renderHero(data) {
 
 function renderAbout(data) {
   $('aboutTitle').innerHTML = `${data.about.heading[0]}<span class="text-purple">${data.about.heading[1]}</span>${data.about.heading[2]}`;
-  $('cbpText').textContent = data.about.cbpText;
+  $('aboutDisplayTitle').innerHTML = `<span class="about-ascii-word about-ascii-about">${ABOUT_ASCII}</span><span class="about-ascii-word about-ascii-me">${ME_ASCII}</span>`;
+  const aboutText = $('cbpText');
+  aboutText.dataset.typewriterText = data.about.cbpText;
+  if (window.refreshAboutTypewriter) window.refreshAboutTypewriter(aboutText);
   $('nowText').textContent = data.about.nowText;
   $('whyText').textContent = data.about.whyText;
   $('openTags').innerHTML = data.about.openTags.map(t => `<span class="tag">${t}</span>`).join('');
@@ -407,7 +427,7 @@ function projectTags(p) {
 
 function projectActions(p, data, isOpen) {
   return `<div class="project-actions">
-    <button class="expand-btn" data-project="${p.id}"><span class="arrow-purple" style="transform:${isOpen ? 'rotate(90deg)' : 'rotate(0)'}">→</span> ${isOpen ? data.projects.showLess : data.projects.showMore}</button>
+    <button class="expand-btn" data-project="${p.id}"><span class="arrow-purple project-expand-icon" style="transform:${isOpen ? 'rotate(90deg)' : 'rotate(0)'}" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span> ${isOpen ? data.projects.showLess : data.projects.showMore}</button>
     <div class="project-links">
       <a href="${p.github}" target="_blank" rel="noopener noreferrer" class="pill-link" aria-label="GitHub" title="GitHub">${icons.github}<span class="tech-tooltip">GitHub</span></a>
       <a href="${p.landing}" target="_blank" rel="noopener noreferrer" class="pill-link" aria-label="Landing Page" title="Landing Page">${icons.external}<span class="tech-tooltip">Landing</span></a>
@@ -514,7 +534,7 @@ function renderRoadmap(data) {
     <a class="roadmap-card roadmap-link" href="https://myroadmapp.vercel.app" target="_blank" rel="noopener noreferrer">
       <p class="roadmap-year">myroadmap</p>
       <p class="roadmap-label">${data.skills.roadmapLinkLabel}</p>
-      <p class="roadmap-item">myroadmapp.vercel.app →</p>
+      <p class="roadmap-item">myroadmapp.vercel.app ${icons.external.replace('w-3.5 h-3.5', 'roadmap-external-icon')}</p>
     </a>
   </div>`;
 }
@@ -738,7 +758,8 @@ function renderYtCards(data) {
       <div class="yt-info">
         <div class="yt-title"><span class="yt-lang yt-subs" id="ytSubsPt">${subsText}</span></div>
         <p class="yt-desc">${data.contact.ytPTdesc}</p>
-        <div class="yt-footer"><span class="yt-handle">@lioexp →</span></div>
+        <div class="yt-footer"><span class="yt-handle">@lioexp</span></div>
+        ${icons.external.replace('w-3.5 h-3.5', 'contact-external-icon')}
       </div>
     </a>
     <a href="https://youtube.com/@lioexp-en" target="_blank" rel="noopener noreferrer" class="yt-card" data-testid="link-contact-yt-en" aria-label="YouTube EN" title="YouTube EN">
@@ -746,7 +767,8 @@ function renderYtCards(data) {
       <div class="yt-info">
         <div class="yt-title"><span class="yt-lang">EN</span></div>
         <p class="yt-desc">${data.contact.ytENdesc}</p>
-        <div class="yt-footer"><span class="yt-handle">@lioexp-en →</span></div>
+        <div class="yt-footer"><span class="yt-handle">@lioexp-en</span></div>
+        ${icons.external.replace('w-3.5 h-3.5', 'contact-external-icon')}
       </div>
     </a>`;
 
@@ -755,9 +777,11 @@ function renderYtCards(data) {
 
 function renderSocialList(data) {
   $('socialList').innerHTML = data.contact.socials.map(s =>
-    `<a href="${s.href}" target="${s.href.startsWith('mailto') ? '' : '_blank'}" rel="noopener noreferrer" class="social-item" data-testid="${s.testid}">
-      <div><span class="social-name">${s.label}</span><p class="social-sub">${s.sub}</p></div>
-      <span class="social-handle">${s.handle} →</span>
+    `<a href="${s.href}" target="${s.href.startsWith('mailto') ? '' : '_blank'}" rel="noopener noreferrer" class="social-item" data-testid="${s.testid}" aria-label="${s.label}" title="${s.label}">
+      <span class="social-icon" aria-hidden="true">${icons[s.icon]}</span>
+      <div class="social-copy"><span class="sr-only">${s.label}</span><p class="social-sub">${s.sub}</p></div>
+      <span class="social-handle">${s.handle}</span>
+      ${icons.external.replace('w-3.5 h-3.5', 'contact-external-icon')}
     </a>`
   ).join('');
 }
@@ -769,7 +793,8 @@ function renderDiscordCard(data) {
       <div class="yt-icon discord-icon">${icons.discord}</div>
       <div class="yt-info">
         <p class="yt-desc">${d.desc}</p>
-        <div class="yt-footer"><span class="yt-handle">${d.handle} →</span></div>
+        <div class="yt-footer"><span class="yt-handle">${d.handle}</span></div>
+        ${icons.external.replace('w-3.5 h-3.5', 'contact-external-icon')}
       </div>
     </a>`;
 }
@@ -791,7 +816,7 @@ function renderBriefing(data) {
       <p class="briefing-fast-label">${data.contact.fastestWayLabel}</p>
       <p>${data.contact.fastestWayText}</p>
     </div>
-    <a href="mailto:lioexp0@gmail.com?subject=${encodeURIComponent(data.contact.mailtoSubject)}" class="briefing-email">${data.contact.sendEmail}</a>
+    <a href="mailto:lioexp0@gmail.com?subject=${encodeURIComponent(data.contact.mailtoSubject)}" class="briefing-email">${data.contact.sendEmail} ${icons.external.replace('w-3.5 h-3.5', 'contact-inline-icon')}</a>
   </div>`;
 }
 
@@ -825,16 +850,48 @@ function openSetupModal() {
         <div class="setup-modal-image"><img src="assets/setup-2026.jpg" alt="Setup 2026" draggable="false" loading="lazy" /></div>
         <div class="setup-modal-items">
           <p class="setup-modal-heading">${data.setup.modalHeading}</p>
-          ${data.setup.items.map(item => `
+          ${data.setup.items.map((item, index) => `
             <div class="setup-modal-item">
-              <span class="setup-modal-label">${item.label}</span>
-              <span class="setup-modal-value">${item.value}</span>
-              <p class="setup-modal-detail">${item.detail}</p>
+              <button class="setup-modal-trigger" type="button" aria-expanded="false" aria-controls="setup-detail-${index}">
+                <span class="setup-modal-trigger-copy">
+                  <span class="setup-modal-label">${item.label}</span>
+                </span>
+                <span class="setup-modal-chevron" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+                </span>
+              </button>
+              <div class="setup-modal-detail" id="setup-detail-${index}" hidden>
+                <div class="setup-modal-detail-media">
+                  <div class="setup-modal-detail-copy">
+                    <span class="setup-modal-detail-value">${item.value}</span>
+                    <p>${item.detail}</p>
+                  </div>
+                </div>
+              </div>
             </div>`).join('')}
         </div>
       </div>
     </div>`;
   document.body.appendChild(overlay);
+  overlay.querySelectorAll('.setup-modal-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const item = trigger.closest('.setup-modal-item');
+      const detail = item.querySelector('.setup-modal-detail');
+      const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+
+      overlay.querySelectorAll('.setup-modal-item.open').forEach(openItem => {
+        openItem.classList.remove('open');
+        openItem.querySelector('.setup-modal-trigger').setAttribute('aria-expanded', 'false');
+        openItem.querySelector('.setup-modal-detail').hidden = true;
+      });
+
+      if (!isOpen) {
+        item.classList.add('open');
+        trigger.setAttribute('aria-expanded', 'true');
+        detail.hidden = false;
+      }
+    });
+  });
   requestAnimationFrame(() => overlay.classList.add('open'));
   document.addEventListener('keydown', closeOnEscape);
   lastFocused = document.activeElement;
@@ -887,7 +944,8 @@ function untrapFocus(root) {
 // State Mutators
 // =============================================
 function toggleProject(name) {
-  openProjects[name] = !openProjects[name];
+  const shouldOpen = !openProjects[name];
+  openProjects = shouldOpen ? { [name]: true } : {};
   renderProjects();
 }
 

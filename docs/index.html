@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bowlby+One&family=Courgette&family=Inter:wght@400;500;600;700&family=Lilita+One&family=Paytone+One&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=9" />
   <link rel="stylesheet" href="animations.css" />
 </head>
 <body>
@@ -80,7 +80,7 @@
           <div class="ascii-logo" id="asciiLogo"><span class="text-white">██╗     ██╗ ██████╗ </span><span class="text-purple">███████╗██╗  ██╗██████╗</span><br><span class="text-white">██║     ██║██╔═══██╗</span><span class="text-purple">██╔════╝╚██╗██╔╝██╔══██╗</span><br><span class="text-white">██║     ██║██║   ██║</span><span class="text-purple">█████╗   ╚███╔╝ ██████╔╝</span><br><span class="text-white">██║     ██║██║   ██║</span><span class="text-purple">██╔══╝   ██╔██╗ ██╔═══╝</span><br><span class="text-white">███████╗██║╚██████╔╝</span><span class="text-purple">███████╗██╔╝ ██╗██║</span><br><span class="text-white">╚══════╝╚═╝ ╚═════╝</span><span class="text-purple"> ╚══════╝╚═╝  ╚═╝╚═╝</span></div>
           <p class="tagline" id="tagline" data-type="~ build. break. document.">~ build. break. document.</p>
           <div class="hero-cta">
-            <a href="#projectos" class="cta-btn" id="ctaBtn"><span class="arrow-purple">→</span> <span id="ctaText">ver projectos</span></a>
+            <a href="#projectos" class="cta-btn" id="ctaBtn"><span class="arrow-purple" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 19 14-14"></path><path d="M8 5h11v11"></path></svg></span> <span id="ctaText">ver projectos</span></a>
             <div class="hero-socials">
               <a href="https://github.com/lioexp" target="_blank" rel="noopener noreferrer" class="social-link" data-testid="link-hero-github" aria-label="GitHub" title="GitHub">
                 <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.92.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
@@ -111,17 +111,26 @@
 
       <!-- ABOUT -->
       <section id="sobre" class="section about">
-        <div class="reveal">
-          <h2 class="section-title" id="aboutTitle">Builder que <span class="text-purple">constrói</span>, quebra e documenta tudo em público.</h2>
-        </div>
-        <div class="about-grid">
-          <div class="about-text">
-            <p class="about-para" id="cbpText">Trabalho com um framework simples — Create, Break, Protect. Construo uma coisa, tento destruí-la, e documento tudo. O processo é público porque aprender em privado desperdiça metade do valor.</p>
-            <p class="about-para" id="nowText">Estou em Luanda. Hardware modesto, internet instável, escola de tarde. É o ambiente onde tudo o que construo tem de funcionar — por enquanto.</p>
-            <img class="about-photo" src="assets/favicon2.jpg" alt="">
-            <p class="about-para" id="whyText">Eu sou o experimento. Programação, segurança, neurociência, psicologia e arte não são áreas separadas — são lentes diferentes sobre o mesmo problema.</p>
-            <div class="open-to reveal">
+        <div class="about-frame">
+          <div class="about-intro reveal">
+            <h2 class="section-title" id="aboutTitle">Builder que <span class="text-purple">constrói</span>, quebra e documenta tudo em público.</h2>
+            <p class="about-para about-lede about-typewriter" id="cbpText">{}</p>
+          </div>
+
+          <div class="about-statement reveal">
+            <h2 class="about-display-title" id="aboutDisplayTitle" aria-label="About me"></h2>
+            <img class="about-photo" src="assets/favicon2.jpg" alt="Ilustração do avatar LioExp" />
+          </div>
+
+          <div class="about-footer reveal">
+            <div class="about-copy">
+              <p class="about-para" id="nowText">Estou em Luanda. Hardware modesto, internet instável, escola de tarde. É o ambiente onde tudo o que construo tem de funcionar — por enquanto.</p>
+              <p class="about-para" id="whyText">Eu sou o experimento. Programação, segurança, neurociência, psicologia e arte não são áreas separadas — são lentes diferentes sobre o mesmo problema.</p>
+            </div>
+            <div class="open-to">
+              <span class="about-label">open to</span>
               <div class="tags-wrap" id="openTags"></div>
+              <span class="about-signoff">create / break / protect</span>
             </div>
           </div>
         </div>
@@ -164,19 +173,24 @@
       <!-- CONTACT -->
       <section id="contacto" class="section contact">
         <div class="contact-wrap reveal">
-          <h2 class="contact-heading" id="contactHeading" data-blur-text>Fala comigo.</h2>
-          <div class="contact-sub">
-            <p class="contact-text" id="contactText">Prefiro e-mail. Respondo a tudo que vale uma resposta.</p>
-            <div class="briefing-wrap">
-              <button class="briefing-btn" id="briefingBtn"><span class="arrow-purple arrow-toggle">→</span> <span id="briefingBtnText">como estruturar o teu e-mail</span></button>
-              <div class="briefing-content" id="briefingContent"></div>
+          <div class="contact-intro">
+            <span class="contact-kicker">/ contact</span>
+            <h2 class="contact-heading" id="contactHeading" data-blur-text>Fala comigo.</h2>
+            <div class="contact-sub">
+              <p class="contact-text" id="contactText">Prefiro e-mail. Respondo a tudo que vale uma resposta.</p>
+              <div class="briefing-wrap">
+                <button class="briefing-btn" id="briefingBtn"><span class="arrow-purple arrow-toggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg></span> <span id="briefingBtnText">como estruturar o teu e-mail</span></button>
+                <div class="briefing-content" id="briefingContent"></div>
+              </div>
             </div>
           </div>
-          <div class="contact-socials" data-reveal-group="0.12">
-            <p class="subsection-title" id="whereLabel">Onde me encontras</p>
-            <div class="yt-grid" id="ytGrid"></div>
-            <div class="discord-card" id="discordCard"></div>
-            <div class="social-list" id="socialList"></div>
+          <div class="contact-layout">
+            <div class="contact-socials" data-reveal-group="0.12">
+              <p class="subsection-title" id="whereLabel">Onde me encontras</p>
+              <div class="yt-grid" id="ytGrid"></div>
+              <div class="discord-card" id="discordCard"></div>
+              <div class="social-list" id="socialList"></div>
+            </div>
           </div>
         </div>
       </section>

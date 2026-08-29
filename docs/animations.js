@@ -84,7 +84,7 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
 
   function initLineReveal(root) {
-    (root.querySelectorAll('.about-para') || []).forEach((el) => {
+    (root.querySelectorAll('.about-para:not(.about-typewriter)') || []).forEach((el) => {
       const splitLines = () => {
         const text = el.textContent;
         if (el.dataset.lrText === text) return;
@@ -147,6 +147,88 @@
         lineIO.observe(el);
       }
     });
+  }
+
+  // -------------------------------------------------------
+  // 1d) About typewriter — abre {} e escreve o texto ao entrar no ecrã
+  // -------------------------------------------------------
+  function initAboutTypewriter(root) {
+    const el = root.querySelector('.about-typewriter');
+    if (!el || el.dataset.aboutTypeInit === '1') return;
+    el.dataset.aboutTypeInit = '1';
+
+    let currentText = '';
+    let timer = null;
+    let started = false;
+    let copy = null;
+
+    const buildClosed = () => {
+      if (timer) clearTimeout(timer);
+      el.classList.remove('about-typewriter-open');
+      el.textContent = '';
+
+      const open = document.createElement('span');
+      open.className = 'about-brace about-brace-open';
+      open.textContent = '{';
+
+      copy = document.createElement('span');
+      copy.className = 'about-typewriter-copy';
+
+      const close = document.createElement('span');
+      close.className = 'about-brace about-brace-close';
+      close.textContent = '}';
+
+      el.append(open, copy, close);
+      el.setAttribute('aria-label', currentText);
+      started = false;
+    };
+
+    const typeText = () => {
+      if (!copy) return;
+      if (reduced) {
+        copy.textContent = currentText;
+        return;
+      }
+
+      let index = 0;
+      const step = () => {
+        if (index > currentText.length) return;
+        copy.textContent = currentText.slice(0, index);
+        index += 1;
+        timer = setTimeout(step, 28 + Math.random() * 36);
+      };
+      step();
+    };
+
+    const start = () => {
+      if (started) return;
+      started = true;
+      el.classList.add('about-typewriter-open');
+      typeText();
+    };
+
+    const refresh = () => {
+      const nextText = el.dataset.typewriterText || '';
+      if (nextText === currentText && copy) return;
+      currentText = nextText;
+      buildClosed();
+      if (el.classList.contains('about-typewriter-seen')) start();
+    };
+
+    refresh();
+    window.refreshAboutTypewriter = (target) => {
+      if (target === el) refresh();
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        el.classList.add('about-typewriter-seen');
+        start();
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
+    observer.observe(el);
   }
 
   // -------------------------------------------------------
@@ -379,6 +461,7 @@
     initBannerParallax();
     initMouseParallax();
     initLineReveal(root);
+    initAboutTypewriter(root);
 
     // footer (render dinâmico) entra no observer de reveals
     const footer = document.querySelector('.footer');

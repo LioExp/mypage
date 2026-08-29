@@ -229,6 +229,36 @@
   animation: para-line-pop-in var(--para-line-dur) var(--para-line-ease) both;
 }
 
+/* === About typewriter — braces open on scroll === */
+.about-typewriter {
+  position: relative;
+}
+
+.about-typewriter .about-brace {
+  display: inline-block;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  transition: transform 0.65s var(--anim-spring);
+  will-change: transform;
+}
+
+.about-typewriter .about-typewriter-copy {
+  display: inline;
+}
+
+.about-typewriter:not(.about-typewriter-open) .about-typewriter-copy {
+  opacity: 0;
+}
+
+.about-typewriter-open .about-brace-open {
+  transform: translateX(-0.18em);
+}
+
+.about-typewriter-open .about-brace-close {
+  transform: translateX(0.18em);
+}
+
 /* === About photo (placeholder) — jello-horizontal === */
 .about-photo {
   width: 128px;
