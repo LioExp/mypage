@@ -600,8 +600,8 @@ img {
   width: clamp(6.5rem, 15vw, 9.5rem);
   height: clamp(6.5rem, 15vw, 9.5rem);
   margin: 0;
-  border: 0.35rem solid var(--accent);
-  border-radius: 50%;
+  border: 0.35rem solid #000;
+  border-radius: 0.5rem;
   outline: 2px solid rgba(255, 255, 255, 0.72);
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.65);
   object-fit: cover;
@@ -623,7 +623,7 @@ img {
 .about-footer {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 1.5rem;
   padding-top: 1.75rem;
   border-top: 1px solid rgba(255, 255, 255, 0.16);
 }
@@ -634,7 +634,6 @@ img {
 }
 
 .open-to {
-  align-self: end;
   padding-top: 0;
 }
 
@@ -682,11 +681,6 @@ img {
 }
 
 @media (min-width: 768px) {
-  .about-footer {
-    grid-template-columns: minmax(0, 1.35fr) minmax(10rem, 0.65fr);
-    gap: 4rem;
-  }
-
   .about-copy {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 2rem;
