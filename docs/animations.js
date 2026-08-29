@@ -195,7 +195,7 @@
         if (index > currentText.length) return;
         copy.textContent = currentText.slice(0, index);
         index += 1;
-        timer = setTimeout(step, 28 + Math.random() * 36);
+        timer = setTimeout(step, 45);
       };
       step();
     };
