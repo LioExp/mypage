@@ -532,7 +532,7 @@ img {
 
 .about-intro-title {
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: 1.5rem;
   margin-bottom: 1.5rem;
 }
