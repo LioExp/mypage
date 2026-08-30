@@ -315,7 +315,6 @@ function renderHero(data) {
 }
 
 function renderAbout(data) {
-  $('aboutTitle').innerHTML = `${data.about.heading[0]}<span class="text-purple">${data.about.heading[1]}</span>${data.about.heading[2]}`;
   $('aboutDisplayTitle').innerHTML = `<span class="about-ascii-word about-ascii-about">${ABOUT_ASCII}</span><span class="about-ascii-word about-ascii-me">${ME_ASCII}</span>`;
   const aboutText = $('cbpText');
   aboutText.dataset.typewriterText = data.about.cbpText;
