@@ -315,7 +315,10 @@ function renderHero(data) {
 }
 
 function renderAbout(data) {
-  $('aboutDisplayTitle').innerHTML = `<span class="about-ascii-word about-ascii-about">${ABOUT_ASCII}</span><span class="about-ascii-word about-ascii-me">${ME_ASCII}</span>`;
+  const dt = $('aboutDisplayTitle');
+  const img = dt.querySelector('img');
+  dt.innerHTML = `<span class="about-ascii-word about-ascii-about">${ABOUT_ASCII}</span><span class="about-ascii-me-line"><span class="about-ascii-word about-ascii-me">${ME_ASCII}</span></span>`;
+  if (img) dt.querySelector('.about-ascii-me-line').appendChild(img);
   const aboutText = $('cbpText');
   aboutText.dataset.typewriterText = data.about.cbpText;
   if (window.refreshAboutTypewriter) window.refreshAboutTypewriter(aboutText);
