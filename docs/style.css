@@ -533,7 +533,7 @@ img {
 .about-intro-title {
   display: flex;
   align-items: flex-end;
-  gap: 1.5rem;
+  gap: 0.5rem;
   margin-bottom: 1.5rem;
 }
 
@@ -594,9 +594,8 @@ img {
 }
 
 .about-display-title span:last-child {
-  align-self: center;
+  align-self: flex-start;
   margin-top: 0.35rem;
-  margin-left: clamp(1rem, 6vw, 4.5rem);
   color: #f4f2f7;
 }
 
