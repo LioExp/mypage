@@ -177,6 +177,18 @@
   animation: glow-pulse 2.6s ease-in-out infinite;
 }
 
+/* Keep the interaction language quiet and system-like. */
+.nav-link.active {
+  animation: none;
+}
+
+.social-link:hover svg,
+.pill-link:hover svg,
+.yt-card:hover .yt-icon svg,
+.yt-card:hover .discord-icon svg {
+  transform: scale(1.08);
+}
+
 /* === Parallax helpers === */
 [data-parallax] {
   will-change: transform;
@@ -198,7 +210,19 @@
 }
 
 .cta-btn:hover .arrow-purple {
-  animation: nudge 0.9s ease-in-out infinite;
+  animation: none;
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* === Line pop-in (about) — transitions.dev style === */
@@ -229,6 +253,41 @@
   animation: para-line-pop-in var(--para-line-dur) var(--para-line-ease) both;
 }
 
+@keyframes about-text-line-in {
+  0% {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateY(0.45em);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+.about-full-text .about-text-line {
+  display: block;
+  opacity: 0;
+  will-change: transform, opacity, filter;
+}
+
+.about-full-text.visible .about-text-line {
+  animation: about-text-line-in 780ms var(--para-line-ease) both;
+}
+
+.about-full-text.visible .about-text-line:nth-child(2) {
+  animation-delay: 140ms;
+}
+
+.about-full-text.visible .about-text-line:nth-child(3) {
+  animation-delay: 280ms;
+}
+
+.about-full-text.visible .about-text-line:nth-child(4) {
+  animation-delay: 420ms;
+}
+
 /* === About typewriter — braces open on scroll === */
 .about-typewriter {
   position: relative;
@@ -257,6 +316,27 @@
 
 .about-typewriter-open .about-brace-close {
   transform: translateX(0.18em);
+}
+
+@keyframes typewriter-char-in {
+  0% {
+    opacity: 0;
+    filter: blur(3px);
+    transform: translateY(0.35em) scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) scale(1);
+  }
+}
+
+.about-typewriter .typewriter-char {
+  display: inline-block;
+  min-width: 0.02em;
+  white-space: pre;
+  animation: typewriter-char-in 420ms var(--anim-spring) both;
+  will-change: transform, opacity, filter;
 }
 
 /* === About photo (placeholder) — jello-horizontal === */
@@ -367,73 +447,5 @@ html.reduce-motion .footer .verse-btn,
 html.reduce-motion .footer .verse-full {
   opacity: 1;
   transform: none;
-  transition: none;
-}
-
-/* === Skills border draw-in === */
-.skill-outer,
-.skill-group {
-  position: relative;
-}
-
-.skill-outer > .border-draw,
-.skill-group > .border-draw {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.skill-outer > .border-draw rect,
-.skill-group > .border-draw rect {
-  fill: none;
-  stroke: var(--border);
-  stroke-width: 1.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 12 8;
-  animation: dash-drift 18s linear infinite;
-}
-
-.skill-outer > .border-draw rect {
-  stroke-width: 2.5;
-}
-
-.skill-outer-label,
-.skill-group-label {
-  opacity: 1;
-}
-
-@keyframes dash-drift {
-  to { stroke-dashoffset: -40; }
-}
-
-.skill-outer-label,
-.skill-group-label {
-  opacity: 0;
-  transition: opacity 0.4s ease 0.8s;
-}
-
-.skill-outer.visible .skill-outer-label,
-.skill-group.visible .skill-group-label {
-  opacity: 1;
-}
-
-.skill-group:nth-child(1) > .border-draw rect { transition-delay: 0s; }
-.skill-group:nth-child(2) > .border-draw rect { transition-delay: 0.25s; }
-.skill-group:nth-child(3) > .border-draw rect { transition-delay: 0.5s; }
-
-.skill-group:nth-child(1) .skill-group-label { transition-delay: 0.8s; }
-.skill-group:nth-child(2) .skill-group-label { transition-delay: 1.05s; }
-.skill-group:nth-child(3) .skill-group-label { transition-delay: 1.3s; }
-
-html.reduce-motion .skill-outer > .border-draw rect,
-html.reduce-motion .skill-group > .border-draw rect {
-  animation: none;
-}
-html.reduce-motion .skill-outer-label,
-html.reduce-motion .skill-group-label {
-  opacity: 1;
   transition: none;
 }

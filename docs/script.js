@@ -1,12 +1,19 @@
 // =============================================
 // I18n Data
 // =============================================
+const ABOUT_ICONS = {
+  pin: `<svg class="about-inline-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M20 10.5c0 5-8 10-8 10s-8-5-8-10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10.5" r="2.5"/></svg>`,
+  monitor: `<svg class="about-inline-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>`,
+  bug: `<svg class="about-inline-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M8 9c0-2.2 1.8-4 4-4s4 1.8 4 4v5c0 2.2-1.8 4-4 4s-4-1.8-4-4V9Z"/><path d="M5 10H3m18 0h-2M5 14H3m18 0h-2M8 6 6.5 4.5M16 6l1.5-1.5"/><path d="M10 12h.01M14 12h.01"/></svg>`,
+  palette: `<svg class="about-inline-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 3a9 9 0 0 0 0 18h1.2a1.8 1.8 0 0 0 1.1-3.2 1.8 1.8 0 0 1 1.1-3.2H17a4 4 0 0 0 4-4.1A8.8 8.8 0 0 0 12 3Z"/><circle cx="7.5" cy="10" r=".7" fill="currentColor" stroke="none"/><circle cx="10" cy="7" r=".7" fill="currentColor" stroke="none"/><circle cx="14" cy="7" r=".7" fill="currentColor" stroke="none"/></svg>`,
+};
+
 const t = {
   pt: {
     nav: ['inicio', 'sobre', 'projectos', 'skills', 'setup', 'contacto'],
     navIds: ['inicio', 'sobre', 'projectos', 'skills', 'setup', 'contacto'],
     hero: { tagline: '~ build. break. document.', age: '18 anos.', roles: 'Builder · Programmer · Experimentador', motto: 'Eu sou o experimento.', cta: 'ver projectos' },
-    about: { heading: ['Builder que ', 'constrói', ', quebra e documenta tudo em público.'], displayTitle: ['about', 'me'], cbpText: 'Trabalho com um framework simples — Create, Break, Protect. Construo uma coisa, tento destruí-la, e documento tudo. O processo é público porque aprender em privado desperdiça metade do valor.', nowText: 'Estou em Luanda. Hardware modesto, internet instável, escola de tarde. É o ambiente onde tudo o que construo tem de funcionar — por enquanto.', whyText: 'Eu sou o experimento. Programação, segurança, neurociência, psicologia e arte não são áreas separadas — são lentes diferentes sobre o mesmo problema.', openTags: ['collab', 'open source'] },
+    about: { heading: ['Builder que ', 'constrói', ', quebra e documenta tudo em público.'], displayTitle: ['about', 'me'], cbpText: 'Trabalho com um framework simples — Create, Break, Protect. Construo uma coisa, tento destruí-la, e documento tudo. O processo é público porque aprender em privado desperdiça metade do valor.', fullText: `<span class="about-text-line">Estou em Luanda <a class="about-inline-link" href="https://www.google.com/maps/search/?api=1&query=Luanda%2C%20Angola" target="_blank" rel="noopener noreferrer" aria-label="Abrir Luanda no mapa" title="Abrir Luanda no mapa">${ABOUT_ICONS.pin}</a>, com hardware modesto <span class="about-inline-icon" aria-hidden="true">${ABOUT_ICONS.monitor}</span>, internet instável e escola à tarde.</span><span class="about-text-line">É o ambiente onde tudo o que construo tem de funcionar — por enquanto.</span><span class="about-text-line">Eu sou o experimento <a class="about-inline-link" href="#projectos" aria-label="Ver os projectos" title="Ver os projectos">${ABOUT_ICONS.bug}</a>.</span><span class="about-text-line">Tecnologia, ciência, psicologia e arte <a class="about-inline-link" href="#projectos" aria-label="Ver o trabalho construído" title="Ver o trabalho construído">${ABOUT_ICONS.palette}</a> não são áreas separadas; são lentes diferentes sobre o mesmo problema.</span>`, openTags: ['collab', 'open source'] },
     projects: {
       label: 'Projectos', heading: 'Projectos', active: 'ACTIVOS', waiting: 'EM ESPERA', showMore: 'ver mais', showLess: 'ver menos',
       faber: { badge: 'a lançar', sub: 'Fase 0 — lançamento iminente', desc: 'Agente de código em Rust para terminal. 100% offline-first e otimizado para correr LLMs locais com baixo consumo de hardware.', why: 'Porquê existe', whyText: 'As ferramentas de IA para código assumem que tens fibra, uma conta paga e hardware recente. FABER não assume nada disso. Foi construído para funcionar no mesmo ambiente onde tudo o resto tem de funcionar — hardware modesto, internet instável, sem subscrição mensal.', how: 'Como funciona', howText: 'Corre um modelo quantizado localmente via llama.cpp. Sem cloud, sem tokens, sem rate limits. O agente lê o contexto do projecto, sugere código, executa comandos e aprende com o feedback directo no terminal. Tudo em Rust para manter o overhead mínimo.', status: 'Estado actual', statusItems: ['Core em Rust funcional', 'Integração llama.cpp estável', 'CLI básica operacional', 'Testes em hardware de 4GB RAM', 'Documentação e landing em progresso'], who: 'Para quem', whoText: 'Developers em mercados emergentes. Quem usa Raspberry Pi como máquina principal. Quem não quer depender de subscrições para ter um agente de código funcional.' },
@@ -67,7 +74,7 @@ const t = {
     nav: ['home', 'about', 'projects', 'skills', 'setup', 'contact'],
     navIds: ['inicio', 'sobre', 'projectos', 'skills', 'setup', 'contacto'],
     hero: { tagline: '~ build. break. document.', age: '18 years old.', roles: 'Builder · Programmer · Experimenter', motto: 'I am the experiment.', cta: 'view projects' },
-    about: { label: 'ABOUT', heading: ['Builder who ', 'builds', ', breaks and documents everything in public.'], displayTitle: ['about', 'me'], cbpText: 'I work with a simple framework — Create, Break, Protect. I build something, try to break it, and document everything. The process is public because learning in private wastes half the value.', nowText: "I'm in Luanda. Modest hardware, unstable internet, afternoon school. This is the environment where everything I build has to work — for now.", whyText: 'I am the experiment. Programming, security, neuroscience, psychology and art aren\'t separate fields — they\'re different lenses on the same problem.', openTags: ['collab', 'open source'] },
+    about: { label: 'ABOUT', heading: ['Builder who ', 'builds', ', breaks and documents everything in public.'], displayTitle: ['about', 'me'], cbpText: 'I work with a simple framework — Create, Break, Protect. I build something, try to break it, and document everything. The process is public because learning in private wastes half the value.', fullText: `<span class='about-text-line'>I'm in Luanda <a class='about-inline-link' href='https://www.google.com/maps/search/?api=1&query=Luanda%2C%20Angola' target='_blank' rel='noopener noreferrer' aria-label='Open Luanda in Maps' title='Open Luanda in Maps'>${ABOUT_ICONS.pin}</a>, working with modest hardware <span class='about-inline-icon' aria-hidden='true'>${ABOUT_ICONS.monitor}</span>, unstable internet, and school in the afternoon.</span><span class='about-text-line'>This is the environment where everything I build has to work — for now.</span><span class='about-text-line'>I am the experiment <a class='about-inline-link' href='#projectos' aria-label='View projects' title='View projects'>${ABOUT_ICONS.bug}</a>.</span><span class='about-text-line'>Technology, science, psychology, and art <a class='about-inline-link' href='#projectos' aria-label='View the work' title='View the work'>${ABOUT_ICONS.palette}</a> aren't separate fields; they're different lenses on the same problem.</span>`, openTags: ['collab', 'open source'] },
     projects: {
       label: 'PROJECTS', heading: 'Projects', active: 'ACTIVE', waiting: 'ON HOLD', showMore: 'show more', showLess: 'show less',
       faber: { badge: 'launching', sub: 'Phase 0 — imminent launch', desc: 'Rust code agent for the terminal. 100% offline-first and optimized to run local LLMs with minimal hardware overhead.', why: 'Why it exists', whyText: 'AI coding tools assume you have fibre, a paid account and recent hardware. FABER assumes none of that. It was built to work in the same environment where everything else has to work — modest hardware, unstable internet, no monthly subscription.', how: 'How it works', howText: 'Runs a quantized model locally via llama.cpp. No cloud, no tokens, no rate limits. The agent reads the project context, suggests code, executes commands and learns from direct feedback in the terminal. All in Rust to keep overhead minimal.', status: 'Current status', statusItems: ['Rust core functional', 'Stable llama.cpp integration', 'Basic CLI operational', 'Tested on 4GB RAM hardware', 'Documentation and landing in progress'], who: 'Who it\'s for', whoText: 'Developers in emerging markets. Those using Raspberry Pi as their main machine. Those who don\'t want to depend on subscriptions to have a functional code agent.' },
@@ -324,8 +331,7 @@ function renderAbout(data) {
   const aboutText = $('cbpText');
   aboutText.dataset.typewriterText = data.about.cbpText;
   if (window.refreshAboutTypewriter) window.refreshAboutTypewriter(aboutText);
-  $('nowText').textContent = data.about.nowText;
-  $('whyText').textContent = data.about.whyText;
+  $('aboutFullText').innerHTML = data.about.fullText;
   $('openTags').innerHTML = data.about.openTags.map(t => `<span class="tag">${t}</span>`).join('');
 }
 
@@ -468,31 +474,6 @@ function renderSkillsSection(data) {
 
 const TUX_SVG = 'assets/icons/tux.svg';
 
-function injectBorderSvgs() {
-  const items = document.querySelectorAll('.skill-outer, .skill-group');
-  items.forEach(el => {
-    if (el.querySelector('.border-draw')) return;
-    const w = el.offsetWidth;
-    const h = el.offsetHeight;
-    const perim = 2 * (w + h);
-    const ns = 'http://www.w3.org/2000/svg';
-    const svg = document.createElementNS(ns, 'svg');
-    svg.classList.add('border-draw');
-    svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
-    svg.style.setProperty('--perim', perim);
-    const rect = document.createElementNS(ns, 'rect');
-    rect.setAttribute('x', '0');
-    rect.setAttribute('y', '0');
-    rect.setAttribute('width', w);
-    rect.setAttribute('height', h);
-    rect.setAttribute('rx', '12');
-    rect.setAttribute('ry', '12');
-    rect.style.setProperty('--perim', perim);
-    svg.appendChild(rect);
-    el.prepend(svg);
-  });
-}
-
 function renderSkillCategories(data) {
   const grouped = data.skills.categories.map(cat => {
     const cells = cat.skills.map(s => {
@@ -514,7 +495,6 @@ function renderSkillCategories(data) {
     </div>`;
 
   requestAnimationFrame(() => {
-    injectBorderSvgs();
     const outer = $('skillsCategories').querySelector('.skill-outer');
     if (outer) {
       outer.classList.add('reveal');
@@ -538,7 +518,7 @@ function renderRoadmap(data) {
     <a class="roadmap-card roadmap-link" href="https://myroadmapp.vercel.app" target="_blank" rel="noopener noreferrer">
       <p class="roadmap-year">myroadmap</p>
       <p class="roadmap-label">${data.skills.roadmapLinkLabel}</p>
-      <p class="roadmap-item">myroadmapp.vercel.app ${icons.external.replace('w-3.5 h-3.5', 'roadmap-external-icon')}</p>
+      ${icons.external.replace('w-3.5 h-3.5', 'roadmap-external-icon')}
     </a>
   </div>`;
 }
@@ -610,7 +590,7 @@ async function fetchYtFeed() {
   track.style.transform = '';
 
   const fallback = () => {
-    track.innerHTML = `<a href="https://youtube.com/@lioexp" target="_blank" rel="noopener noreferrer" class="yt-feed-item">${icons.yt} <span class="yt-feed-title">youtube.com/@lioexp</span></a>`;
+    track.innerHTML = `<a href="https://youtube.com/@lioexp" target="_blank" rel="noopener noreferrer" class="yt-feed-item" aria-label="YouTube LioExp">${icons.yt} <span class="yt-feed-title">YouTube</span></a>`;
     startYtScroll();
   };
 
@@ -762,7 +742,6 @@ function renderYtCards(data) {
       <div class="yt-info">
         <div class="yt-title"><span class="yt-lang yt-subs" id="ytSubsPt">${subsText}</span></div>
         <p class="yt-desc">${data.contact.ytPTdesc}</p>
-        <div class="yt-footer"><span class="yt-handle">@lioexp</span></div>
         ${icons.external.replace('w-3.5 h-3.5', 'contact-external-icon')}
       </div>
     </a>
@@ -771,7 +750,6 @@ function renderYtCards(data) {
       <div class="yt-info">
         <div class="yt-title"><span class="yt-lang">EN</span></div>
         <p class="yt-desc">${data.contact.ytENdesc}</p>
-        <div class="yt-footer"><span class="yt-handle">@lioexp-en</span></div>
         ${icons.external.replace('w-3.5 h-3.5', 'contact-external-icon')}
       </div>
     </a>`;
@@ -783,8 +761,7 @@ function renderSocialList(data) {
   $('socialList').innerHTML = data.contact.socials.map(s =>
     `<a href="${s.href}" target="${s.href.startsWith('mailto') ? '' : '_blank'}" rel="noopener noreferrer" class="social-item" data-testid="${s.testid}" aria-label="${s.label}" title="${s.label}">
       <span class="social-icon" aria-hidden="true">${icons[s.icon]}</span>
-      <div class="social-copy"><span class="sr-only">${s.label}</span><p class="social-sub">${s.sub}</p></div>
-      <span class="social-handle">${s.handle}</span>
+      <div class="social-copy"><p class="social-label">${s.label}</p><p class="social-sub">${s.sub}</p></div>
       ${icons.external.replace('w-3.5 h-3.5', 'contact-external-icon')}
     </a>`
   ).join('');

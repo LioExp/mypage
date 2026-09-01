@@ -85,6 +85,17 @@
 
   function initLineReveal(root) {
     (root.querySelectorAll('.about-para:not(.about-typewriter)') || []).forEach((el) => {
+      if (el.classList.contains('about-full-text')) {
+        if (el.dataset.lrInit === '1') return;
+        el.dataset.lrInit = '1';
+        if (reduced) {
+          el.classList.add('visible');
+        } else {
+          lineIO.observe(el);
+        }
+        return;
+      }
+
       const splitLines = () => {
         const text = el.textContent;
         if (el.dataset.lrText === text) return;
@@ -190,12 +201,81 @@
         return;
       }
 
-      let index = 0;
+      const words = [...currentText.matchAll(/[A-Za-zÀ-ÿ0-9][A-Za-zÀ-ÿ0-9'’-]{3,}/g)];
+      const shouldMakeMistake = words.length > 0 && Math.random() < 0.85;
+      const typoTarget = shouldMakeMistake
+        ? words[Math.floor(Math.random() * words.length)]
+        : null;
+
+      let typo = null;
+      if (typoTarget) {
+        const typoChars = [...typoTarget[0]];
+        const swapAt = 1 + Math.floor(Math.random() * (typoChars.length - 2));
+        [typoChars[swapAt], typoChars[swapAt + 1]] = [typoChars[swapAt + 1], typoChars[swapAt]];
+        typo = {
+          start: typoTarget.index,
+          end: typoTarget.index + typoTarget[0].length,
+          wrong: typoChars.join(''),
+          correct: typoTarget[0],
+        };
+      }
+
+      const actions = [];
+      let sourceIndex = 0;
+      while (sourceIndex < currentText.length) {
+        if (typo && sourceIndex === typo.start) {
+          [...typo.wrong].forEach((char) => actions.push({ type: 'write', char }));
+          [...typo.wrong].forEach(() => actions.push({ type: 'erase' }));
+          [...typo.correct].forEach((char) => actions.push({ type: 'write', char }));
+          sourceIndex = typo.end;
+          continue;
+        }
+
+        actions.push({ type: 'write', char: currentText[sourceIndex] });
+        sourceIndex += 1;
+      }
+
+      let actionIndex = 0;
+      let displayedText = '';
+      const nextDelay = (char, position) => {
+        const jitter = 30 + Math.random() * 46;
+
+        if (/[.!?]/.test(char)) {
+          return 300 + Math.random() * 240;
+        }
+
+        if (/[,;:]/.test(char)) {
+          return 150 + Math.random() * 170;
+        }
+
+        if (char === ' ') {
+          const thinkingPause = position > 0 && Math.random() < 0.07;
+          return thinkingPause ? 180 + Math.random() * 220 : 25 + Math.random() * 45;
+        }
+
+        return jitter;
+      };
+
       const step = () => {
-        if (index > currentText.length) return;
-        copy.textContent = currentText.slice(0, index);
-        index += 1;
-        timer = setTimeout(step, 45);
+        if (actionIndex >= actions.length) return;
+        const action = actions[actionIndex];
+
+        if (action.type === 'erase') {
+          displayedText = displayedText.slice(0, -1);
+          copy.lastElementChild?.remove();
+          actionIndex += 1;
+          timer = setTimeout(step, 55 + Math.random() * 65);
+          return;
+        }
+
+        displayedText += action.char;
+        const charNode = document.createElement('span');
+        charNode.className = 'typewriter-char';
+        charNode.textContent = action.char === ' ' ? '\u00A0' : action.char;
+        copy.appendChild(charNode);
+        const delay = nextDelay(action.char, displayedText.length);
+        actionIndex += 1;
+        timer = setTimeout(step, delay);
       };
       step();
     };
