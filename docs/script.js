@@ -643,10 +643,10 @@ async function fetchYtSubscriberCount() {
 // ---- GitHub Graph ----
 const GH_PALETTE = [
   'transparent',
-  'rgba(124,58,237,0.25)',
-  'rgba(124,58,237,0.65)',
+  'rgba(124,58,237,0.45)',
+  'rgba(124,58,237,0.8)',
   '#7c3aed',
-  '#8b5cf6',
+  '#a78bfa',
 ];
 const GH_LEVELS = ['NONE', 'FIRST_QUARTILE', 'SECOND_QUARTILE', 'THIRD_QUARTILE', 'FOURTH_QUARTILE'];
 
