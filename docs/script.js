@@ -683,7 +683,7 @@ async function fetchYtFeed() {
   };
 
   try {
-    const data = await fetchJson('/api/youtube-feed', 10 * 60 * 1000);
+    const data = await fetchJson('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.youtube.com%2Ffeeds%2Fvideos.xml%3Fchannel_id%3DUCZIZwWoayEW1CXxqE0TwyLQ', 10 * 60 * 1000);
     if (data.status !== 'ok' || !data.items?.length) { fallback(); return; }
     const items = data.items
       .filter((item) => item.link && item.title)
