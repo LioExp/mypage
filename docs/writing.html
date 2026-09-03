@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#7c3aed" />
+  <title>Writing — LioExp</title>
+  <meta name="description" content="Notas e textos do LioExp." />
+  <link rel="icon" type="image/jpeg" href="assets/favicon2.jpg" />
+  <link rel="stylesheet" href="style.css?v=12" />
+  <link rel="stylesheet" href="animations.css?v=12" />
+</head>
+<body class="article-page">
+  <main class="article-shell">
+    <header class="article-nav">
+      <a class="article-back" id="writingBack" href="index.html#setup">← voltar para Setup</a>
+      <nav class="article-breadcrumb" aria-label="Navegação da página">
+        <a href="index.html">LioExp</a>
+        <span>/</span>
+        <a href="index.html#setup" id="writingBreadcrumbSetup">Setup</a>
+        <span>/</span>
+        <span id="writingBreadcrumbCurrent" aria-current="page">Writing</span>
+      </nav>
+      <div class="lang-toggle article-language" aria-label="Idioma">
+        <button class="lang-btn active" data-lang="pt">PT</button>
+        <span class="lang-sep">/</span>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+    </header>
+
+    <section class="writing-archive">
+      <span class="writing-archive-kicker">/ writing</span>
+      <h1 class="article-document-title" id="writingHeading">Escrita recente</h1>
+      <p class="article-document-lede" id="writingLead">Ideias, processos e coisas que estou a aprender enquanto construo.</p>
+      <div class="writing-list writing-archive-list" id="writingArchiveList"></div>
+    </section>
+
+    <footer class="article-document-footer">
+      <a id="writingFooterBack" href="index.html#setup">← voltar para o Setup</a>
+    </footer>
+  </main>
+  <script src="writing.js"></script>
+</body>
+</html>

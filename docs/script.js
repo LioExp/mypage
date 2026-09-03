@@ -45,7 +45,28 @@ const t = {
         { label: 'Editor', value: 'Neovim', detail: 'Configurado do zero. Leve, rápido, sem distrações.', img: null },
         { label: 'iPhone', value: 'iPhone 7', detail: 'Gravação e edição de vídeos, áudio, thumbs, desenhos — tudo feito no telefone.', img: null },
         { label: 'Shell', value: 'Zsh + Oh My Zsh', detail: 'Prompt informativo, plugins essenciais, autocomplete.', img: null }
-      ]
+      ],
+      article: {
+        label: 'BUILD LOG',
+        kicker: 'hardware / constraints',
+        title: 'Construir com pouco também é construir',
+        meta: '4 min de leitura · 02 SET 2026',
+        excerpt: 'O que um Pentium antigo, 3.7 GiB de RAM e uma ligação instável me ensinaram sobre criar software.',
+        body: [
+          'O meu setup não foi escolhido para parecer impressionante. Foi escolhido porque é o que tenho — e porque ainda é suficiente para transformar ideias em coisas reais.',
+          'Com 3.7 GiB de RAM, cada processo tem um custo. Aprendi a preferir ferramentas pequenas, a perceber o que corre em background e a escrever software que não depende de uma ligação perfeita para continuar útil.',
+          'Isto muda a forma de construir. Em vez de começar pela tecnologia mais pesada, começo pela pergunta mais simples: qual é a menor versão que já resolve o problema?',
+          'Limitações não tornam o trabalho menor. Tornam as decisões mais visíveis. E, às vezes, é exatamente aí que um produto começa a ficar bom.'
+        ]
+      },
+      writing: {
+        heading: 'Escrita recente',
+        moreLabel: 'mais artigos',
+        items: [
+          { id: 'build-log', title: 'Construir com pouco também é construir', reading: '4 min', tags: ['Hardware', 'Processo'], date: '02 SET 2026' },
+          { id: 'offline-first', title: 'Quando a internet falha, o produto precisa continuar', reading: '3 min', tags: ['Produto', 'Offline-first'], date: '28 AGO 2026' }
+        ]
+      }
     },
     contact: {
       heading: 'Fala comigo.', subtext: 'Prefiro e-mail. Respondo a tudo que vale uma resposta.',
@@ -67,7 +88,11 @@ const t = {
         { label: 'E-mail', icon: 'email', sub: 'canal principal para colaborações', handle: 'lioexp0@gmail.com', href: 'mailto:lioexp0@gmail.com', testid: 'link-contact-email' }
       ],
       discord: { name: 'Discord', desc: 'comunidade, debugging, builds ao vivo', handle: 'entra no server', href: 'https://discord.gg/wkmuHa3P8q' },
-      footer: { tagline: 'build. break. document.', colossians: 'Col 3:23', verse: 'Tudo o que fizerem, façam de todo o coração, como para o Senhor, e não para os homens' }
+      footer: {
+        tagline: 'build. break. document.',
+        colossians: 'Col 3:23',
+        verse: 'Tudo o que fizerem, façam de todo o coração, como para o Senhor, e não para os homens'
+      }
     }
   },
   en: {
@@ -106,7 +131,28 @@ const t = {
         { label: 'Editor', value: 'Neovim', detail: 'Configured from zero. Lightweight, fast, no distractions.', img: null },
         { label: 'iPhone', value: 'iPhone 7', detail: 'Video recording and editing, audio, thumbnails, drawings — everything done on the phone.', img: null },
         { label: 'Shell', value: 'Zsh + Oh My Zsh', detail: 'Informative prompt, essential plugins, autocomplete.', img: null }
-      ]
+      ],
+      article: {
+        label: 'BUILD LOG',
+        kicker: 'hardware / constraints',
+        title: 'Building with less is still building',
+        meta: '4 min read · 02 SEP 2026',
+        excerpt: 'What an old Pentium, 3.7 GiB of RAM and an unstable connection taught me about making software.',
+        body: [
+          'My setup was not chosen to look impressive. It was chosen because it is what I have — and because it is still enough to turn ideas into real things.',
+          'With 3.7 GiB of RAM, every process has a cost. I learned to prefer small tools, understand what runs in the background and write software that does not depend on a perfect connection to remain useful.',
+          'It changes the way you build. Instead of starting with the heaviest technology, I start with a simpler question: what is the smallest version that already solves the problem?',
+          'Limitations do not make the work smaller. They make the decisions more visible. Sometimes, that is exactly where a product starts to become good.'
+        ]
+      },
+      writing: {
+        heading: 'Recent writing',
+        moreLabel: 'more blogs',
+        items: [
+          { id: 'build-log', title: 'Building with less is still building', reading: '4 min', tags: ['Hardware', 'Process'], date: '02 SEP 2026' },
+          { id: 'offline-first', title: 'When the internet fails, the product should keep going', reading: '3 min', tags: ['Product', 'Offline-first'], date: '28 AUG 2026' }
+        ]
+      }
     },
     contact: {
       heading: 'Talk to me.', subtext: 'I prefer email. I reply to everything worth a reply.',
@@ -128,7 +174,11 @@ const t = {
         { label: 'Email', icon: 'email', sub: 'main channel for collaborations', handle: 'lioexp0@gmail.com', href: 'mailto:lioexp0@gmail.com', testid: 'link-contact-email' }
       ],
       discord: { name: 'Discord', desc: 'community, debugging, live builds', handle: 'join the server', href: 'https://discord.gg/wkmuHa3P8q' },
-      footer: { tagline: 'build. break. document.', colossians: 'Col 3:23', verse: 'Whatever you do, work at it with all your heart, as working for the Lord, not for human masters' }
+      footer: {
+        tagline: 'build. break. document.',
+        colossians: 'Col 3:23',
+        verse: 'Whatever you do, work at it with all your heart, as working for the Lord, not for human masters'
+      }
     }
   }
 };
@@ -528,6 +578,21 @@ function renderSetupSection(data) {
   stopYtScroll();
   $('setupHeading').textContent = data.setup.heading;
   $('setupSub').textContent = data.setup.sub;
+  const writing = data.setup.writing;
+  const writingItems = writing.items.map((item) => `
+    <a href="article.html?post=${item.id}" class="writing-item">
+      <div class="writing-copy">
+        <h3 class="writing-title">${item.title}</h3>
+        <div class="writing-meta">
+          <span class="writing-reading">◌ ${item.reading}</span>
+          ${item.tags.map((tag) => `<span class="writing-tag">${tag}</span>`).join('')}
+        </div>
+      </div>
+      <div class="writing-side">
+        <time datetime="${item.date}">${item.date}</time>
+        <span class="writing-arrow" aria-hidden="true">${icons.external}</span>
+      </div>
+    </a>`).join('');
 
   $('setupGrid').innerHTML = `
     <div class="setup-image-wrap" data-open-modal>
@@ -537,7 +602,26 @@ function renderSetupSection(data) {
     <div class="yt-feed" id="ytFeed">
       <div class="yt-feed-track" id="ytFeedTrack"></div>
     </div>
-    <div class="gh-graph" id="ghGraph"></div>`;
+    <div class="gh-graph" id="ghGraph"></div>
+    <!--
+    <section class="setup-writing" aria-labelledby="writingHeading">
+      <div class="writing-heading-reveal reveal">
+        <h2 class="writing-heading" id="writingHeading" data-blur-text>${writing.heading}</h2>
+      </div>
+      <div class="writing-list">
+        ${writingItems}
+      </div>
+      <a class="writing-more" href="writing.html">
+        <span>${writing.moreLabel}</span>
+        <span class="writing-more-arrow" aria-hidden="true">↓</span>
+      </a>
+    </div>
+    -->`;
+
+  requestAnimationFrame(() => {
+    const headingReveal = $('setupGrid').querySelector('.writing-heading-reveal');
+    if (headingReveal && typeof observeReveal === 'function') observeReveal(headingReveal);
+  });
 }
 
 function startYtScroll() {
@@ -548,6 +632,7 @@ function startYtScroll() {
   const feed = track.parentElement;
   let x = 0;
   let touchMoved = false;
+  ytPaused = false;
 
   feed.addEventListener('mouseenter', () => ytPaused = true);
   feed.addEventListener('mouseleave', () => ytPaused = false);
@@ -567,10 +652,12 @@ function startYtScroll() {
     if (!track.isConnected) { ytAnimId = null; return; }
     if (!track.dataset.anim) return;
     if (!ytPaused) {
-      x -= YT_SCROLL_SPEED;
       const half = track.scrollWidth / 2;
-      if (Math.abs(x) >= half) x = 0;
-      track.style.transform = `translateX(${x}px)`;
+      if (half > 0 && track.scrollWidth > feed.clientWidth) {
+        x -= YT_SCROLL_SPEED;
+        if (Math.abs(x) >= half) x = 0;
+        track.style.transform = `translateX(${x}px)`;
+      }
     }
     ytAnimId = requestAnimationFrame(step);
   };
@@ -588,19 +675,23 @@ async function fetchYtFeed() {
   stopYtScroll();
   delete track.dataset.anim;
   track.style.transform = '';
+  track.innerHTML = '<span class="yt-feed-status">a carregar vídeos...</span>';
 
   const fallback = () => {
-    track.innerHTML = `<a href="https://youtube.com/@lioexp" target="_blank" rel="noopener noreferrer" class="yt-feed-item" aria-label="YouTube LioExp">${icons.yt} <span class="yt-feed-title">YouTube</span></a>`;
+    track.innerHTML = `<a href="https://youtube.com/@lioexp" target="_blank" rel="noopener noreferrer" class="yt-feed-item" aria-label="YouTube LioExp">${icons.yt} <span class="yt-feed-title">YouTube LioExp</span></a>`;
     startYtScroll();
   };
 
   try {
-    const data = await fetchJson('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.youtube.com%2Ffeeds%2Fvideos.xml%3Fchannel_id%3DUCZIZwWoayEW1CXxqE0TwyLQ', 10 * 60 * 1000);
+    const data = await fetchJson('/api/youtube-feed', 10 * 60 * 1000);
     if (data.status !== 'ok' || !data.items?.length) { fallback(); return; }
-    const items = data.items.slice(0, YT_FEED_LIMIT);
+    const items = data.items
+      .filter((item) => item.link && item.title)
+      .slice(0, YT_FEED_LIMIT);
+    if (!items.length) { fallback(); return; }
     const html = items.map(v => `
       <a href="${escapeHtml(v.link)}" target="_blank" rel="noopener noreferrer" class="yt-feed-item">
-        <img src="${escapeHtml(v.thumbnail)}" alt="${escapeHtml(v.title)}" class="yt-feed-thumb" decoding="async" />
+        <img src="${escapeHtml(v.thumbnail || '')}" alt="${escapeHtml(v.title)}" class="yt-feed-thumb" decoding="async" onerror="this.hidden=true" />
         <span class="yt-feed-title">${escapeHtml(v.title)}</span>
       </a>
     `).join('');
@@ -653,6 +744,11 @@ const GH_LEVELS = ['NONE', 'FIRST_QUARTILE', 'SECOND_QUARTILE', 'THIRD_QUARTILE'
 async function fetchGhGraph() {
   const container = $('ghGraph');
   if (!container) return;
+  if (container._ghRevealObserver) {
+    container._ghRevealObserver.disconnect();
+    container._ghRevealObserver = null;
+  }
+  container.classList.remove('gh-graph-ready');
 
   const TO = new Date();
   const FROM = new Date(TO);
@@ -694,23 +790,42 @@ async function fetchGhGraph() {
     // Body: weeks only
     let bodyHtml = '<div class="gh-body">';
     bodyHtml += '<div class="gh-weeks">';
+    let cellIndex = 0;
     for (const week of weeks) {
       bodyHtml += '<div class="gh-week">';
       for (const day of week) {
         if (!day) {
-          bodyHtml += '<span class="gh-cell" style="background:transparent"></span>';
+          bodyHtml += `<span class="gh-cell" style="--gh-cell-index:${cellIndex++};background:transparent"></span>`;
           continue;
         }
         let idx = typeof day.level === 'number' ? day.level : GH_LEVELS.indexOf(day.contributionLevel);
         if (idx < 0 || idx > 4) idx = 0;
         const color = GH_PALETTE[idx];
-        bodyHtml += `<span class="gh-cell" style="background:${color}" title="${day.date}: ${day.count} commit${day.count !== 1 ? 's' : ''}"></span>`;
+        bodyHtml += `<span class="gh-cell" style="--gh-cell-index:${cellIndex++};background:${color}" title="${day.date}: ${day.count} commit${day.count !== 1 ? 's' : ''}"></span>`;
       }
       bodyHtml += '</div>';
     }
     bodyHtml += '</div></div>';
 
     container.innerHTML = bodyHtml;
+    const playGraph = () => {
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        container.classList.add('gh-graph-ready');
+      }));
+    };
+
+    if (!('IntersectionObserver' in window)) {
+      playGraph();
+    } else {
+      const observer = new IntersectionObserver((entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        observer.disconnect();
+        container._ghRevealObserver = null;
+        playGraph();
+      }, { threshold: 0.2 });
+      container._ghRevealObserver = observer;
+      observer.observe(container);
+    }
   } catch {
     container.innerHTML = '';
   }
@@ -723,8 +838,8 @@ function renderContactSection(data) {
   $('briefingBtnText').textContent = briefingOpen ? data.contact.briefingToggleOpen : data.contact.briefingToggleClosed;
   const arrow = document.querySelector('.arrow-toggle');
   if (arrow) arrow.classList.toggle('open', briefingOpen);
-  $('whereLabel').textContent = data.contact.whereLabel;
 
+  $('whereLabel').textContent = data.contact.whereLabel;
   renderYtCards(data);
   renderSocialList(data);
   renderDiscordCard(data);
@@ -740,7 +855,10 @@ function renderYtCards(data) {
     <a href="https://youtube.com/@lioexp" target="_blank" rel="noopener noreferrer" class="yt-card" data-testid="link-contact-yt-pt" aria-label="YouTube PT" title="YouTube PT">
       <div class="yt-icon">${icons.yt}</div>
       <div class="yt-info">
-        <div class="yt-title"><span class="yt-lang yt-subs" id="ytSubsPt">${subsText}</span></div>
+        <div class="yt-title">
+          <span class="yt-media-name">YouTube PT</span>
+          <span class="yt-subs" id="ytSubsPt">${subsText}</span>
+        </div>
         <p class="yt-desc">${data.contact.ytPTdesc}</p>
         ${icons.external.replace('w-3.5 h-3.5', 'contact-external-icon')}
       </div>
@@ -748,7 +866,7 @@ function renderYtCards(data) {
     <a href="https://youtube.com/@lioexp-en" target="_blank" rel="noopener noreferrer" class="yt-card" data-testid="link-contact-yt-en" aria-label="YouTube EN" title="YouTube EN">
       <div class="yt-icon">${icons.yt}</div>
       <div class="yt-info">
-        <div class="yt-title"><span class="yt-lang">EN</span></div>
+        <div class="yt-title"><span class="yt-media-name">YouTube EN</span></div>
         <p class="yt-desc">${data.contact.ytENdesc}</p>
         ${icons.external.replace('w-3.5 h-3.5', 'contact-external-icon')}
       </div>
@@ -761,7 +879,10 @@ function renderSocialList(data) {
   $('socialList').innerHTML = data.contact.socials.map(s =>
     `<a href="${s.href}" target="${s.href.startsWith('mailto') ? '' : '_blank'}" rel="noopener noreferrer" class="social-item" data-testid="${s.testid}" aria-label="${s.label}" title="${s.label}">
       <span class="social-icon" aria-hidden="true">${icons[s.icon]}</span>
-      <div class="social-copy"><p class="social-label">${s.label}</p><p class="social-sub">${s.sub}</p></div>
+      <div class="social-copy">
+        <p class="social-label">${s.label}</p>
+        <div class="social-sub"><span>${s.sub}</span><span class="social-handle">${s.handle}</span></div>
+      </div>
       ${icons.external.replace('w-3.5 h-3.5', 'contact-external-icon')}
     </a>`
   ).join('');
@@ -773,6 +894,7 @@ function renderDiscordCard(data) {
     <a href="${d.href}" target="_blank" rel="noopener noreferrer" class="yt-card" aria-label="${d.name}" title="${d.name}">
       <div class="yt-icon discord-icon">${icons.discord}</div>
       <div class="yt-info">
+        <div class="yt-title"><span class="yt-media-name">${d.name}</span></div>
         <p class="yt-desc">${d.desc}</p>
         <div class="yt-footer"><span class="yt-handle">${d.handle}</span></div>
         ${icons.external.replace('w-3.5 h-3.5', 'contact-external-icon')}
@@ -1055,6 +1177,7 @@ function initEvents() {
     const verseBtn = e.target.closest('[data-verse]');
     if (verseBtn) { toggleVerse(); return; }
   });
+
 }
 
 // =============================================

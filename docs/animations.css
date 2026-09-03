@@ -279,6 +279,46 @@
   animation-delay: 420ms;
 }
 
+/* === About scroll fill — efeito de letra activa === */
+.about-fill-char {
+  color: var(--text-muted);
+  transition: color 160ms ease;
+}
+
+.about-fill-char.is-filled {
+  color: #ffffff;
+}
+
+/* === GitHub graph — células construídas uma a uma === */
+@keyframes gh-cell-pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.35);
+    filter: blur(2px);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.08);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.gh-cell {
+  opacity: 0;
+  transform: scale(0.35);
+  transform-origin: center;
+  will-change: transform, opacity, filter;
+}
+
+.gh-graph-ready .gh-cell {
+  animation: gh-cell-pop-in 460ms var(--anim-spring) both;
+  animation-delay: calc(var(--gh-cell-index, 0) * 18ms);
+}
+
 /* === About typewriter — braces open on scroll === */
 .about-typewriter {
   position: relative;
