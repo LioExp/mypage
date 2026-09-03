@@ -1055,25 +1055,24 @@ img {
 .waiting-grid {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  opacity: 0.6;
-  transition: opacity 0.5s;
+  gap: 0;
 }
-
-.waiting-grid:hover { opacity: 1; }
 
 .waiting-item {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  background: var(--bg-card);
-  padding: 1.25rem;
-  border-radius: 0.5rem;
-  border: 1px solid var(--border);
+  gap: 0;
+  padding: 1rem 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 0;
   transition: border-color 0.2s;
 }
 
-.waiting-item:hover { border-color: #444; }
+.waiting-item:last-child { border-bottom: 0; }
+
+.waiting-item:hover { border-color: rgba(124, 58, 237, 0.45); }
 
 @media (min-width: 640px) {
   .waiting-item { flex-direction: row; justify-content: space-between; align-items: center; }
@@ -1229,25 +1228,33 @@ img {
 
 /* Roadmap */
 .roadmap-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
-  column-gap: 1.5rem;
-  row-gap: 0.25rem;
+  gap: 1rem;
   margin-top: 1.5rem;
-  padding: 0 1.25rem;
-  min-height: 3.5rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 0.75rem;
+  padding: 1rem 0;
+  font-family: var(--font-mono);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  transition: border-color 0.2s;
+}
+
+.roadmap-grid:hover {
+  border-color: rgba(124, 58, 237, 0.45);
 }
 
 .roadmap-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.75rem;
   background: none;
   border: none;
   border-radius: 0;
   padding: 0;
+  text-decoration: none;
   font-family: var(--font-mono);
 }
 
@@ -1258,11 +1265,11 @@ img {
   column-gap: 0.75rem;
   max-width: none;
   text-decoration: none;
-  transition: transform 0.2s ease;
+  transition: color 0.2s;
 }
 
 .roadmap-link:hover {
-  transform: translateY(-2px);
+  color: var(--accent);
 }
 
 .roadmap-link .roadmap-year { color: var(--accent); }
@@ -1304,7 +1311,6 @@ img {
 .contact-intro {
   padding-bottom: 2rem;
   margin-bottom: 2rem;
-  border-bottom: 1px solid rgba(124, 58, 237, 0.2);
 }
 
 .contact-kicker {
@@ -2964,7 +2970,6 @@ button:focus-visible {
 }
 
 .project-card,
-.waiting-item,
 .yt-card,
 .briefing-inner {
   background: var(--bg-card);
@@ -3043,23 +3048,8 @@ button:focus-visible {
   color: var(--text);
 }
 
-.waiting-grid {
-  opacity: 0.82;
-}
-
-.waiting-grid:hover {
-  opacity: 1;
-}
-
-.waiting-item {
-  border-radius: 1rem;
-  padding: 1rem 1.1rem;
-}
-
 .waiting-name {
-  color: var(--text);
-  font-family: var(--font-sans);
-  font-weight: 600;
+  font-family: var(--font-mono);
 }
 
 .waiting-desc {
@@ -3114,12 +3104,6 @@ button:focus-visible {
   font-family: var(--font-sans);
 }
 
-.roadmap-grid {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 1rem;
-}
-
 .setup-grid {
   margin-top: 2.5rem;
 }
@@ -3137,10 +3121,6 @@ button:focus-visible {
   color: var(--text);
   font-family: var(--font-sans);
   letter-spacing: 0.04em;
-}
-
-.contact-intro {
-  border-bottom-color: var(--border);
 }
 
 .contact-heading {
