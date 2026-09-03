@@ -28,7 +28,7 @@
       entry.target.classList.add('visible');
       io.unobserve(entry.target);
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
 
   const observeReveal = (el) => {
     if (!el || el.classList.contains('visible')) return;
