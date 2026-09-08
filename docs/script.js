@@ -25,7 +25,7 @@ const t = {
       heading: 'Onde estou no mapa.', subheading: 'o fruto da minha jornada.',
       categories: [
         { id: 'systems', label: 'SYSTEMS & OS', skills: ['Rust', 'Bash', 'Arch Linux', 'Debian'] },
-        { id: 'backend', label: 'BACKEND & CLOUD', skills: ['Python', 'FastAPI', 'Containers', 'Git', 'WASM'] },
+        { id: 'backend', label: 'BACKEND & CLOUD', skills: ['Python', 'FastAPI', 'Containers', 'Git', 'WASM', 'SQLite', 'MySQL'] },
         { id: 'security', label: 'SECURITY', skills: ['OWASP Top 10', 'Burp Suite'] }
       ],
       roadmapLabel: 'ROADMAP', roadmapLinkLabel: 'ver o roadmap completo',
@@ -111,7 +111,7 @@ const t = {
       heading: 'Where I am on the map.', subheading: 'the fruit of my journey.',
       categories: [
         { id: 'systems', label: 'SYSTEMS & OS', skills: ['Rust', 'Bash', 'Arch Linux', 'Debian'] },
-        { id: 'backend', label: 'BACKEND & CLOUD', skills: ['Python', 'FastAPI', 'Containers', 'Git', 'WASM'] },
+        { id: 'backend', label: 'BACKEND & CLOUD', skills: ['Python', 'FastAPI', 'Containers', 'Git', 'WASM', 'SQLite', 'MySQL'] },
         { id: 'security', label: 'SECURITY', skills: ['OWASP Top 10', 'Burp Suite'] }
       ],
       roadmapLabel: 'ROADMAP', roadmapLinkLabel: 'view the full roadmap',
