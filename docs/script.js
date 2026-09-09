@@ -286,7 +286,7 @@ const PROJECTS = [
     id: 'MyRoadMapp', key: 'myroadmapp', color: '#10b981',
     img: 'assets/myroadmapp-preview.png', imgBg: '#0a0a0a',
     tags: ['Web', 'AI', 'Productivity'],
-    github: null, landing: 'https://myroadmapp.vercel.app',
+    github: 'https://github.com/LioExp/myroadmap', landing: 'https://myroadmapp.vercel.app',
   }
 ];
 
