@@ -339,6 +339,12 @@ function getDetailSections(key, pr) {
       { label: pr.how, text: pr.howText },
       { label: pr.diff, list: pr.diffItems },
       { label: pr.vision, text: pr.visionText }
+    ],
+    myroadmapp: [
+      { label: pr.problem, text: pr.problemText },
+      { label: pr.how, text: pr.howText },
+      { label: pr.features, list: pr.featureItems },
+      { label: pr.vision, text: pr.visionText }
     ]
   };
   return map[key];
