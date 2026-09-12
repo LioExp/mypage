@@ -3020,9 +3020,7 @@ button:focus-visible {
 }
 
 .about-footer {
-  border-top-color: var(--border);
-  gap: 2rem;
-  padding-top: 2rem;
+  display: none !important;
 }
 
 .tag {
