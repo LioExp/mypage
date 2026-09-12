@@ -8,6 +8,23 @@ const ABOUT_ICONS = {
   palette: `<svg class="about-inline-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 3a9 9 0 0 0 0 18h1.2a1.8 1.8 0 0 0 1.1-3.2 1.8 1.8 0 0 1 1.1-3.2H17a4 4 0 0 0 4-4.1A8.8 8.8 0 0 0 12 3Z"/><circle cx="7.5" cy="10" r=".7" fill="currentColor" stroke="none"/><circle cx="10" cy="7" r=".7" fill="currentColor" stroke="none"/><circle cx="14" cy="7" r=".7" fill="currentColor" stroke="none"/></svg>`,
 };
 
+const ABOUT_NARRATIVE = {
+  pt: [
+    ['01', 'QUEM SOU', 'Eu construo sistemas.', 'Sou um builder e programador interessado em sistemas, segurança e inteligência artificial.\n\nGosto de entender como as coisas funcionam por baixo da abstração, construir minhas próprias soluções e descobrir até onde elas conseguem chegar.\n\nMeu objetivo não é apenas fazer algo funcionar. Quero entender por que funciona, quanto custa para funcionar e como pode ser quebrado.'],
+    ['02', 'O QUE FAÇO', 'Aprendo construindo.', 'Em vez de separar aprendizado e prática, uso projetos como laboratório.\n\nPython, Rust, Linux, networking, segurança e IA aparecem como ferramentas diferentes para resolver problemas diferentes.\n\nAlguns projetos começam como uma pergunta. Outros começam como um problema que quero resolver. O resultado acaba sendo código, experimentos, ferramentas e, principalmente, coisas que posso testar no mundo real.'],
+    ['03', 'COMO PENSO', 'Create → Break → Improve', 'Construir é só o começo.\n\nDepois de criar alguma coisa, quero saber onde ela quebra, quanto ela consome, quais são suas limitações e o que acontece quando alguém tenta usá-la de uma maneira que eu não esperava.\n\nÉ daí que vem minha forma de trabalhar:\n\nCreate. Construir algo real.\n\nBreak. Testar, investigar e encontrar seus limites.\n\nImprove. Corrigir, otimizar e tornar o sistema melhor.\n\nSegurança, performance e eficiência não deveriam aparecer apenas no final. Devem fazer parte da construção desde o início.'],
+    ['04', 'CONTEXTO', 'Construir com restrições também ensina.', 'Construo em Luanda, com hardware modesto e uma conexão que nem sempre colabora.\n\nIsso me ensinou a prestar atenção em coisas que é fácil ignorar quando os recursos são abundantes:\n\nRAM. CPU. armazenamento. latência. dependências. consumo.\n\nQuando os recursos são limitados, cada decisão importa.\n\nEm vez de enxergar isso apenas como uma limitação, comecei a enxergar como parte do problema de engenharia.'],
+    ['05', 'PARA ONDE ESTOU INDO', 'Ainda estou construindo o caminho.', 'Minha direção é clara: entender sistemas cada vez mais profundamente e levar esse conhecimento para a interseção entre segurança e inteligência artificial.\n\nO caminho que estou construindo passa por:\n\nSystems → Linux → Networking → Security → AI Security\n\nNão vejo isso como uma lista de tecnologias para aprender. Vejo como camadas que preciso entender para chegar onde quero.\n\nAinda há muito para construir, quebrar e aprender.']
+  ],
+  en: [
+    ['01', 'WHO I AM', 'I build systems.', 'I am a builder and programmer interested in systems, security and artificial intelligence.\n\nI like understanding how things work beneath the abstraction, building my own solutions and finding out how far they can go.\n\nMy goal is not simply to make something work. I want to understand why it works, what it costs to work and how it can be broken.'],
+    ['02', 'WHAT I DO', 'I learn by building.', 'Instead of separating learning from practice, I use projects as a laboratory.\n\nPython, Rust, Linux, networking, security and AI appear as different tools for solving different problems.\n\nSome projects start as a question. Others start as a problem I want to solve. The result becomes code, experiments, tools and, above all, things I can test in the real world.'],
+    ['03', 'HOW I THINK', 'Create → Break → Improve', 'Building is only the beginning.\n\nAfter creating something, I want to know where it breaks, how much it consumes, what its limitations are and what happens when someone uses it in a way I did not expect.\n\nThat is where my way of working comes from:\n\nCreate. Build something real.\n\nBreak. Test, investigate and find its limits.\n\nImprove. Fix, optimize and make the system better.\n\nSecurity, performance and efficiency should not appear only at the end. They should be part of building from the start.'],
+    ['04', 'CONTEXT', 'Building with constraints teaches too.', 'I build in Luanda, with modest hardware and a connection that does not always cooperate.\n\nIt taught me to notice things that are easy to ignore when resources are abundant:\n\nRAM. CPU. storage. latency. dependencies. consumption.\n\nWhen resources are limited, every decision matters.\n\nInstead of seeing that only as a limitation, I started seeing it as part of the engineering problem.'],
+    ['05', 'WHERE I AM GOING', 'I am still building the path.', 'My direction is clear: understand systems more deeply and take that knowledge to the intersection of security and artificial intelligence.\n\nThe path I am building moves through:\n\nSystems → Linux → Networking → Security → AI Security\n\nI do not see this as a list of technologies to learn. I see layers I need to understand to get where I want to go.\n\nThere is still much to build, break and learn.']
+  ]
+};
+
 const t = {
   pt: {
     nav: ['inicio', 'sobre', 'projectos', 'skills', 'setup', 'contacto'],
@@ -387,7 +404,7 @@ function renderHero(data) {
   $('ctaText').textContent = data.hero.cta;
 }
 
-function renderAbout(data) {
+  function renderAbout(data) {
   const dt = $('aboutDisplayTitle');
   const img = dt.querySelector('img');
   dt.innerHTML = `<span class="about-ascii-word about-ascii-about">${ABOUT_ASCII}</span><span class="about-ascii-me-line"><span class="about-ascii-word about-ascii-me">${ME_ASCII}</span></span>`;
@@ -397,7 +414,18 @@ function renderAbout(data) {
   if (window.refreshAboutTypewriter) window.refreshAboutTypewriter(aboutText);
   $('aboutFullText').innerHTML = data.about.fullText;
   $('openTags').innerHTML = data.about.openTags.map(t => `<span class="tag">${t}</span>`).join('');
-}
+  const narrative = $('aboutNarrative');
+  if (narrative) {
+    narrative.innerHTML = ABOUT_NARRATIVE[lang].map(([index, label, title, body]) => `
+      <article class="about-story about-fade-content reveal">
+        <div class="about-story-meta"><span>${index}</span><span>${label}</span></div>
+        <h3>${title}</h3>
+        <div class="about-story-body">${body.split('\\n\\n').map(paragraph => `<p>${paragraph.replaceAll('\\n', '<br>')}</p>`).join('')}</div>
+      </article>`).join('') + `
+      <div class="about-ending about-fade-content reveal"><p>${lang === 'pt' ? 'Tudo isso parece teoria até você olhar o que estou construindo.' : 'All of this sounds like theory until you look at what I am building.'}</p><a href="#projectos">${lang === 'pt' ? 'ver projectos' : 'view projects'} <span aria-hidden="true">↗</span></a></div>`;
+    narrative.querySelectorAll('.reveal').forEach((element) => element.classList.add('visible'));
+  }
+  }
 
 // ---- Projects ----
 function renderProjectsSection(data) {
