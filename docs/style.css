@@ -570,8 +570,8 @@ img {
 .about-inline-svg,
 .about-inline-img {
   display: block;
-  width: 1em;
-  height: 1em;
+  width: 1.3em;
+  height: 1.3em;
 }
 
 .about-inline-link {
