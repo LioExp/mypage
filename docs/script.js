@@ -431,7 +431,7 @@ function renderHero(data) {
       <article class="about-story about-fade-content reveal">
         <div class="about-story-meta"><span>${index}</span><span>${label}</span></div>
         <h3>${title}</h3>
-        <div class="about-story-body">${body.split('\\n\\n').map(paragraph => `<p>${paragraph.replaceAll('\\n', '<br>')}</p>`).join('')}</div>
+        <div class="about-story-body">${body.split('\n\n').map(paragraph => `<p>${paragraph.replaceAll('\n', '<br>')}</p>`).join('')}</div>
   </article>`).join('');
     // As camadas entram pelo observer global quando o visitante realmente chega a elas; não revelar tudo de uma vez.
   }
