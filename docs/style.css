@@ -517,8 +517,8 @@ img {
 .about-intro .about-typewriter {
   position: relative;
   z-index: 1;
-  margin-top: 8rem;
-}
+  margin-top: 5rem;
+  }
 
 .about-fade-content,
 .about-footer .about-copy,
