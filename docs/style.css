@@ -509,8 +509,16 @@ img {
 .about-display-title {
   position: sticky;
   top: 4rem;
-  z-index: 2;
+  z-index: 3;
+  padding-bottom: 1.5rem;
+  background: var(--bg);
   }
+
+.about-intro .about-typewriter {
+  position: relative;
+  z-index: 1;
+  margin-top: 8rem;
+}
 
 .about-fade-content,
 .about-footer .about-copy,
