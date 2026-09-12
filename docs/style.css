@@ -500,6 +500,10 @@ img {
   top: 4rem;
   z-index: 3;
   padding-bottom: 1.5rem;
+  transform: scale(var(--about-title-scale, 1));
+  transform-origin: center top;
+  transition: transform 180ms ease-out;
+  will-change: transform;
 }
 
 .about-intro .about-typewriter {
