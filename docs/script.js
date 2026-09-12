@@ -4,7 +4,7 @@
 const ABOUT_ICONS = {
   pin: `<img class="about-inline-img" src="assets/icons/locationn.svg" alt="" focusable="false" />`,
   monitor: `<img class="about-inline-img" src="assets/icons/ram.svg" alt="" focusable="false" />`,
-  bug: `<svg class="about-inline-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M8 9c0-2.2 1.8-4 4-4s4 1.8 4 4v5c0 2.2-1.8 4-4 4s-4-1.8-4-4V9Z"></path><path d="M5 10H3m18 0h-2M5 14H3m18 0h-2M8 6 6.5 4.5M16 6l1.5-1.5"></path><path d="M10 12h.01M14 12h.01"></path></svg>`,
+  bug: `<img class="about-inline-img" src="assets/icons/experiment.svg" alt="" focusable="false" />`,
   palette: `<svg class="about-inline-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 3a9 9 0 0 0 0 18h1.2a1.8 1.8 0 0 0 1.1-3.2 1.8 1.8 0 0 1 1.1-3.2H17a4 4 0 0 0 4-4.1A8.8 8.8 0 0 0 12 3Z"/><circle cx="7.5" cy="10" r=".7" fill="currentColor" stroke="none"/><circle cx="10" cy="7" r=".7" fill="currentColor" stroke="none"/><circle cx="14" cy="7" r=".7" fill="currentColor" stroke="none"/></svg>`,
 };
 
