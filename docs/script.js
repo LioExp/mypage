@@ -1153,7 +1153,7 @@ function initAboutScrollExpansion() {
   const sectionTop = section.getBoundingClientRect().top;
   const stickyTop = parseFloat(getComputedStyle(frame).top) || 0;
   const title = frame.querySelector('.about-display-title');
-  const fadeContent = frame.querySelectorAll('.about-fade-content, .about-footer');
+  const fadeContent = frame.querySelectorAll('.about-fade-content, .about-copy, .open-to');
   if (!baseHeight) {
   baseHeight = frame.offsetHeight;
   frame.style.setProperty('--about-base-height', `${baseHeight}px`);
