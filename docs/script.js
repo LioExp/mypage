@@ -27,10 +27,10 @@ const ABOUT_NARRATIVE = {
 
   ABOUT_NARRATIVE.pt = [
     ['01', 'COMO CONSTRUO', 'Eu construo sistemas.', 'Não só para fazer funcionar. Quero entender por que funciona, quanto custa e como pode ser quebrado. Sou builder e programador, e é isso que me move: descer abaixo da abstração, construir as minhas próprias soluções e descobrir até onde aguentam.'],
-    ['02', 'COMO APRENDO', 'É assim que aprendo: construindo.', 'Python, Rust, Linux, networking, segurança e IA não são uma lista de tecnologias — são ferramentas diferentes para problemas diferentes. Alguns projetos começam como pergunta, outros como problema real. O que sai disso é código, experimento, ferramenta, e principalmente coisas que posso testar no mundo real. FABER · MyFi · KiandaBot · MyRoadmapp'],
-    ['03', 'COMO TRABALHO', 'Mas construir é só o começo.', 'Depois quero saber onde quebra, quanto consome, quais os limites, o que acontece quando alguém usa de uma forma que eu não esperava. Daí vem a minha forma de trabalhar: Create. Break. Protect. Não como etapas separadas, mas como um ciclo. Segurança, performance e eficiência não entram no fim — fazem parte da construção desde o início.'],
-    ['04', 'O CONTEXTO', 'Construo em Luanda.', 'Com hardware modesto e uma conexão que nem sempre colabora. Isso ensinou-me a prestar atenção ao que é fácil ignorar quando há recursos de sobra: RAM, CPU, armazenamento, latência, dependências, consumo. Quando os recursos são limitados, cada decisão importa. Deixei de ver isso como limitação e passei a ver como parte do problema de engenharia.'],
-    ['05', 'A DIREÇÃO', 'É esse problema que continuo a perseguir.', 'Ainda estou construindo o caminho, e a direção é clara: entender sistemas cada vez mais profundamente e levar isso para a interseção entre segurança e inteligência artificial. Systems → Linux → Networking → Security → AI Security. Não é uma lista para aprender. São camadas que preciso de entender para chegar onde quero.\n\nAinda há muito para construir, quebrar e aprender.\n\n→ ver roadmap']
+    ['02', 'COMO APRENDO', 'É assim que aprendo: construindo.', 'Python, Rust, Linux, networking, segurança e IA não são uma lista de tecnologias — são ferramentas diferentes para problemas diferentes. Alguns projetos começam como uma pergunta, outros como um problema real. O que sai disso é código, experimento, ferramenta e, principalmente, coisas que posso testar no mundo real.\n\nFABER · MyFi · KiandaBot · MyRoadmapp'],
+    ['03', 'COMO TRABALHO', 'Mas construir é só o começo.', 'Depois quero saber onde quebra, quanto consome, quais são os limites, o que acontece quando alguém usa de uma forma que eu não esperava. Daí vem a minha forma de trabalhar: Create. Break. Protect.\n\nNão como etapas separadas, mas como um ciclo.\n\nSegurança, performance e eficiência não entram no fim — fazem parte da construção desde o início.'],
+    ['04', 'O CONTEXTO', 'Construo em Luanda.', 'Com hardware modesto e uma conexão que nem sempre colabora. Isso ensinou-me a prestar atenção ao que é fácil ignorar quando há recursos de sobra: RAM, CPU, armazenamento, latência, dependências, consumo.\n\nQuando os recursos são limitados, cada decisão importa. Deixei de ver isso apenas como limitação e passei a ver como parte do problema de engenharia.'],
+    ['05', 'A DIREÇÃO', 'É esse problema que continuo a perseguir.', 'Ainda estou construindo o caminho, e a direção é clara: entender sistemas cada vez mais profundamente e levar isso para a interseção entre segurança e inteligência artificial.\n\nSystems → Linux → Networking → Security → AI Security.\n\nNão é uma lista para aprender. São camadas que preciso de entender para chegar onde quero.\n\nAinda há muito para construir, quebrar e aprender.\n\n→ ver roadmap']
   ];
 
   const t = {
@@ -421,8 +421,10 @@ function renderHero(data) {
   const aboutText = $('cbpText');
   aboutText.dataset.typewriterText = data.about.cbpText;
   if (window.refreshAboutTypewriter) window.refreshAboutTypewriter(aboutText);
-  $('aboutFullText').innerHTML = data.about.fullText;
-  $('openTags').innerHTML = data.about.openTags.map(t => `<span class="tag">${t}</span>`).join('');
+  const aboutFullText = $('aboutFullText');
+  if (aboutFullText) aboutFullText.innerHTML = data.about.fullText;
+  const openTags = $('openTags');
+  if (openTags) openTags.innerHTML = data.about.openTags.map(t => `<span class="tag">${t}</span>`).join('');
   const narrative = $('aboutNarrative');
   if (narrative) {
     narrative.innerHTML = ABOUT_NARRATIVE[lang].map(([index, label, title, body]) => `
@@ -430,8 +432,7 @@ function renderHero(data) {
         <div class="about-story-meta"><span>${index}</span><span>${label}</span></div>
         <h3>${title}</h3>
         <div class="about-story-body">${body.split('\\n\\n').map(paragraph => `<p>${paragraph.replaceAll('\\n', '<br>')}</p>`).join('')}</div>
-      </article>`).join('') + `
-      <div class="about-ending about-fade-content reveal"><p>${lang === 'pt' ? 'Tudo isso parece teoria até você olhar o que estou construindo.' : 'All of this sounds like theory until you look at what I am building.'}</p><a href="#projectos">${lang === 'pt' ? 'ver projectos' : 'view projects'} <span aria-hidden="true">↗</span></a></div>`;
+  </article>`).join('');
     // As camadas entram pelo observer global quando o visitante realmente chega a elas; não revelar tudo de uma vez.
   }
   }
