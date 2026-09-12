@@ -1196,8 +1196,8 @@ function initAboutScrollExpansion() {
   title?.style.setProperty('--about-title-scale', titleScale.toFixed(3));
   const titleBottom = title ? title.getBoundingClientRect().bottom : stickyTop;
   fadeContent.forEach((content) => {
-  const distanceFromTitle = content.getBoundingClientRect().bottom - titleBottom;
-  const opacity = Math.max(0, Math.min(1, (distanceFromTitle - 20) / 110));
+  const distanceFromTitle = content.getBoundingClientRect().top - titleBottom;
+  const opacity = Math.max(0, Math.min(1, distanceFromTitle / 100));
   const blur = (1 - opacity) * 5;
   content.style.setProperty('--about-content-opacity', opacity.toFixed(3));
   content.style.setProperty('--about-content-blur', `${blur.toFixed(2)}px`);
