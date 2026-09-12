@@ -1140,6 +1140,28 @@ function initNavObserver() {
   document.querySelectorAll('section').forEach(s => navObserver.observe(s));
 }
 
+function initAboutScrollExpansion() {
+  const section = document.querySelector('.about');
+  const frame = section?.querySelector('.about-frame');
+  if (!section || !frame) return;
+
+  let frameUpdate = null;
+  const update = () => {
+    frameUpdate = null;
+    const sectionTop = section.getBoundingClientRect().top;
+    const progress = Math.max(0, Math.min(1, (window.innerHeight - sectionTop - 80) / 560));
+    frame.style.setProperty('--about-progress', progress.toFixed(3));
+  };
+
+  const requestUpdate = () => {
+    if (frameUpdate === null) frameUpdate = requestAnimationFrame(update);
+  };
+
+  update();
+  window.addEventListener('scroll', requestUpdate, { passive: true });
+  window.addEventListener('resize', requestUpdate);
+}
+
 function initRevealObserver() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -1212,6 +1234,7 @@ document.addEventListener('DOMContentLoaded', () => {
   switchPersona(persona);
   initNavObserver();
   initRevealObserver();
+  initAboutScrollExpansion();
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js');
   }

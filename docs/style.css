@@ -491,8 +491,12 @@ img {
 }
 
 .about-frame {
+  --about-progress: 0;
   max-width: 56rem;
+  max-height: calc(34rem + (var(--about-progress) * 32rem));
   margin: 0 auto;
+  overflow: hidden;
+  transition: max-height 0.12s linear;
 }
 
 .about-meta {
