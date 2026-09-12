@@ -1150,16 +1150,19 @@ function initAboutScrollExpansion() {
   let expansionStart = 0;
   const update = () => {
     frameUpdate = null;
-    const sectionTop = section.getBoundingClientRect().top;
-    const stickyTop = parseFloat(getComputedStyle(frame).top) || 0;
-    if (!baseHeight) {
-      baseHeight = frame.offsetHeight;
-      frame.style.setProperty('--about-base-height', `${baseHeight}px`);
-      expansionStart = window.scrollY + sectionTop + baseHeight - window.innerHeight;
-      section.style.setProperty('--about-scroll-space', `${baseHeight + window.innerHeight}px`);
-    }
-    const maxExtraHeight = window.innerHeight;
-    const extraHeight = Math.min(maxExtraHeight, Math.max(0, window.scrollY - expansionStart));
+  const sectionTop = section.getBoundingClientRect().top;
+  const stickyTop = parseFloat(getComputedStyle(frame).top) || 0;
+  const title = frame.querySelector('.about-display-title');
+  if (!baseHeight) {
+  baseHeight = frame.offsetHeight;
+  frame.style.setProperty('--about-base-height', `${baseHeight}px`);
+  expansionStart = title
+    ? window.scrollY + title.getBoundingClientRect().top - stickyTop
+    : window.scrollY + sectionTop - stickyTop;
+  section.style.setProperty('--about-scroll-space', `${baseHeight + window.innerHeight}px`);
+  }
+  const maxExtraHeight = window.innerHeight;
+  const extraHeight = Math.min(maxExtraHeight, Math.max(0, window.scrollY - expansionStart));
     frame.style.setProperty('--about-extra', `${extraHeight}px`);
   };
 

@@ -491,14 +491,35 @@ img {
   overflow: visible;
 }
 
-.about-frame {
+> .about-frame {
   --about-progress: 0;
-  position: sticky;
-  top: 4rem;
+  position: relative;
   max-width: 56rem;
+  min-height: var(--about-base-height, auto);
   height: calc(var(--about-base-height, auto) + var(--about-extra, 0px));
   margin: 0 auto;
-  overflow: hidden;
+  overflow: visible;
+  transition: height 0.12s linear;
+}
+
+.about-intro {
+  display: contents;
+}
+
+.about-display-title {
+  position: sticky;
+  top: 4rem;
+  z-index: 2;
+}
+
+.about-frame {
+  --about-progress: 0;
+  position: relative;
+  max-width: 56rem;
+  min-height: var(--about-base-height, auto);
+  height: calc(var(--about-base-height, auto) + var(--about-extra, 0px));
+  margin: 0 auto;
+  overflow: visible;
   transition: height 0.12s linear;
 }
 
