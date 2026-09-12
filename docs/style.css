@@ -487,16 +487,20 @@ img {
 /* === About === */
 .about {
   position: relative;
+  min-height: 150vh;
   overflow: visible;
 }
 
 .about-frame {
   --about-progress: 0;
+  position: sticky;
+  top: 4rem;
   max-width: 56rem;
-  max-height: calc(34rem + (var(--about-progress) * 32rem));
+  height: calc(34rem + (var(--about-progress) * 32rem));
+  min-height: 34rem;
   margin: 0 auto;
   overflow: hidden;
-  transition: max-height 0.12s linear;
+  transition: height 0.12s linear;
 }
 
 .about-meta {

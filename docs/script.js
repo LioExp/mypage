@@ -1149,7 +1149,8 @@ function initAboutScrollExpansion() {
   const update = () => {
     frameUpdate = null;
     const sectionTop = section.getBoundingClientRect().top;
-    const progress = Math.max(0, Math.min(1, (window.innerHeight - sectionTop - 80) / 560));
+    const scrollDistance = Math.max(1, section.offsetHeight - window.innerHeight);
+    const progress = Math.max(0, Math.min(1, -sectionTop / scrollDistance));
     frame.style.setProperty('--about-progress', progress.toFixed(3));
   };
 
