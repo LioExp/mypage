@@ -1197,7 +1197,11 @@ function initAboutScrollExpansion() {
   const titleBottom = title ? title.getBoundingClientRect().bottom : stickyTop;
   fadeContent.forEach((content) => {
   const distanceFromTitle = content.getBoundingClientRect().top - titleBottom;
-  const opacity = Math.max(0, Math.min(1, distanceFromTitle / 100));
+  // Keep content readable until it actually reaches the sticky title.
+  const fadeDistance = 140;
+  const opacity = distanceFromTitle >= 0
+    ? 1
+    : Math.max(0, Math.min(1, 1 + distanceFromTitle / fadeDistance));
   const blur = (1 - opacity) * 5;
   content.style.setProperty('--about-content-opacity', opacity.toFixed(3));
   content.style.setProperty('--about-content-blur', `${blur.toFixed(2)}px`);
