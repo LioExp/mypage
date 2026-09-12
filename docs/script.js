@@ -1179,32 +1179,22 @@ function initAboutScrollExpansion() {
   const update = () => {
     frameUpdate = null;
   const sectionTop = section.getBoundingClientRect().top;
-  const stickyTop = parseFloat(getComputedStyle(frame).top) || 0;
-  const title = frame.querySelector('.about-display-title');
   const fadeContent = frame.querySelectorAll('.about-fade-content, .about-copy, .open-to');
   if (!baseHeight) {
   baseHeight = frame.offsetHeight;
   frame.style.setProperty('--about-base-height', `${baseHeight}px`);
-  expansionStart = title
-    ? window.scrollY + title.getBoundingClientRect().top - stickyTop
-    : window.scrollY + sectionTop - stickyTop;
+  expansionStart = window.scrollY + baseHeight - window.innerHeight;
   section.style.setProperty('--about-scroll-space', `${baseHeight + window.innerHeight}px`);
   }
   const maxExtraHeight = window.innerHeight;
   const extraHeight = Math.min(maxExtraHeight, Math.max(0, window.scrollY - expansionStart));
-  const titleScale = 1 - (extraHeight / maxExtraHeight) * 0.16;
-  const titleFadeProgress = Math.min(1, extraHeight / (maxExtraHeight * 0.72));
-  const titleOpacity = 1 - titleFadeProgress;
-  title?.style.setProperty('--about-title-scale', titleScale.toFixed(3));
-  title?.style.setProperty('--about-title-opacity', titleOpacity.toFixed(3));
-  const titleBottom = title ? title.getBoundingClientRect().bottom : stickyTop;
+  const fadeTop = 64;
   fadeContent.forEach((content) => {
-  const distanceFromTitle = content.getBoundingClientRect().top - titleBottom;
-  // Keep content readable until it actually reaches the sticky title.
+  const distanceFromViewportTop = content.getBoundingClientRect().top - fadeTop;
   const fadeDistance = 140;
-  const opacity = distanceFromTitle >= 0
+  const opacity = distanceFromViewportTop >= 0
     ? 1
-    : Math.max(0, Math.min(1, 1 + distanceFromTitle / fadeDistance));
+    : Math.max(0, Math.min(1, 1 + distanceFromViewportTop / fadeDistance));
   const blur = (1 - opacity) * 5;
   content.style.setProperty('--about-content-opacity', opacity.toFixed(3));
   content.style.setProperty('--about-content-blur', `${blur.toFixed(2)}px`);
