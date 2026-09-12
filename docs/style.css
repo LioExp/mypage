@@ -491,17 +491,6 @@ img {
   overflow: visible;
 }
 
-> .about-frame {
-  --about-progress: 0;
-  position: relative;
-  max-width: 56rem;
-  min-height: var(--about-base-height, auto);
-  height: calc(var(--about-base-height, auto) + var(--about-extra, 0px));
-  margin: 0 auto;
-  overflow: visible;
-  transition: height 0.12s linear;
-}
-
 .about-intro {
   display: contents;
 }
@@ -511,8 +500,7 @@ img {
   top: 4rem;
   z-index: 3;
   padding-bottom: 1.5rem;
-  background: var(--bg);
-  }
+}
 
 .about-intro .about-typewriter {
   position: relative;
