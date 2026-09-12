@@ -567,7 +567,8 @@ img {
   vertical-align: 0.02em;
 }
 
-.about-inline-svg {
+.about-inline-svg,
+.about-inline-img {
   display: block;
   width: 1em;
   height: 1em;
