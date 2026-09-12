@@ -185,7 +185,7 @@ const t = {
   }
 };
 
-const ASCII_LIOEXP = `<span class="text-white">██╗     ██╗ ██████╗ </span><span class="text-purple">███████╗██╗  ██╗██████╗</span><br><span class="text-white">██║     ██║██╔═══██╗</span><span class="text-purple">██╔════╝╚██╗██╔╝██╔══██╗</span><br><span class="text-white">██║     ██║██║   ██║</span><span class="text-purple">█████╗   ╚███╔╝ ██████╔╝</span><br><span class="text-white">██║     ██║██║   ██║</span><span class="text-purple">██╔══╝   ██╔██╗ ██╔═══╝</span><br><span class="text-white">███████╗██║╚██████╔╝</span><span class="text-purple">███████╗██╔╝ ██╗██║</span><br><span class="text-white">╚══════╝╚═╝ ╚═════╝</span><span class="text-purple"> ╚══════╝╚═╝  ╚═╝╚═╝</span>`;
+const ASCII_LIOEXP = `<span class="text-white">██╗     ██╗ ██████╗ </span><span class="text-purple">███████╗██╗  ██╗██████╗</span><br><span class="text-white">██║     ██║██╔═══██╗</span><span class="text-purple">██╔════╝╚██╗██╔╝██╔══██╗</span><br><span class="text-white">██║     ██║██║   ██║</span><span class="text-purple">█████╗   ╚███╔╝ ██████╔╝</span><br><span class="text-white">██║     ██║██║   ██║</span><span class="text-purple">██╔══╝   ██╔██╗ ██╔═══╝</span><br><span class="text-white">███████╗██��╚██████╔╝</span><span class="text-purple">███████╗██╔╝ ██╗██║</span><br><span class="text-white">╚══════╝╚═╝ ╚═════╝</span><span class="text-purple"> ╚══════╝╚═╝  ╚═╝╚═╝</span>`;
 
 const ASCII_LIOCOSTA = `<span class="text-white">██╗     ██╗██████╗ </span><span class="text-purple"> ██████╗ ██████╗ ███████╗████████╗█████╗ </span><br><span class="text-white">██║     ██║██╔══██╗</span><span class="text-purple">██╔════╝██╔═══██╗██╔════╝╚══██╔══╝██╔══██╗</span><br><span class="text-white">██║     ██║██║  ██║</span><span class="text-purple">██║     ██║   ██║███████╗   ██║   ███████║</span><br><span class="text-white">██║     ██║██║  ██║</span><span class="text-purple">██║     ██║   ██║╚════██║   ██║   ██╔══██║</span><br><span class="text-white">███████╗██║██████╔╝</span><span class="text-purple">╚██████╗╚██████╔╝███████║   ██║   ██║  ██║</span><br><span class="text-white">╚══════╝╚═╝╚═════╝ </span><span class="text-purple"> ╚═════╝ ╚═════╝ ╚══════╝   ╚═╝   ╚═╝  ╚═╝</span>`;
 
@@ -1147,15 +1147,20 @@ function initAboutScrollExpansion() {
 
   let frameUpdate = null;
   let baseHeight = 0;
+  let expansionStart = 0;
   const update = () => {
-  frameUpdate = null;
-  const sectionTop = section.getBoundingClientRect().top;
-  if (!baseHeight) baseHeight = frame.offsetHeight;
-  const stickyTop = parseFloat(getComputedStyle(frame).top) || 0;
-  const scrollDistance = Math.max(0, section.offsetHeight - window.innerHeight - baseHeight);
-  const scrolledPastContent = Math.max(0, stickyTop - sectionTop);
-  const extraHeight = Math.min(scrolledPastContent, scrollDistance);
-  frame.style.setProperty('--about-extra', `${extraHeight}px`);
+    frameUpdate = null;
+    const sectionTop = section.getBoundingClientRect().top;
+    const stickyTop = parseFloat(getComputedStyle(frame).top) || 0;
+    if (!baseHeight) {
+      baseHeight = frame.offsetHeight;
+      frame.style.setProperty('--about-base-height', `${baseHeight}px`);
+      expansionStart = window.scrollY + sectionTop + baseHeight - window.innerHeight;
+      section.style.setProperty('--about-scroll-space', `${baseHeight + window.innerHeight}px`);
+    }
+    const maxExtraHeight = window.innerHeight;
+    const extraHeight = Math.min(maxExtraHeight, Math.max(0, window.scrollY - expansionStart));
+    frame.style.setProperty('--about-extra', `${extraHeight}px`);
   };
 
   const requestUpdate = () => {

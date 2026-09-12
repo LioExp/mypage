@@ -487,7 +487,7 @@ img {
 /* === About === */
 .about {
   position: relative;
-  min-height: 220vh;
+  min-height: calc(100vh + var(--about-scroll-space, 100vh));
   overflow: visible;
 }
 
@@ -496,8 +496,7 @@ img {
   position: sticky;
   top: 4rem;
   max-width: 56rem;
-  height: calc(34rem + var(--about-extra, 0px));
-  min-height: 34rem;
+  height: calc(var(--about-base-height, auto) + var(--about-extra, 0px));
   margin: 0 auto;
   overflow: hidden;
   transition: height 0.12s linear;
