@@ -1193,7 +1193,10 @@ function initAboutScrollExpansion() {
   const maxExtraHeight = window.innerHeight;
   const extraHeight = Math.min(maxExtraHeight, Math.max(0, window.scrollY - expansionStart));
   const titleScale = 1 - (extraHeight / maxExtraHeight) * 0.16;
+  const titleFadeProgress = Math.min(1, extraHeight / (maxExtraHeight * 0.72));
+  const titleOpacity = 1 - titleFadeProgress;
   title?.style.setProperty('--about-title-scale', titleScale.toFixed(3));
+  title?.style.setProperty('--about-title-opacity', titleOpacity.toFixed(3));
   const titleBottom = title ? title.getBoundingClientRect().bottom : stickyTop;
   fadeContent.forEach((content) => {
   const distanceFromTitle = content.getBoundingClientRect().top - titleBottom;

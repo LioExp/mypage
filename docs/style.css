@@ -502,8 +502,9 @@ img {
   padding-bottom: 1.5rem;
   transform: scale(var(--about-title-scale, 1));
   transform-origin: center top;
-  transition: transform 180ms ease-out;
-  will-change: transform;
+  opacity: var(--about-title-opacity, 1);
+  transition: transform 180ms ease-out, opacity 260ms ease-out;
+  will-change: transform, opacity;
 }
 
 .about-intro .about-typewriter {
