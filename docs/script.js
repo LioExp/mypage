@@ -1146,12 +1146,16 @@ function initAboutScrollExpansion() {
   if (!section || !frame) return;
 
   let frameUpdate = null;
+  let baseHeight = 0;
   const update = () => {
-    frameUpdate = null;
-    const sectionTop = section.getBoundingClientRect().top;
-    const scrollDistance = Math.max(1, section.offsetHeight - window.innerHeight);
-    const progress = Math.max(0, Math.min(1, -sectionTop / scrollDistance));
-    frame.style.setProperty('--about-progress', progress.toFixed(3));
+  frameUpdate = null;
+  const sectionTop = section.getBoundingClientRect().top;
+  if (!baseHeight) baseHeight = frame.offsetHeight;
+  const stickyTop = parseFloat(getComputedStyle(frame).top) || 0;
+  const scrollDistance = Math.max(0, section.offsetHeight - window.innerHeight - baseHeight);
+  const scrolledPastContent = Math.max(0, stickyTop - sectionTop);
+  const extraHeight = Math.min(scrolledPastContent, scrollDistance);
+  frame.style.setProperty('--about-extra', `${extraHeight}px`);
   };
 
   const requestUpdate = () => {
