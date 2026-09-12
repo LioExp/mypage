@@ -1153,6 +1153,7 @@ function initAboutScrollExpansion() {
   const sectionTop = section.getBoundingClientRect().top;
   const stickyTop = parseFloat(getComputedStyle(frame).top) || 0;
   const title = frame.querySelector('.about-display-title');
+  const fadeContent = frame.querySelectorAll('.about-fade-content, .about-footer');
   if (!baseHeight) {
   baseHeight = frame.offsetHeight;
   frame.style.setProperty('--about-base-height', `${baseHeight}px`);
@@ -1163,7 +1164,16 @@ function initAboutScrollExpansion() {
   }
   const maxExtraHeight = window.innerHeight;
   const extraHeight = Math.min(maxExtraHeight, Math.max(0, window.scrollY - expansionStart));
-    frame.style.setProperty('--about-extra', `${extraHeight}px`);
+  const titleBottom = title ? title.getBoundingClientRect().bottom : stickyTop;
+  fadeContent.forEach((content) => {
+  const distanceFromTitle = content.getBoundingClientRect().bottom - titleBottom;
+  const opacity = Math.max(0, Math.min(1, (distanceFromTitle - 20) / 110));
+  const blur = (1 - opacity) * 5;
+  content.style.setProperty('--about-content-opacity', opacity.toFixed(3));
+  content.style.setProperty('--about-content-blur', `${blur.toFixed(2)}px`);
+  content.classList.toggle('is-hidden', opacity < 0.04);
+  });
+  frame.style.setProperty('--about-extra', `${extraHeight}px`);
   };
 
   const requestUpdate = () => {

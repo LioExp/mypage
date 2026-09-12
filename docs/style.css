@@ -510,7 +510,20 @@ img {
   position: sticky;
   top: 4rem;
   z-index: 2;
-}
+  }
+
+  .about-fade-content {
+  --about-content-opacity: 1;
+  --about-content-blur: 0px;
+  opacity: var(--about-content-opacity);
+  filter: blur(var(--about-content-blur));
+  transition: opacity 180ms ease-out, filter 180ms ease-out;
+  will-change: opacity, filter;
+  }
+
+  .about-fade-content.is-hidden {
+  pointer-events: none;
+  }
 
 .about-frame {
   --about-progress: 0;
