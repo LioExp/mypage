@@ -2951,11 +2951,11 @@ button:focus-visible {
   margin-top: 0;
 }
 
-.about-typewriter {
-  margin-top: 2rem;
-}
+  .about-typewriter {
+  margin-top: 4rem;
+  }
 
-.about-para {
+  .about-para {
   color: var(--text-muted);
   font-size: 1rem;
   line-height: 1.7;
