@@ -493,6 +493,22 @@ img {
 .about-frame {
   max-width: 56rem;
   margin: 0 auto;
+  position: sticky;
+  top: 5vh;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.about-intro {
+  flex-shrink: 0;
+}
+
+.about-footer {
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
 }
 
 .about-meta {
@@ -560,18 +576,18 @@ img {
   align-items: center;
   justify-content: center;
   margin-inline: 0.16em;
-  width: 1.15em;
-  height: 1.15em;
+  width: 1.6em;
+  height: 1.6em;
   color: var(--accent);
   line-height: 1;
-  vertical-align: 0.02em;
+  vertical-align: -0.05em;
 }
 
 .about-inline-svg,
 .about-inline-img {
   display: block;
-  width: 1.5em;
-  height: 1.5em;
+  width: 100%;
+  height: 100%;
 }
 .about-icon-bigger {
   width: 1.8em;
@@ -582,6 +598,9 @@ img {
   border: 1px solid transparent;
   border-radius: 0.38rem;
   text-decoration: none;
+  color: var(--accent);
+  font-weight: 600;
+  padding: 0.1em 0.3em;
   transition:
     color 0.2s ease,
     background-color 0.2s ease,
@@ -661,7 +680,7 @@ img {
   grid-template-columns: 1fr;
   gap: 1.5rem;
   padding-top: 1.75rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  padding-bottom: 3rem;
 }
 
 .about-copy {
@@ -2935,12 +2954,6 @@ button:focus-visible {
     filter 0.9s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-.about-full-text.visible {
-  opacity: 1;
-  transform: none;
-  filter: none;
-}
-
 .about .about-photo {
   border: 0.3rem solid var(--bg-card);
   border-radius: 1rem;
@@ -2950,9 +2963,9 @@ button:focus-visible {
 }
 
 .about-footer {
-  border-top-color: var(--border);
   gap: 2rem;
   padding-top: 2rem;
+  padding-bottom: 3rem;
 }
 
 .tag {

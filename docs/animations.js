@@ -78,23 +78,33 @@
   const lineIO = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       if (!e.isIntersecting) return;
-      e.target.classList.add('visible');
+      if (e.target.classList.contains('about-full-text')) {
+        const lines = [...e.target.querySelectorAll('.about-text-line')];
+        if (lines.length) {
+          const checkLines = () => {
+            const vh = window.innerHeight;
+            lines.forEach(line => {
+              if (line.classList.contains('visible')) return;
+              const rect = line.getBoundingClientRect();
+              if (rect.top < vh * 0.9) {
+                line.classList.add('visible');
+              }
+            });
+          };
+          window.addEventListener('scroll', checkLines, { passive: true });
+          window.addEventListener('resize', checkLines, { passive: true });
+          checkLines();
+        }
+      } else {
+        e.target.classList.add('visible');
+      }
       lineIO.unobserve(e.target);
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+  }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
 
   function initLineReveal(root) {
     (root.querySelectorAll('.about-para:not(.about-typewriter)') || []).forEach((el) => {
-      if (el.classList.contains('about-full-text')) {
-        if (el.dataset.lrInit === '1') return;
-        el.dataset.lrInit = '1';
-        if (reduced) {
-          el.classList.add('visible');
-        } else {
-          lineIO.observe(el);
-        }
-        return;
-      }
+      if (el.classList.contains('about-full-text')) return;
 
       const splitLines = () => {
         const text = el.textContent;
@@ -160,78 +170,6 @@
     });
   }
 
-  // -------------------------------------------------------
-  // 1e) About scroll fill — texto ativo por ordem de leitura
-  // -------------------------------------------------------
-  function initAboutScrollFill(root) {
-    root.querySelectorAll('.about-full-text').forEach((container) => {
-      const lines = [...container.querySelectorAll('.about-text-line')];
-      if (lines.length === 0) return;
-
-      lines.forEach((line) => {
-        if (line.querySelector('.about-fill-char')) return;
-
-        const wrapTextNodes = (node) => {
-          [...node.childNodes].forEach((child) => {
-            if (child.nodeType === Node.TEXT_NODE) {
-              const fragment = document.createDocumentFragment();
-              [...child.textContent].forEach((char) => {
-                if (/\s/.test(char)) {
-                  fragment.appendChild(document.createTextNode(char));
-                  return;
-                }
-                const span = document.createElement('span');
-                span.className = 'about-fill-char';
-                span.textContent = char;
-                fragment.appendChild(span);
-              });
-              child.replaceWith(fragment);
-            } else if (
-              child.nodeType === Node.ELEMENT_NODE &&
-              !child.matches('.about-inline-link, .about-inline-icon')
-            ) {
-              wrapTextNodes(child);
-            }
-          });
-        };
-
-        wrapTextNodes(line);
-      });
-
-      const chars = [...container.querySelectorAll('.about-fill-char')];
-      if (chars.length === 0) return;
-
-      const state = container._aboutFillState || { initialized: false, chars: [], raf: 0 };
-      state.chars = chars;
-      container._aboutFillState = state;
-
-      const updateFill = () => {
-        state.raf = 0;
-        const rect = container.getBoundingClientRect();
-        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-        const start = viewportHeight * 0.86;
-        const end = -rect.height * 0.12;
-        const progress = Math.max(0, Math.min(1, (start - rect.top) / (start - end)));
-        const filledCount = Math.round(progress * state.chars.length);
-
-        state.chars.forEach((char, index) => {
-          char.classList.toggle('is-filled', index < filledCount);
-        });
-      };
-
-      const requestUpdate = () => {
-        if (state.raf) return;
-        state.raf = requestAnimationFrame(updateFill);
-      };
-
-      if (!state.initialized) {
-        state.initialized = true;
-        window.addEventListener('scroll', requestUpdate, { passive: true });
-        window.addEventListener('resize', requestUpdate, { passive: true });
-      }
-      requestUpdate();
-    });
-  }
 
   // -------------------------------------------------------
   // 1d) About typewriter — abre {} e escreve o texto ao entrar no ecrã
@@ -614,10 +552,9 @@
     initBannerParallax();
     initMouseParallax();
     initLineReveal(root);
-    initAboutScrollFill(root);
     initAboutTypewriter(root);
 
-    // footer (render dinâmico) entra no observer de reveals
+    // footer entra no observer de reveals
     const footer = document.querySelector('.footer');
     if (footer) observeReveal(footer);
 
