@@ -610,6 +610,19 @@ img {
   transform: translateY(-1px);
 }
 
+.about-text-link {
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.about-text-link:hover,
+.about-text-link:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
 .about-luanda {
   color: var(--text);
   padding-bottom: 0.15em;
