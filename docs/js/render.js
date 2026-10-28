@@ -106,6 +106,8 @@ function renderProjectCard(p, data) {
 
   return `<div class="project-card${isOpen ? ' is-open' : ''}">
     ${projectPreview(p)}
+    <span class="project-year">2026</span>
+    <span class="project-star" aria-hidden="true">★</span>
     <div class="project-content">
       ${projectHeader(p, pr)}
       ${pr.sub ? `<p class="project-sub">${pr.sub}</p>` : ''}
