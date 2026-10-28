@@ -225,7 +225,7 @@ function renderRoadmap(data) {
     <a class="roadmap-link" href="https://myroadmapp.vercel.app" target="_blank" rel="noopener noreferrer">
       <span class="roadmap-year">myroadmap</span>
       <span class="roadmap-label">${data.skills.roadmapLinkLabel}</span>
-      ${icons.external.replace('w-3.5 h-3.5', 'roadmap-external-icon')}
+      
     </a>
   </div>`;
 }
