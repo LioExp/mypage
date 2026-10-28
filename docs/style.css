@@ -576,13 +576,18 @@ img {
 
 .about-inline-link,
 .about-inline-icon {
+  color: var(--accent);
+  line-height: inherit;
+  vertical-align: baseline;
+}
+
+.about-inline-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-inline: 0.16em;
   width: 1.15em;
   height: 1.15em;
-  color: var(--accent);
   line-height: 1;
   vertical-align: 0.02em;
 }
@@ -1293,18 +1298,27 @@ img {
 }
 
 .roadmap-link {
-  display: inline;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
   color: var(--text);
   font-family: var(--font-mono);
   font-size: 0.875rem;
   line-height: 1.5;
+  white-space: nowrap;
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color 0.2s ease;
 }
 
 .roadmap-link:hover,
 .roadmap-link:focus-visible {
   color: var(--accent);
+  outline: none;
+}
+
+.roadmap-link:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 .roadmap-link .roadmap-year {
