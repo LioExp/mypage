@@ -491,3 +491,24 @@ html.reduce-motion .footer .verse-full {
   transform: none;
   transition: none;
 }
+
+/* === Force animations on mobile === */
+@media (max-width: 768px) {
+  .reveal, .visible, .about-text-line, .para-line, .bw-word,
+  .typewriter-char, .nav-link, .project-card, .about-luanda,
+  .footer-inner, .contact-wrap, .skill-card {
+    -webkit-animation-play-state: running !important;
+    animation-play-state: running !important;
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+  }
+
+  .nav {
+    -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+    backdrop-filter: blur(24px) saturate(190%) !important;
+  }
+
+  .project-card {
+    will-change: transform;
+  }
+}

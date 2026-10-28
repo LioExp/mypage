@@ -340,14 +340,16 @@ async function fetchYtFeed() {
   };
 
   try {
-    const data = await fetchJson('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.youtube.com%2Ffeeds%2Fvideos.xml%3Fchannel_id%3DUCZIZwWoayEW1CXxqE0TwyLQ', 10 * 60 * 1000);
-    if (data.status !== 'ok' || !data.items?.length) { fallback(); return; }
-    const items = data.items
-      .filter((item) => item.link && item.title)
+    // yt-feed.json is generated from the channel RSS by
+    // scripts/update-yt-feed.py (scheduled GitHub Action), so the feed
+    // loads same-origin without a CORS proxy or API key.
+    const data = await fetchJson('yt-feed.json', 10 * 60 * 1000);
+    const items = (data.items || [])
+      .filter((item) => item.url && item.title)
       .slice(0, YT_FEED_LIMIT);
     if (!items.length) { fallback(); return; }
     const html = items.map(v => `
-      <a href="${escapeHtml(v.link)}" target="_blank" rel="noopener noreferrer" class="yt-feed-item">
+      <a href="${escapeHtml(v.url)}" target="_blank" rel="noopener noreferrer" class="yt-feed-item">
         <img src="${escapeHtml(v.thumbnail || '')}" alt="${escapeHtml(v.title)}" class="yt-feed-thumb" decoding="async" onerror="this.hidden=true" />
         <span class="yt-feed-title">${escapeHtml(v.title)}</span>
       </a>

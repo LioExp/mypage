@@ -1,10 +1,10 @@
-const CACHE = 'mypage-v11';
+const CACHE = 'mypage-v13';
 const URLS = [
   '/mypage/',
   '/mypage/index.html',
   '/mypage/style.css',
   '/mypage/animations.css',
-  '/mypage/script.js',
+  '/mypage/yt-feed.json',
   '/mypage/animations.js',
   '/mypage/assets/banner.png',
   '/mypage/assets/favicon2.jpg',

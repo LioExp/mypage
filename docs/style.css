@@ -17,13 +17,14 @@
   --accent: #7c3aed;
   --accent-glow: rgba(124,58,237,0.4);
   --accent-bg: rgba(124,58,237,0.1);
-  --font-sans: 'Inter', sans-serif;
-  --font-heading: 'Archivo Black', sans-serif;
-  --font-display: 'Bowlby One', sans-serif;
-  --font-hand: 'Courgette', cursive;
-  --font-accent: 'Paytone One', sans-serif;
-  --font-label: 'Lilita One', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-sans: var(--font-serif);
+  --font-heading: var(--font-serif);
+  --font-display: var(--font-serif);
+  --font-hand: var(--font-serif);
+  --font-accent: var(--font-serif);
+  --font-label: var(--font-serif);
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 }
 
 html {
@@ -34,6 +35,9 @@ html {
 
 body {
   font-family: var(--font-sans);
+  font-optical-sizing: auto;
+  font-variation-settings: 'SOFT' 60, 'WONK' 0;
+  font-weight: 420;
   background: var(--bg);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
@@ -2674,12 +2678,13 @@ img {
   --accent: #7c3aed;
   --accent-glow: rgba(124, 58, 237, 0.18);
   --accent-bg: rgba(124, 58, 237, 0.12);
-  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-  --font-heading: var(--font-sans);
-  --font-display: var(--font-sans);
-  --font-hand: var(--font-sans);
-  --font-accent: var(--font-sans);
-  --font-label: var(--font-sans);
+  --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-sans: var(--font-serif);
+  --font-heading: var(--font-serif);
+  --font-display: var(--font-serif);
+  --font-hand: var(--font-serif);
+  --font-accent: var(--font-serif);
+  --font-label: var(--font-serif);
   --font-mono: "SFMono-Regular", ui-monospace, Menlo, Monaco, Consolas, monospace;
 }
 
