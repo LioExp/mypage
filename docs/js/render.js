@@ -222,9 +222,9 @@ function renderSkillCategories(data) {
 function renderRoadmap(data) {
   $('roadmapSection').innerHTML = `<div class="roadmap-grid">
     <div><p class="cat-label">${data.skills.roadmapLabel}</p></div>
-    <a class="roadmap-card roadmap-link" href="https://myroadmapp.vercel.app" target="_blank" rel="noopener noreferrer">
-      <p class="roadmap-year">myroadmap</p>
-      <p class="roadmap-label">${data.skills.roadmapLinkLabel}</p>
+    <a class="roadmap-link" href="https://myroadmapp.vercel.app" target="_blank" rel="noopener noreferrer">
+      <span class="roadmap-year">myroadmap</span>
+      <span class="roadmap-label">${data.skills.roadmapLinkLabel}</span>
       ${icons.external.replace('w-3.5 h-3.5', 'roadmap-external-icon')}
     </a>
   </div>`;

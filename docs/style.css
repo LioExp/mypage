@@ -1292,34 +1292,28 @@ img {
   border-color: rgba(124, 58, 237, 0.45);
 }
 
-.roadmap-card {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  column-gap: 0.75rem;
-  background: none;
-  border: none;
-  border-radius: 0;
-  padding: 0;
-  text-decoration: none;
-  font-family: var(--font-mono);
-}
-
 .roadmap-link {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  column-gap: 0.75rem;
-  max-width: none;
+  display: inline;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.5;
   text-decoration: none;
   transition: color 0.2s;
 }
 
-.roadmap-link:hover {
+.roadmap-link:hover,
+.roadmap-link:focus-visible {
   color: var(--accent);
 }
 
-.roadmap-link .roadmap-year { color: var(--accent); }
+.roadmap-link .roadmap-year {
+  color: var(--accent);
+}
+
+.roadmap-link .roadmap-label {
+  color: inherit;
+}
 
 .roadmap-card.current {
   border-color: rgba(124,58,237,0.4);
