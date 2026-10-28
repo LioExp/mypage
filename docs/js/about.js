@@ -6,7 +6,12 @@ function renderAbout(data) {
   const aboutText = $('cbpText');
   aboutText.dataset.typewriterText = data.about.cbpText;
   if (window.refreshAboutTypewriter) window.refreshAboutTypewriter(aboutText);
-  $('aboutFullText').innerHTML = data.about.fullText;
+  const fullText = $('aboutFullText');
+  fullText.innerHTML = data.about.fullText;
+  const roadmapLink = fullText.querySelector('.about-inline-link[href="#skills"]');
+  if (roadmapLink) {
+    roadmapLink.textContent = roadmapLink.textContent.replace(/^\s*(?:→|->)\s*/u, '');
+  }
   $('openTags').innerHTML = data.about.openTags.map(t => `<span class="tag">${t}</span>`).join('');
 
     requestAnimationFrame(() => {

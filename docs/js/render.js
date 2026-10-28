@@ -104,34 +104,39 @@ function renderProjectCard(p, data) {
   const pr = data.projects[p.key];
   const isOpen = openProjects[p.id];
 
-  return `<div class="project-card${isOpen ? ' is-open' : ''}">
+  return `<div class="project-card project-card--${p.key}${isOpen ? ' is-open' : ''}">
     ${projectPreview(p)}
     <div class="project-content">
-      ${projectHeader(p, pr)}
-      ${pr.sub ? `<p class="project-sub">${pr.sub}</p>` : ''}
-      <p class="project-desc">${pr.desc}</p>
-      ${projectTags(p)}
-      ${projectActions(p, data, isOpen)}
-      ${projectDetail(p, pr, isOpen)}
+      <div class="project-topline">
+        ${projectStatus(pr)}
+        ${projectTags(p)}
+      </div>
+      <div class="project-footer">
+        <div class="project-copy">
+          <h4 class="project-name">${p.id}</h4>
+          ${pr.sub ? `<p class="project-sub">${pr.sub}</p>` : ''}
+          <p class="project-desc">${pr.desc}</p>
+        </div>
+        ${projectActions(p, data, isOpen)}
+      </div>
     </div>
+    ${projectDetail(p, pr, isOpen)}
   </div>`;
 }
 
-function projectHeader(p, pr) {
-  return `<div class="project-header">
-    <h4 class="project-name">${p.id}</h4>
-    <span class="project-badge">
+function projectStatus(pr) {
+  return `<span class="project-badge">
       <span class="badge-dot"></span>
       ${pr.badge}
-    </span>
-  </div>`;
+    </span>`;
 }
 
 function projectPreview(p) {
+  const imageBackground = p.imgBg || '#0b0810';
   if (p.video) {
-    return `<div class="project-img"><video src="${p.video}" autoplay muted loop playsinline></video></div>`;
+    return `<div class="project-img" style="--project-img-bg:${imageBackground}"><video src="${p.video}" autoplay muted loop playsinline></video></div>`;
   }
-  return `<div class="project-img"><img src="${p.img}" alt="${p.id} preview" draggable="false" loading="lazy" /></div>`;
+  return `<div class="project-img" style="--project-img-bg:${imageBackground};--project-img-url:url('${p.img}')"><img src="${p.img}" alt="${p.id} preview" draggable="false" loading="lazy" /></div>`;
 }
 
 function projectTags(p) {
@@ -519,14 +524,6 @@ function renderYtCards(data) {
           <span class="yt-subs" id="ytSubsPt">${subsText}</span>
         </div>
         <p class="yt-desc">${data.contact.ytPTdesc}</p>
-        ${icons.external.replace('w-3.5 h-3.5', 'contact-external-icon')}
-      </div>
-    </a>
-    <a href="https://youtube.com/@lioexp-en" target="_blank" rel="noopener noreferrer" class="yt-card" data-testid="link-contact-yt-en" aria-label="YouTube EN" title="YouTube EN">
-      <div class="yt-icon">${icons.yt}</div>
-      <div class="yt-info">
-        <div class="yt-title"><span class="yt-media-name">YouTube EN</span></div>
-        <p class="yt-desc">${data.contact.ytENdesc}</p>
         ${icons.external.replace('w-3.5 h-3.5', 'contact-external-icon')}
       </div>
     </a>`;

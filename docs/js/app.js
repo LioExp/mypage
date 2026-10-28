@@ -41,8 +41,6 @@ function initRevealObserver() {
 document.addEventListener('DOMContentLoaded', () => {
   initEvents();
   switchLang(lang);
-  applyPersona();
-  switchPersona(persona);
   initNavObserver();
   initRevealObserver();
   if ('serviceWorker' in navigator) {

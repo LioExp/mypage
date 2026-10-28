@@ -19,26 +19,6 @@ function switchLang(l) {
   fetchGhGraph();
 }
 
-function switchPersona(p) {
-  persona = p;
-  localStorage.setItem('persona', p);
-  const btn = document.querySelector('.persona-btn');
-  if (btn) btn.classList.toggle('active', persona === 'liocosta');
-  applyPersona();
-}
-
-function applyPersona() {
-  const p = PERSONAS[persona];
-  document.title = p.title;
-  const banner = document.querySelector('.banner-img');
-  if (banner) banner.alt = p.displayName + ' banner';
-  const ascii = document.querySelector('.ascii-logo');
-  if (ascii) ascii.innerHTML = persona === 'lioexp' ? ASCII_LIOEXP : ASCII_LIOCOSTA;
-  document.querySelectorAll('.persona-text').forEach(el => {
-    if (el.dataset.personaText) el.textContent = el.dataset.personaText;
-  });
-}
-
 function toggleVerse() {
   $('verseFull').classList.toggle('open');
 }
@@ -56,9 +36,6 @@ function initEvents() {
   document.addEventListener('click', (e) => {
     const langBtn = e.target.closest('.lang-btn');
     if (langBtn) { switchLang(langBtn.dataset.lang); return; }
-
-    const personaBtn = e.target.closest('.persona-btn');
-    if (personaBtn) { switchPersona(persona === 'lioexp' ? 'liocosta' : 'lioexp'); return; }
 
     const briefingBtn = e.target.closest('#briefingBtn');
     if (briefingBtn) { toggleBriefing(); return; }
