@@ -1,4 +1,4 @@
-const CACHE = 'mypage-v18';
+const CACHE = 'mypage-v21';
 const URLS = [
   './',
   './index.html',
@@ -9,7 +9,7 @@ const URLS = [
   './assets/banner.png',
   './assets/favicon2.jpg',
   './assets/faber-preview.png',
-  './assets/myfi-preview.png',
+  './assets/myfi-preview.webp',
   './assets/kianda-preview.png',
   './assets/setup-2026.jpg',
   './assets/icons/tux.svg',

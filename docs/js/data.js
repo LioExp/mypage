@@ -206,7 +206,7 @@ const PROJECTS = [
   },
   {
     id: 'MyFi', key: 'myfi', color: '#3b82f6',
-    img: 'assets/myfi-preview.png', imgBg: '#050505',
+    img: 'assets/myfi-preview.webp', imgBg: '#050505',
     tags: ['Python', 'CLI', 'Networking', 'Linux', 'Cybersecurity'],
     github: 'https://github.com/LioExp/MyFi', landing: 'https://lioexp.github.io/MyFi/'
   },
